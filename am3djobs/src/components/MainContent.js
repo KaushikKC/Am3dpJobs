@@ -76,9 +76,23 @@ function MainContent() {
     <div class="col-lg-9">
       <nav class="sgds" aria-label="breadcrumb">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="/">Home</a></li>
-          <li class="breadcrumb-item"><a href="/">Library</a></li>
-          <li class="breadcrumb-item active" aria-current="page">Data</li>
+          <li class="breadcrumb-item">
+            <div class="sgds form-group mb-2">
+                <div class="sgds form-control-group">
+                    <input type="text" class="form-control" id="hoverWith" aria-describedby="hoverWithHelp" placeholder="Search" autofocus />
+                    <i class="bi bi-search form-control-icon"></i>
+                </div>
+              </div>
+            </li>
+          <li class="">
+              <div class="sgds form-group mb-2"> 
+                  <div class="sgds form-control-group px-2">
+                      <input type="text" class="form-control" id="hoverWith" aria-describedby="hoverWithHelp" placeholder="Location" autofocus />
+                      <i class="bi bi-geo-alt form-control-icon"></i>
+                  </div>
+                </div>
+            </li>
+      
         </ol>
       </nav>
       <h2>Page heading</h2>
@@ -88,6 +102,16 @@ function MainContent() {
       </p>
       <h4>Overview</h4>
       <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+        velit esse cillum dolore eu fugiat nulla pariatur.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+        velit esse cillum dolore eu fugiat nulla pariatur.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
         veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
