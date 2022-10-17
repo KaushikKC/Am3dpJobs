@@ -1,66 +1,46 @@
 import React from 'react'
+import logo from '../Images/Logo.png'
 
 function Navbar() {
   return (
-    <div className='px-8'>
+    <div className='px-8 z-10'>
          
         <div style={{height: "100px"}} className="overflow-auto">
             <nav className="mt-2 sgds navbar navbar-expand-lg">
-                <a className="navbar-brand" href="/">
-                    Breakpoint-sm
-                </a>
+                {/* <a className="navbar-brand fs-2 fw-bold" href="/">
+                    AM 3-d Jobs
+                </a> */}
+                <img className="navbar-brand mt-4" style={{width:"200px", height:"50px"}} src={logo} alt="" />
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <i className="bi bi-list"></i>
                 </button>
-                <div className="collapse navbar-collapse" id="navbarNav">
+                <div className="collapse navbar-collapse mx-5" id="navbarNav">
                     <ul className="navbar-nav">
-                        <li className="nav-item">
-                            <a className="nav-link active" aria-current="page" href="/">Home</a>
+                        <li className="nav-item px-2">
+                            <a className="nav-link active" aria-current="page" href="/">Jobs</a>
                         </li>
-                        <li className="nav-item">
-                            <a className="nav-link" aria-current="page" href="/">Link</a>
+                        <li className="nav-item px-2">
+                            <a className="nav-link" aria-current="page" href="/">Company</a>
                         </li>
-                        <li className="nav-item sgds dropdown">
-                            <a className="nav-link sgds dropdown-toggle" href="/" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Dropdown<i className="bi bi-chevron-down"></i>
-                            </a>
-                            <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a className="dropdown-item" href="/">Action</a></li>
-                                <li><a className="dropdown-item" href="/">Another Action</a></li>
-                                <li><a className="dropdown-item" href="/">Something</a></li>
-                                <div className="dropdown-divider"></div>
-                                <li><a className="dropdown-item" href="/">Seperated Link</a></li>
-                            </ul>
+                        <li className="nav-item px-2">
+                            <a className="nav-link" aria-current="page" href="/">Talent</a>
                         </li>
-                        <li className="nav-item sgds dropdown has-megamenu">
-                            <a className="nav-link sgds dropdown-toggle" href="/" id="megamenu" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Megamenu<i className="bi bi-chevron-down"></i>
-                            </a>
-                            <div className="dropdown-menu megamenu p-3" aria-labelledby="megamenu">
-                                <div className="d-flex justify-content-start">
-                                    <div>
-                                        <b>Co-create innovative digital solutions with the Government</b>
-                                        <p>Discover events, blogs, open-source technologies and other collaboration opportunities</p>
-                                    </div>
-                                    <div>
-                                        <a className="dropdown-item" href="/">Features</a>
-                                        <a className="dropdown-item" href="/">Features</a>
-                                        <a className="dropdown-item" href="/">Features</a>
-                                    </div>
-                                    <div>
-                                        <a className="dropdown-item" href="/">Features</a>
-                                        <a className="dropdown-item" href="/">Features</a>
-                                        <a className="dropdown-item" href="/">Features</a>
-                                    </div>
-                                    <div>
-                                        <a className="dropdown-item" href="/">Features</a>
-                                        <a className="dropdown-item" href="/">Features</a>
-                                        <a className="dropdown-item" href="/">Features</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
+                        
+                        
                     </ul>
+                </div>
+                <div className='d-flex justify-content-between align-items-center' style={{marginLeft:"auto"}}>
+                    <div className=''>
+                        <ul className='d-flex justify-content-between align-items-center mt-3'  style={{listStyle:"none"}}>
+                            <li className='px-2'>
+                                <button type="button"  class="btn btn-light">Sign In</button>
+                            </li>
+                            <li  className='px-2'>
+                                <button type="button" class="btn btn-outline-dark">Sign Up</button>
+                            </li>
+                            
+                        </ul>     
+                    </div>
                 </div>
             </nav>
         </div>
