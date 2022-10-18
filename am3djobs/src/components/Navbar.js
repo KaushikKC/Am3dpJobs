@@ -5,7 +5,7 @@ function Navbar() {
   return (
     <div className='px-8 z-10'>
          
-        <div style={{height: "100px"}} className="overflow-auto">
+        <div className="overflow-auto">
             <nav className="mt-2 sgds navbar navbar-expand-lg">
                 {/* <a className="navbar-brand fs-2 fw-bold" href="/">
                     AM 3-d Jobs
@@ -19,9 +19,7 @@ function Navbar() {
                         <li className="nav-item px-2">
                             <a className="nav-link active" aria-current="page" href="/">Jobs</a>
                         </li>
-                        <li className="nav-item px-2">
-                            <a className="nav-link" aria-current="page" href="/">Company</a>
-                        </li>
+        
                         <li className="nav-item px-2">
                             <a className="nav-link" aria-current="page" href="/">Talent</a>
                         </li>
@@ -30,9 +28,9 @@ function Navbar() {
                     </ul>
                 </div>
                 <div className='d-flex justify-content-between align-items-center' style={{marginLeft:"auto"}}>
-                    <div className=''>
+                    <div className='collapse navbar-collapse'  id="navbarNav">
                         <ul className='d-flex justify-content-between align-items-center mt-3'  style={{listStyle:"none"}}>
-                            <li className='px-2'>
+                            <li className='px-2 '>
                                 <button type="button"  class="btn btn-light">Sign In</button>
                             </li>
                             <li  className='px-2'>
