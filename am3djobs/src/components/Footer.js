@@ -20,8 +20,8 @@ function Footer() {
             <div class="row footer-copyrights">
                 <div class="col">
                     <div class="d-flex justify-content-lg-end text-end">
-                        © 2022 Government of Singapore<br></br>
-                        Last Updated 08 Feb 2022
+                        © 2022 AM 3-D Print<br></br>
+                        Last Updated 18 Aug 2022
                     </div>
                 </div>
             </div>
