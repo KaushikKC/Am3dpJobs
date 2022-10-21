@@ -1,3 +1,7 @@
+.shadow-smc {
+    box-shadow: none;
+}
+
 .shadowc-sm {
     box-shadow: 0 1px 2px rgb(0 0 0 / 6%), 0 1px 3px rgb(0 0 0 / 10%);
 }
@@ -88,8 +92,73 @@ h1, h2, h3, h4, h5, h6, p {
     border-color: aqua;
 }
 
+.jb__tag {
+    background: #f6f6f6;
+}
+.tooltipped {
+    position: relative;
+}
+.mir-2 {
+    -webkit-margin-end: 0.5rem;
+}
+.no-underline {
+    text-decoration: none;
+}
+.uppercase {
+    text-transform: uppercase;
+}
+.text-xs {
+    font-size: .75rem;
+}
+.text-grey-darker {
+    color: #606f7b;
+}
 
+.hidden {
+    display: none;
+}
 
+.d-nonec{
+    padding-bottom: 10px;
+    box-shadow: 0 1px 2px rgb(0 0 0 / 6%), 0 1px 3px rgb(0 0 0 / 10%);
+    margin-bottom: 20px;
+}
+
+.backc {
+    background-color: #f6f6f6;
+    border-radius: 00.5rem;
+    margin-top: 20px;
+}
+
+.sm_shadow {
+    box-shadow: 0 1px 2px rgb(0 0 0 / 6%), 0 1px 3px rgb(0 0 0 / 10%);
+    margin-bottom: 20px;
+    border-radius: 0.5rem;
+}
+
+@media (min-width: 576px) {
+    .sm_shadow {
+        box-shadow: none;
+        margin-bottom: 0;
+        border-radius: 0;
+    }
+}
+@media (min-width: 576px) {
+    .shadow-smc {
+        box-shadow: 0 1px 2px rgb(0 0 0 / 6%), 0 1px 3px rgb(0 0 0 / 10%);
+    }
+}
+@media (min-width: 576px) {
+    .hidden {
+        display: flex;
+    }   
+}
+
+@media (min-width:991px) {
+    .d-nonec{
+        padding-right: 10px;
+    } 
+}
 
 @media (min-width: 576px) and (max-width: 850px) {
  .sm_pir-0 {
@@ -106,9 +175,10 @@ h1, h2, h3, h4, h5, h6, p {
     }
 }
 
-@media (max-width: 695px) {
+@media (max-width: 730px) {
     .bread{
         width: 100%;
+        margin-right: 0;
     }
 }
 @media (min-width: 576px){

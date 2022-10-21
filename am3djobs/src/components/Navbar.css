@@ -1,0 +1,15 @@
+.npadding {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.nav-link:active {
+    color: aqua;
+}
+
+@media (min-width: 768px) {
+    .npadding {
+        padding-left: 2.5rem;
+        padding-right: 2.5rem;
+    }
+}
