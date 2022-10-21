@@ -19,7 +19,7 @@ function Footer() {
             </div>
             <div class="row footer-copyrights">
                 <div class="col">
-                    <div class="d-flex justify-content-lg-end text-end">
+                    <div class="d-flex fs-5 text-muted">
                         © 2022 AM 3-D Print<br></br>
                         Last Updated 18 Aug 2022
                     </div>
