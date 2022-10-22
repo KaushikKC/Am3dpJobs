@@ -1,6 +1,6 @@
 import React from 'react'
 import Footer from '../components/Footer'
-import MainContent from '../components/MainContent'
+import MainContentJobs from '../components/MainContentJobs'
 // import Navbar from '../components/Navbar'
 import PostingJob from '../components/PostingJob'
 
@@ -9,7 +9,7 @@ function Jobs() {
     <div className=''>
        <hr />
       <PostingJob />
-      <MainContent />
+      <MainContentJobs />
       <Footer/> 
     </div>
   )

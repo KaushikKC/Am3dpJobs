@@ -3,15 +3,21 @@ import logo from '../Images/Logo.png'
 import './Navbar.css'
 import {Outlet} from 'react-router-dom'
 import {redirectToAuth} from 'supertokens-auth-react'
+import { useEffect } from 'react'
 
 function Navbar() {
-    document.querySelectorAll('.nav-link').forEach(
-        a => {
-            if(a.href === window.location.href) {
-                a.className = 'active'
+
+    useEffect (() => {
+        document.querySelectorAll('.nav-link').forEach(
+            a => {
+                console.log(window.location.href)
+                if(a.href === window.location.href) {
+                    a.classList.add('active')
+                }
             }
-        }
-    )
+        )
+    });
+    
 
     const SignUp = async () => {
         redirectToAuth();
@@ -36,7 +42,7 @@ function Navbar() {
                         </li>
         
                         <li className="nav-item px-2">
-                            <a className="nav-link fw-bold" aria-current="page" href="/talent">Talent</a>
+                            <a className="nav-link fw-bold " aria-current="page" href="/talent">Talent</a>
                         </li>
                         
                         
@@ -45,9 +51,7 @@ function Navbar() {
                 <div className='d-flex justify-content-between align-items-center'>
                     <div className='collapse navbar-collapse'  id="navbarNav">
                         <ul className='d-flex justify-content-between align-items-center mt-3'  style={{listStyle:"none"}}>
-                            <li className='px-2 '>
-                                <button type="button"  class="btn btn-light">Sign In</button>
-                            </li>
+                            
                             <li  className='px-2'>
                                 <button type="button" onClick={SignUp} class="btn btn-outline-dark">Sign Up</button>
                             </li>
