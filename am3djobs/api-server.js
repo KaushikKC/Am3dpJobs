@@ -13,13 +13,14 @@ supertokens.init({
     framework: "express",
     supertokens: {
         // https://try.supertokens.com is for demo purposes. Replace this with the address of your core instance (sign up on supertokens.com), or self host a core.
-        connectionURI: "https://try.supertokens.com",
+        connectionURI: "https://79b812c1521911edb08d8f5f16736e96-us-east-1.aws.supertokens.io:3570",
+        apiKey: "W-oDkU-LTzrJ4jjpsMOMJAujloHUqR"
         // apiKey: "IF YOU HAVE AN API KEY FOR THE CORE, ADD IT HERE",
     },
     appInfo: {
         // learn more about this on https://supertokens.com/docs/thirdpartyemailpassword/appinfo
         appName: "AM 3-d Jobs",
-        apiDomain: "http://localhost:3000/",
+        apiDomain: "http://localhost:3001",
         websiteDomain: "http://localhost:3000/",
         apiBasePath: "/auth",
         websiteBasePath: "/auth"
@@ -52,7 +53,7 @@ supertokens.init({
 let app = express();
 
 app.use(cors({
-    origin: "<YOUR_WEBSITE_DOMAIN>",
+    origin: "AD 3-d Jobs",
     allowedHeaders: ["content-type", ...supertokens.getAllCORSHeaders()],
     credentials: true,
 }));
