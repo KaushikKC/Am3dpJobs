@@ -1,6 +1,8 @@
 import React from 'react'
+import './PostingJob.css'
 
 function PostingJob() {
+  
   return (
     <div>
         <h1 className=' text-center d-flex align-items-center justify-content-center mx-4'><span>Very Simplified and Easiest &nbsp;<span className='text-primary'>Hiring</span>  </span>  </h1>
@@ -8,6 +10,10 @@ function PostingJob() {
           <button className='d-flex align-items-center justify-content-center' type="button" class="btn btn-primary">Post a Job</button>
         </div>
         
+        <div>
+        
+            
+        </div>
 
     </div>
   )

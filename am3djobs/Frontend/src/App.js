@@ -6,13 +6,13 @@ import {
   // Link
 } from 'react-router-dom';
 import './App.css';
-import Navbar from './components/Navbar';
+import Navbar from './components/Navbar.js';
 // import Footer from './components/Footer';
 // import MainContent from './components/MainContent';
 // import Navbar from './components/Navbar';
 // import PostingJob from './components/PostingJob';
-import Jobs from './pages/Jobs';
-import Talent from './pages/Talent';
+import Jobs from './pages/Jobs.js';
+import Talent from './pages/Talent.js';
 import SuperTokens, { getSuperTokensRoutesForReactRouterDom } from "supertokens-auth-react";
 import ThirdPartyEmailPassword, { Google, Facebook} from "supertokens-auth-react/recipe/thirdpartyemailpassword";
 import Session from "supertokens-auth-react/recipe/session";
