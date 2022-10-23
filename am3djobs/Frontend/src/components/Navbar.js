@@ -4,8 +4,12 @@ import './Navbar.css'
 import {Outlet} from 'react-router-dom'
 import {redirectToAuth} from 'supertokens-auth-react'
 import { useEffect } from 'react'
+import { SessionAuth } from 'supertokens-auth-react/recipe/session'
+import User from './User'
 
 function Navbar() {
+
+
 
     useEffect (() => {
         document.querySelectorAll('.nav-link').forEach(
@@ -59,6 +63,9 @@ function Navbar() {
                         </ul>     
                     </div>
                 </div>
+                <SessionAuth>
+                    <User />
+                </SessionAuth>
             </nav>
         </div>
 
