@@ -95,8 +95,9 @@
 
 .main {
     font-weight: bold;
+    font-size: 1.5rem;
     margin-bottom: 0.4em;
-    padding-left: 100px;
+    padding-left: 130px;
 }
 
 .info {
@@ -156,6 +157,9 @@ form.secActive .form.first{
     opacity: 0;
     pointer-events: none;
     transform: translateX(-100%);
+}
+.container form .close {
+    
 }
 .container form .title{
     display: block;

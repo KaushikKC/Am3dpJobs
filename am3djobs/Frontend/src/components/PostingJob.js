@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './PostingJob.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
@@ -6,6 +6,16 @@ import axios from 'axios'
 
 
 function PostingJob({ files, setFiles, removeFile }) {
+    const [ActiveVar,SetActiveVar] = useState(false)
+
+  const popup = () => {
+    SetActiveVar(true);
+  
+  }
+
+  const popdown = () => {
+    SetActiveVar(false);
+  }
 
   const uploadHandler = (event) => {
     const file = event.target.files[0];
@@ -36,11 +46,11 @@ function PostingJob({ files, setFiles, removeFile }) {
     <div>
         <h1 className=' text-center d-flex align-items-center justify-content-center mx-4'><span>Very Simplified and Easiest &nbsp;<span className='text-primary'>Hiring</span>  </span>  </h1>
         <div className='d-flex justify-content-center mt-3 pt-3 mb-3'>
-          <button className='d-flex align-items-center justify-content-center' type="button" class="btn btn-primary">Post a Job</button>
+          <button className='d-flex align-items-center justify-content-center' type="button" class="btn btn-primary" onClick={popup}>Post a Job</button>
         </div>
         
         <div className='product'>
-        <div className='field'>
+        <div className={`field ${ActiveVar ? 'active': ''}`}>
         <div className='my-auto'>
         <div className="file-card">
 
@@ -104,7 +114,7 @@ function PostingJob({ files, setFiles, removeFile }) {
                         <div class="input-field">
                             <label>Candidate type</label>
                             <select required>
-                                <option disabled selected>Select gender</option>
+                                <option disabled selected>Select Type</option>
                                 <option>Available</option>
                                 <option>Engaged</option>
                               
@@ -124,7 +134,7 @@ function PostingJob({ files, setFiles, removeFile }) {
                 </div>
 
                 <div class="details ID">
-                    <span class="title">Identity Details</span>
+                    {/* <span class="title">Identity Details</span> */}
 
                     <div class="fields">
                     <div class="input-field">
@@ -138,34 +148,78 @@ function PostingJob({ files, setFiles, removeFile }) {
                         </div>
 
                         <div class="input-field">
-                            <label>Min Salary</label>
+                            <label>Min Monthly Salary(INR)</label>
                             <input type="number" placeholder="Enter Salary" required />
                         </div>
 
+                        
+
                         <div class="input-field">
-                            <label>Issued Authority</label>
-                            <input type="text" placeholder="Enter issued authority" required />
+                            <label>Job Specialisation</label>
+                            <select required>
+                                <option disabled selected>Select specialisation</option>
+                                <option>Design</option>
+                                <option>CAD</option>
+                                <option>Manufacturing</option>
+                            </select>
                         </div>
 
                         <div class="input-field">
-                            <label>Issued State</label>
-                            <input type="text" placeholder="Enter issued state" required />
+                        <label>Role type</label>
+                            <select required>
+                                <option disabled selected>Select type</option>
+                                <option>Intern</option>
+                                <option>Contributor</option>
+                                <option>Team Lead</option>
+                                <option>Manager</option>
+                            </select>
                         </div>
 
                         <div class="input-field">
-                            <label>Issued Date</label>
-                            <input type="date" placeholder="Enter your issued date" required />
+                            <label>Job Mode</label>
+                            <select required>
+                                <option disabled selected>Select Mode</option>
+                                <option>On-site</option>
+                                <option>Remote</option>
+                            </select>
+                        </div>
+                        <div class="input-field">
+                            <label>Job Function</label>
+                            <select required>
+                            <option disabled selected>Select Function</option>
+                                <option>Operations</option>
+                                <option>Sales</option>
+                                <option>Customer Service</option>
+                            </select>
+                        </div>
+                        <div class="input-field">
+                        <label>Joining Time</label>
+                            <select required>
+                                <option disabled selected>Select Time</option>
+                                <option>Immediate</option>
+                                <option>One Week</option>
+                                <option>One Month</option>
+                            </select>
                         </div>
 
                         <div class="input-field">
-                            <label>Expiry Date</label>
-                            <input type="date" placeholder="Enter expiry date" required />
+                            <label>Interview</label>
+                            <select required>
+                                <option disabled selected>Select Mode</option>
+                                <option>Face to Face</option>
+                                <option>Virtual Video</option>
+                                <option >Phone</option>
+                            </select>
+                        </div>
+                        <div class="input-field">
+                            <label>Job Skills / Capabilities</label>
+                            <input type="text" placeholder="Enter the Skills Required" required />
                         </div>
                     </div>
 
-                    <button class="nextBtn">
-                        <span class="btnText">Next</span>
-                        <i class="uil uil-navigator"></i>
+                    <button onClick={popdown} class="sumbit">
+                            <span class="btnText">Submit</span>
+                            <i class="uil uil-navigator"></i>
                     </button>
                 </div> 
             </div>
