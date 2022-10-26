@@ -6,8 +6,9 @@
     align-items: center;
     border: 3px dashed #cbd5e0;
     background-color: #edf2f7;
-    min-width: 380px;
-    min-height: 230px;
+    min-width: 450px;
+    min-height: 80px;
+    height: 500px;
 }
 
 .file-card .file-inputs {
@@ -71,7 +72,7 @@
     
         .product .field {
             z-index: 2;
-            background: rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 0.686);
             position: fixed;
             top: 0;
             right: 0;
@@ -81,9 +82,15 @@
             padding: 40px;
             justify-content: center;
             align-items: center;
-            opacity: 1;
-            /* visibility: hidden; */
+            opacity: 0;
+            visibility: hidden;
             transition: 0.5s;
+          }
+
+          .product .field.active {
+                z-index: 3;
+                opacity: 1;
+                visibility: visible;
           }
 
 .main {
@@ -102,7 +109,7 @@
     width: 100%;
     border-radius: 6px;
     padding: 30px;
-    margin: 0 15px;
+    margin-right: 15px;
     background-color: #fff;
     box-shadow: 0 5px 10px rgba(0,0,0,0.1);
 }
@@ -127,12 +134,13 @@
     margin-top: 16px;
     min-height: 490px;
     background-color: #fff;
-    overflow: hidden;
+    overflow-y: scroll;
 }
 .container form .form{
     position: absolute;
     background-color: #fff;
     transition: 0.3s ease;
+    margin-right: 25px;
 }
 .container form .form.second{
     opacity: 0;
@@ -234,15 +242,45 @@ form .buttons button , .backBtn{
     margin-right: 14px;
 }
 
-@media (max-width: 750px) {
+@media (max-width: 1115px) {
+    .file-card {
+        min-width: 300px;
+    }
+}
+
+@media (max-width: 915px) {
+    .file-card {
+        min-width: 300px;
+    }
+}
+
+@media (max-width: 770px) {
     .container form{
         overflow-y: scroll;
+    }
+    .field {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly !important;
+    }
+
+    .file-card {
+        margin-top: 105px;
+        height: 80px;
     }
     .container form::-webkit-scrollbar{
        display: none;
     }
     form .fields .input-field{
         width: calc(100% / 2 - 15px);
+    }
+
+    .file-card .file-inputs {
+        margin-bottom: 0;
+    }
+
+    .ID {
+        padding-bottom: 63px;
     }
 }
 
