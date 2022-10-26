@@ -114,7 +114,7 @@ function PostingJob({ files, setFiles, removeFile }) {
                         <div class="input-field">
                             <label>Candidate type</label>
                             <select required>
-                                <option disabled selected>Select gender</option>
+                                <option disabled selected>Select Type</option>
                                 <option>Available</option>
                                 <option>Engaged</option>
                               
@@ -148,7 +148,7 @@ function PostingJob({ files, setFiles, removeFile }) {
                         </div>
 
                         <div class="input-field">
-                            <label>Min Salary</label>
+                            <label>Min Monthly Salary(INR)</label>
                             <input type="number" placeholder="Enter Salary" required />
                         </div>
 
@@ -197,7 +197,6 @@ function PostingJob({ files, setFiles, removeFile }) {
                             <select required>
                                 <option disabled selected>Select Time</option>
                                 <option>Immediate</option>
-                                <option>Contributor</option>
                                 <option>One Week</option>
                                 <option>One Month</option>
                             </select>
