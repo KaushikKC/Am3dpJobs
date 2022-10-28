@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import './PostingJob.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
+// import {useDispatch} from 'react-redux'
 import axios from 'axios'
 import Form from 'react-bootstrap/Form';
 
@@ -10,6 +11,7 @@ function PostingJob({ files, setFiles, removeFile }) {
     const [ActiveVar,SetActiveVar] = useState(false)
     const [form, setForm] = useState({})
     const [errors, setErrors] = useState({})
+    // const dispatch = useDispatch()
 
     const setField = (field, value) => {
         setForm ({
@@ -34,9 +36,8 @@ function PostingJob({ files, setFiles, removeFile }) {
     const newErrors = {}
     console.log("name", Name)
 
-    if (Name || Name === "") 
+    if (!Name || Name === "") 
         newErrors.Name = "Please enter the valid Name"
-    
     if (!Background || Background === " ") 
         newErrors.Background = "Please enter the valid Background"
     if (!CandidateType || CandidateType === "") 
@@ -88,6 +89,7 @@ function PostingJob({ files, setFiles, removeFile }) {
         // else {
         console.log('form submitted');
         console.log(form)
+        // dispatch(registerUser(form))
     }
 
     // setErrors(formErrors)
@@ -96,6 +98,41 @@ function PostingJob({ files, setFiles, removeFile }) {
 
 //   const popdown = () => {
 //     SetActiveVar(false);
+//   }
+
+//   const registerUser = (form) => async (dispatch) => {
+//     try {
+//         dispatch({type: 'USER_REGISTER_REQUEST'})
+
+//         const config = {
+//             headers: {
+//                 'content-type': 'application/json'
+//             }
+//         }
+
+//         const {data} = await axios.post('/api/users/register',form,config)
+
+//         dispatch({
+//             type: 'USER_REGISTER_SUCCESS',
+//             playload: data
+//         })
+//     } catch (error) {
+//         dispatch({type: 'USER_REGISTER_FAIL',
+//         playload: error.message && error.message.data.message ? error.message.data.message: error.message})
+//     }
+//   }
+
+//   const userRigisterReducer = (state = {}, action) => {
+//     switch(action.type) {
+//         case 'USER_REGISTER_REQUEST':
+//             return {loading: true}
+//         case 'USER_REGISTER_SUCCESS':
+//             return {loading: false, success: true, userInfo: action.playload}
+//         case 'USER_REGISTER_FAIL':
+//             return {loading: false, error: action.playload}
+//         default:
+//             return state
+// }
 //   }
 
   const uploadHandler = (event) => {
