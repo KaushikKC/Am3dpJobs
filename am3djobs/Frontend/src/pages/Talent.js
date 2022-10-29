@@ -1,6 +1,6 @@
 import React from 'react'
 import Footer from '../components/Footer'
-import MainContent from '../components/MainContentJobs'
+import MainContent from '../components/MainContentTalent'
 import PostingCandidates from '../components/PostingCandidates'
 // import Navbar from '../components/Navbar'
 // import PostingJob from '../components/PostingJob'
