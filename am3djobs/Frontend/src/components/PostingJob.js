@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './PostingJob.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
@@ -11,8 +11,15 @@ function PostingJob({ files, setFiles, removeFile }) {
     const [ActiveVar,SetActiveVar] = useState(false)
     const [form, setForm] = useState({})
     const [errors, setErrors] = useState({})
+    const [JobList, setJobList] = useState([])
     // const dispatch = useDispatch()
 
+    useEffect(() => {
+        axios.get("http://localhost:3002/read").then((response) => {
+            console.log(response.data)
+            setJobList(response.data)
+        });
+    },[]);
     const setField = (field, value) => {
         setForm ({
             ...form,
@@ -30,11 +37,15 @@ function PostingJob({ files, setFiles, removeFile }) {
     SetActiveVar(true);
   
   }
+  const popdown = () => {
+    SetActiveVar(false);
+  
+  }
 
   const validateForm = () => {
     const {Name, Background, CandidateType, InterviewMode, JobFunction, JobMode, JobSpecialisation, JoiningTime, MonthlySalary, Number,RoleType,Skill, Title,TypeWork} = form
     const newErrors = {}
-    console.log("name", Name)
+    // console.log("name", Name)
 
     if (!Name || Name === "") 
         newErrors.Name = "Please enter the valid Name"
@@ -68,29 +79,65 @@ function PostingJob({ files, setFiles, removeFile }) {
     return newErrors
 }
 
-  const handleSubmit = (e) => {
+  async function handleSubmit (e)  {
     e.preventDefault()
 
-    const formErrors = validateForm()
+     
     // console.log(formErrors)
     // const f = e.currentTarget;
     // if (f.checkValidity() === false) {
     //   e.preventDefault();
     //   e.stopPropagation();
     // }
-    if (Object.keys(formErrors).length > 0){
-        setErrors(errors =>({
-            ...errors,
-            ...formErrors
-        }))
-        console.log( errors.Name)
-        console.log(validateForm())
-    } else {
-        // else {
-        console.log('form submitted');
-        console.log(form)
-        // dispatch(registerUser(form))
+    try {
+        const formErrors = await validateForm()
+        if (Object.keys(formErrors).length > 0){
+            setErrors(errors =>({
+                ...errors,
+                ...formErrors
+            }))
+            console.log( errors.Name)
+            console.log(validateForm())
+        } else {
+            // else {
+            console.log('form submitted');
+            console.log(form)
+            // dispatch(registerUser(form))
+        }
+        await axios.post("http://localhost:3002/JobUpload", {
+            CompanyName: form.Name,
+            Title: form.Title,
+            Location: form.Location,
+            Number: form.Number,
+            CandidateType: form.CandidateType,
+            Background: form.Background,
+            TypeOfWork: form.TypeWork,
+            MonthlySalary: form.MonthlySalary,
+            JobSpecialisation: form.JobSpecialisation,
+            RoleType: form.RoleType,
+            JobMode: form.JobMode,
+            JobFunction: form.JobFunction,
+            JoiningTime: form.JoiningTime,
+            Interview: form.Interview,
+            JobSkills: form.JobSkills,
+
+        })
+    } catch (error) {
+        console.error(error)
     }
+    // if (Object.keys(formErrors).length > 0){
+    //     setErrors(errors =>({
+    //         ...errors,
+    //         ...formErrors
+    //     }))
+    //     console.log( errors.Name)
+    //     console.log(validateForm())
+    // } else {
+    //     // else {
+    //     console.log('form submitted');
+    //     console.log(form)
+    //     // dispatch(registerUser(form))
+    // }
 
     // setErrors(formErrors)
     
@@ -148,10 +195,11 @@ function PostingJob({ files, setFiles, removeFile }) {
         file,
         file.name
     )
-    axios.post('http://localhost:8080/upload', formData)
+    axios.post('http://localhost:3002/upload', formData)
         .then((res) => {
             file.isUploading = false;
             setFiles([...files, file])
+            console.log("Successfully sent")
         })
         .catch((err) => {
             // inform the user
@@ -188,13 +236,18 @@ function PostingJob({ files, setFiles, removeFile }) {
         </div>
         
         <div class="container">
+        <div className='d-flex justify-content-between mx-3'>
         <header>Post a Job</header>
+        <a><i class="fas fa-times close-btn" onClick={popdown}></i></a>
+
+        </div>
+        
         <Form>
         <form action="#">
             <div class="form first">
                 <div class="details personal">
                     <span class="title">Company Details</span>
-
+                    
                     <div class="fields">
                         
                         <div class="input-field">
@@ -245,7 +298,10 @@ function PostingJob({ files, setFiles, removeFile }) {
                         <div class="input-field">
                         <Form.Group>
                             <label>Location</label>
-                            <Form.Control type="text" placeholder="Enter your City and PinCode" required />
+                            <Form.Control type="text" placeholder="Enter your City and PinCode" 
+                            required
+                            value={form.Loaction}
+                            onChange={e=> setField(`Location`,e.target.value)} />
                             
                             </Form.Group>
                         </div>
