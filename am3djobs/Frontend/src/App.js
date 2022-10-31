@@ -47,7 +47,7 @@ SuperTokens.init({
 
 function App() {
   return (
-    <div className="">
+    <div className="backImage">
       {/* <Navbar />
       <hr />
       <PostingJob />

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import './PostingJob.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
@@ -11,15 +11,8 @@ function PostingJob({ files, setFiles, removeFile }) {
     const [ActiveVar,SetActiveVar] = useState(false)
     const [form, setForm] = useState({})
     const [errors, setErrors] = useState({})
-    const [JobList, setJobList] = useState([])
-    // const dispatch = useDispatch()
 
-    useEffect(() => {
-        axios.get("http://localhost:3002/read").then((response) => {
-            console.log(response.data)
-            setJobList(response.data)
-        });
-    },[]);
+    
     const setField = (field, value) => {
         setForm ({
             ...form,
@@ -120,6 +113,7 @@ function PostingJob({ files, setFiles, removeFile }) {
             JoiningTime: form.JoiningTime,
             Interview: form.Interview,
             JobSkills: form.JobSkills,
+            File: form.file,
 
         })
     } catch (error) {
@@ -207,21 +201,25 @@ function PostingJob({ files, setFiles, removeFile }) {
             removeFile(file.name)
           });
         }
+
+    console.log(form.file)
   
   return (
     <div>
-        <h1 className=' text-center d-flex align-items-center justify-content-center mx-4'><span>Very Simplified and Easiest &nbsp;<span className='text-primary'>Hiring</span>  </span>  </h1>
-        <div className='d-flex justify-content-center mt-3 pt-3 mb-3'>
-          <button className='d-flex align-items-center justify-content-center' type="button" class="btn btn-primary" onClick={popup}>Post a Job</button>
+        <div className='h-[30rem] backImage'>
+        <h1 className='absolute pl-16 md:pl-32 flex flex-col  top-60 text-gray-900 font-bold text-4xl leading-[50px]'><span>Very Simplified and Easiest &nbsp;<span className='text-primary'>HIRING</span>  </span>  </h1>
+        <div className=''>
+          {/* <button className=''   >Post a Job</button> */}
+          <button className='absolute ml-16 md:ml-[8rem] flex flex-col p-2 rounded-md bg-yellow-500 text-black font-semibold top-[25rem] sm:top-[23rem] md:top-80' onClick={popup}>Post a Job</button>
         </div>
         
         <div className='product'>
-        <div className={`field ${ActiveVar ? 'active': ''}`}>
-        <div className='my-auto'>
+        <div className={`field drop-shadow-md ${ActiveVar ? 'active': ''}`}>
+        <div className=' absolute left-5'>
         <div className="file-card">
 
         <div className="file-inputs">
-            <input type="file" onChange={uploadHandler} />
+            <input onChange={e => setField('file',e.target.value)} type="file"  />
             <button>
                 <i>
                     <FontAwesomeIcon icon={faPlus} />
@@ -231,29 +229,30 @@ function PostingJob({ files, setFiles, removeFile }) {
         </div>
         </div>
 
-        <p className="main">Company Logo</p>
+        <p className="text-blue-900 drop-shadow-lg font-bold mt-2 text-lg">Company Logo</p>
 
         </div>
-        
-        <div class="container">
-        <div className='d-flex justify-content-between mx-3'>
-        <header>Post a Job</header>
-        <a><i class="fas fa-times close-btn" onClick={popdown}></i></a>
+        <div className=' absolute left-[30rem] w-[60%]'>
+        <div class=" containern ">
+        <div className='d-flex justify-content-between mx-3 cursor-pointer'>
+        <header className='font-bold text-blue-600 text-xl drop-shadow-lg'>Post a Job</header>
+        <a href='/'><i class="fas fa-times close-btn" onClick={popdown}></i></a>
 
+        </div>
         </div>
         
         <Form>
-        <form action="#">
-            <div class="form first">
-                <div class="details personal">
-                    <span class="title">Company Details</span>
+        <form action="#" className='bg-gray-100 p-3'>
+            <div class="form first ">
+                <div class=" details personal">
+                    <span class="font-extrabold text-2xl drop-shadow-lg text-slate-400">Company Details</span>
                     
-                    <div class="fields">
+                    <div class="fieldsn grid mt-2 md:grid-cols-2 lg:grid-cols-3">
                         
-                        <div class="input-field">
+                        <div class="input-field text-sm font-semibold">
                         <Form.Group>
                             <Form.Label>Company Name</Form.Label>
-                            <Form.Control type="text" placeholder="Enter your Company name" 
+                            <Form.Control className='' type="text" placeholder="Enter your Company name" 
                             required
                             value={form.Name}
                             onChange={e=> setField(`Name`,e.target.value)}
@@ -370,10 +369,10 @@ function PostingJob({ files, setFiles, removeFile }) {
                     </div>
                 </div>
 
-                <div class="details ID">
+                <div class="details ID ">
                     {/* <span class="title">Identity Details</span> */}
 
-                    <div class="fields">
+                    <div class="fieldsn grid md:grid-cols-2 lg:grid-cols-3">
                     <div class="input-field">
                             <Form.Group>
                             <Form.Label>Type of work</Form.Label>
@@ -544,7 +543,7 @@ function PostingJob({ files, setFiles, removeFile }) {
                         </div>
                     </div>
 
-                    <button onClick={handleSubmit} class="sumbit">
+                    <button onClick={handleSubmit} className="sumbit py-2 px-3 rounded-md font-bold text-white mt-2  bg-blue-600">
                             <span class="btnText">Submit</span>
                             <i class="uil uil-navigator"></i>
                     </button>
@@ -555,6 +554,7 @@ function PostingJob({ files, setFiles, removeFile }) {
                         
         </form>
         </Form>
+        </div>
     </div>
     
         </div>

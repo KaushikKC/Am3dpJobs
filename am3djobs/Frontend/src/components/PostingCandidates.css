@@ -158,9 +158,7 @@ form.secActive .form.first{
     pointer-events: none;
     transform: translateX(-100%);
 }
-.container form .close {
-    
-}
+
 .container form .title{
     display: block;
     margin-bottom: 8px;
