@@ -1,21 +1,16 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import './Card.css'
 
-function Card({active}) {
+function Card({val}) {
 
-    const [isActive, setisActive] = useState(false)
-    console.log(active)
+    const [isActive, setisActive] = useState(true)
+    
 
-    useEffect(() => {
-        if(active === 'true'){
-            setisActive(true)
-        } 
-        
-},[active])
+    console.log(val)
 
     const closepop = () => {
         setisActive(false)
-        active = false;
+        
     }
   return (
     <div className='product'>

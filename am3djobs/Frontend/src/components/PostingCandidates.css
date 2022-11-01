@@ -117,8 +117,8 @@
 .container header{
     position: relative;
     font-size: 20px;
-    font-weight: 600;
-    color: #333;
+    font-weight: 900;
+    /* color: #333; */
 }
 .container header::before{
     content: "";
@@ -132,14 +132,15 @@
 }
 .container form{
     position: relative;
-    margin-top: 16px;
+    /* margin-top: 16px; */
+    padding-top: 16px;
     min-height: 490px;
-    background-color: #fff;
+    /* background-color: #fff; */
     overflow-y: scroll;
 }
 .container form .form{
     position: absolute;
-    background-color: #fff;
+    /* background-color: #fff; */
     transition: 0.3s ease;
     margin-right: 25px;
 }
@@ -158,16 +159,14 @@ form.secActive .form.first{
     pointer-events: none;
     transform: translateX(-100%);
 }
-.container form .close {
-    
-}
+
 .container form .title{
     display: block;
     margin-bottom: 8px;
     font-size: 16px;
     font-weight: 500;
     margin: 6px 0;
-    color: #333;
+    /* color: #333; */
 }
 .container form .fields{
     display: flex;
@@ -184,7 +183,7 @@ form .fields .input-field{
 .input-field label{
     font-size: 12px;
     font-weight: 500;
-    color: #2e2e2e;
+    /* color: #2e2e2e; */
 }
 .input-field input, select{
     outline: none;

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import logo from '../Images/Logo.png'
 import './Navbar.css'
 import {Outlet} from 'react-router-dom'
@@ -8,6 +8,16 @@ import { SessionAuth } from 'supertokens-auth-react/recipe/session'
 import User from './User'
 
 function Navbar() {
+
+    const [theme, setTheme] = useState("light")
+
+    useEffect (() => {
+        if (theme === "dark"){
+            document.documentElement.classList.add("dark");
+        } else {
+            document.documentElement.classList.remove("dark")
+        }
+    })
 
 
 
@@ -21,6 +31,10 @@ function Navbar() {
             }
         )
     });
+
+    const EventToggeler = () => {
+        setTheme(theme === 'dark' ? 'light' : 'dark')
+    }
     
 
     const SignUp = async () => {
@@ -28,44 +42,37 @@ function Navbar() {
     }
   return (
     <div>
-    <div className='npadding z-10'>
+    <div className=' bg-gray-200/30 dark:bg-gray-800/5 sticky shadow-lg dark:text-white'>
          
         <div className="overflow-auto">
-            <nav className="mt-2 sgds navbar navbar-expand-lg">
+            <nav className=" flex px-10 sm:px-16 ">
                 {/* <a className="navbar-brand fs-2 fw-bold" href="/">
                     AM 3-d Jobs
                 </a> */}
-                <img className="navbar-brand mt-4" style={{width:"200px", height:"50px"}} src={logo} alt="" />
-                <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" style={{marginLeft:"auto"}}>
-                    <i className="bi bi-list"></i>
-                </button>
-                <div className="collapse navbar-collapse mx-5" id="navbarNav">
-                    <ul className="navbar-nav">
-                        <li className="nav-item px-2">
-                            <a className="nav-link fw-bold" aria-current="page" href="/">Jobs</a>
-                        </li>
-        
-                        <li className="nav-item px-2">
-                            <a className="nav-link fw-bold " aria-current="page" href="/talent">Talent</a>
-                        </li>
-                        
-                        
-                    </ul>
+                <img className="navbar-brand mt-4 w-[150px] h-[45px] sm:w-[200px] sm:h-[50px]" src={logo} alt="" />
+                
+                <div className='space-x-8 p-5 ml-4 font-bold cursor-pointer hidden md:inline'>
+                    <a href="/">Job</a>
+                    <a href="/Talent">Tallent</a>
                 </div>
-                <div className='d-flex justify-content-between align-items-center'>
-                    <div className='collapse navbar-collapse'  id="navbarNav">
-                        <ul className='d-flex justify-content-between align-items-center mt-3'  style={{listStyle:"none"}}>
+                <div className='flex items-center'>
+                <i onClick={EventToggeler} class="cursor-pointer bi bi-moon-fill"></i>
+                </div>
+                <div className='flex justify-end  absolute right-10 sm:mr-10 '>
+                    <div className=''  id="navbarNav">
+                        <ul className='flex justify-end ml-auto mt-3 '  style={{listStyle:"none"}}>
                             
                             <li  className='px-2'>
-                                <button type="button" onClick={SignUp} class="btn btn-outline-dark">Sign Up</button>
+                                <button type="button" onClick={SignUp} class="btn text-sm sm:text-base font-bold hover:bg-black hover:text-white dark:text-white border dark:hover:bg-white dark:hover:text-black">Sign Up</button>
                             </li>
                             
                         </ul>     
                     </div>
                 </div>
-                <SessionAuth>
+                <i class="bi cursor-pointer bi-person-circle flex justify-end items-center top-7 text-xl  absolute right-0 sm:mr-10"></i>
+                {/* <SessionAuth>
                     <User />
-                </SessionAuth>
+                </SessionAuth> */}
             </nav>
         </div>
 

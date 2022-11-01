@@ -2,6 +2,11 @@
   text-align: center;
 }
 
+.backImage {
+  background-image: url("https://img.freepik.com/free-vector/smooth-white-wave-background_52683-55288.jpg?w=2000");
+}
+
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
