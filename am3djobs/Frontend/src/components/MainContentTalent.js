@@ -27,7 +27,7 @@ function MainContentTallent() {
 
   return (
     <div>
-        <div className="row mx-2 p-4 shadow-lg drop-shadow-sm bg-white/50">
+        <div className="row mx-2 p-4 shadow-lg drop-shadow-sm ">
 
     <div className="col-lg-3 d-nonec d-lg-block px-3 shadow-md">
       <nav className="sidenav sgds list-unstyled open2">
@@ -110,7 +110,7 @@ function MainContentTallent() {
           <li class="breadcrumb-item bread">
             <div class="sgds form-group mb-2">
                 <div class="sgds form-control-group px-2 shadowc-sm rounded ">
-                    <input type="text" class="form-controlc" placeholder="Search" autofocus />
+                    <input type="text" class="form-controlc dark:rounded-lg" placeholder="Search" autofocus />
                     <i class="bi bi-search form-control-icon" style={{zIndex : '0'}}></i>
                 </div>
               </div>
@@ -118,7 +118,7 @@ function MainContentTallent() {
           <li class="bread">
               <div class="sgds form-group mb-2"> 
                   <div class="sgds form-control-group px-2 shadowc-sm rounded">
-                      <input style={{border:"0px"}} type="text" class="form-controlc" id="hoverWith" aria-describedby="hoverWithHelp" placeholder="Location" autofocus />
+                      <input style={{border:"0px"}} type="text" class="form-controlc dark:rounded-lg" id="hoverWith" aria-describedby="hoverWithHelp" placeholder="Location" autofocus />
                       <i class="bi bi-geo-alt form-control-icon" style={{zIndex : '0'}}></i>
                   </div>
                 </div>
@@ -130,7 +130,7 @@ function MainContentTallent() {
       {TallentList.map((val,key) => {
         return(
           <div>
-          <div className=' sm_shadow'>
+          <div className=' sm_shadow dark:text-white'>
           <div className='p-3 relative' style={{borderBottom:"2px solid #E5E5E5"}}>
             <div className='d-flex flex-column w-fullc' style={{cursor:"pointer"}} onClick={popup}>
               <div className='d-flex w-fullc'>
@@ -147,7 +147,7 @@ function MainContentTallent() {
               <div class="mb-auto d-flex pin-t pir-4 sm:pt-0 sm:pir-0 sm:relative ml-auto flex items-center flex-row align-items-end sm:flex-row flex-no-shrink pin-r">
                 <span class="job-post__date text-xs sm:font-bold italic" style={{marginRight:"10px"}}>
                   13 hours ago
-              </span><div class="bg-red-600 text-white font-medium rounded-md text-md py-1 px-3 "><object class=""><button class="
+              </span><div class=" bg-red-600 text-white font-medium rounded-md text-md py-1 px-3 "><object class=""><button class="
                 " style={{ borderColor:"#00ACD8"}}><span class="jb-btn--empty flex items-center z-2 mir-2"></span><span class="z-2">
                 Apply
               </span><div class="jb-btn__hover w-full h-full z-1 invisible absolute jb-btn--x-small text-xs px-3 rounded jb-btn--hover-outline"></div><span class="jb-btn--empty flex items-center mil-2 z-2"></span></button></object></div></div>

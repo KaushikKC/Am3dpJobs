@@ -30,13 +30,13 @@ function MainContentJobs() {
 
   return (
     <div>
-        <div className="row p-5 shadow-lg drop-shadow-sm bg-white/50 ">
+        <div className="row p-5  drop-shadow-sm  ">
 
     <div className="col-lg-3 d-nonec d-lg-block shadow-md px-3">
       <nav className="sidenav sgds list-unstyled open2">
-        <li className="sidenav-item backc shadow-lg">
+        <li className="sidenav-item backc shadow-lg dark:bg-transparent dark:text-fuchsia-500">
           <button
-            className="sgds font-medium btn collapsed"
+            className="sgds font-medium btn collapsed dark:font-bold"
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#collapseExampleD"
@@ -79,9 +79,9 @@ function MainContentJobs() {
             </ul>
           </div>
         </li>
-        <li className="sidenav-item backc shadow-lg">
+        <li className="sidenav-item backc shadow-lg  dark:bg-transparent dark:text-fuchsia-500">
           <button
-            className="sgds btn collapsed"
+            className="sgds btn collapsed dark:font-bold"
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#collapseExampleE"
@@ -113,15 +113,15 @@ function MainContentJobs() {
           <li class="breadcrumb-item bread">
             <div class="sgds form-group mb-2">
                 <div class="sgds form-control-group px-2 shadow-md shadowc-sm rounded ">
-                    <input type="text" class="form-controlc" placeholder="Search" autofocus />
+                    <input type="text" class="form-controlc dark:rounded-lg dark:text-fuchsia-400 text-semibold dark:bg-transparent dark:border-2 dark:border-fuchsia-500" placeholder="Search" autofocus />
                     <i class="bi bi-search form-control-icon" style={{zIndex : '0'}}></i>
                 </div>
               </div>
             </li>
           <li class="bread">
               <div class="sgds form-group mb-2"> 
-                  <div class="sgds form-control-group px-2 shadowc-sm rounded">
-                      <input style={{border:"0px"}} type="text" class="form-controlc" id="hoverWith" aria-describedby="hoverWithHelp" placeholder="Location" autofocus />
+                  <div class="sgds form-control-group px-2 shadowc-sm rounded ">
+                      <input type="text" class="form-controlc dark:rounded-lg dark:bg-transparent dark:text-fuchsia-400 dark:border-2 dark:border-fuchsia-500 " id="hoverWith" aria-describedby="hoverWithHelp" placeholder="Location" autofocus />
                       <i class="bi bi-geo-alt form-control-icon" style={{zIndex : '0'}}></i>
                   </div>
                 </div>
@@ -133,7 +133,7 @@ function MainContentJobs() {
       {JobList.map((val,key) => {
         return(
           <div>
-          <div className=' sm_shadow '>
+          <div className=' sm_shadow dark:text-white'>
           <div className='p-3 relative' style={{borderBottom:"2px solid #E5E5E5"}}>
             <div className='d-flex flex-column w-fullc' style={{cursor:"pointer"}} onClick={popup}>
               <div className='d-flex w-fullc'>
@@ -150,7 +150,7 @@ function MainContentJobs() {
               <div class="mb-auto d-flex pin-t pir-4 sm:pt-0 sm:pir-0 sm:relative ml-auto flex items-center flex-row align-items-end sm:flex-row flex-no-shrink pin-r">
                 <span class="job-post__date text-xs sm:font-bold italic" style={{marginRight:"10px"}}>
                   13 hours ago
-              </span><div class="bg-red-600 text-white font-medium rounded-md text-md py-1 px-3 "><object class=""><button class="
+              </span><div class="hidden md:incline bg-red-600 text-white font-medium rounded-md text-md py-1 px-3 "><object class=""><button class="
                 " style={{ borderColor:"#00ACD8"}}><span class="jb-btn--empty flex items-center z-2 mir-2"></span><span class="z-2">
                 Apply
               </span><div class="jb-btn__hover w-full h-full z-1 invisible absolute jb-btn--x-small text-xs px-3 rounded jb-btn--hover-outline"></div><span class="jb-btn--empty flex items-center mil-2 z-2"></span></button></object></div></div>
@@ -164,16 +164,10 @@ function MainContentJobs() {
             </span></span></div>  
             </div>
           </div>
-          <div class="p-3 sm_hidden border-t"><object class="flex flex-1"><button class="
-            jb-btn 
-            no-underline 
-            flex 
-            items-center 
-            font-semibold 
-            justify-center 
-            relative 
-            cursor-pointer
-          whitespace-no-wrap relative w-fullc jb-btn--x-small text-xs px-3 rounded border" style={{color: "rgb(0, 172, 216)", borderColor: "rgb(0, 172, 216)"}}><span class="jb-btn--empty flex items-center z-2 mir-2"></span><span class="z-2">
+          <div class="incline md:hidden p-2 bg-red-600 text-white font-semibold rounded-md text-base"><object class="flex flex-1"><button class="
+            
+            
+          whitespace-no-wrap relative w-fullc jb-btn--x-small  px-3 " ><span class="jb-btn--empty flex items-center z-2 mir-2"></span><span class="z-2">
           Apply
         </span><div class="jb-btn__hover w-full h-full z-1 invisible absolute jb-btn--x-small text-xs px-3 rounded jb-btn--hover-outline"></div><span class="jb-btn--empty flex items-center mil-2 z-2"></span></button></object></div>
         </div>

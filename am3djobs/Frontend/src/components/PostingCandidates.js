@@ -138,8 +138,8 @@ function PostingCandidates({ files, setFiles, removeFile }) {
         }
   return (
     <div>
-        <div className='h-[30rem] backImage'>
-        <h1 className='absolute pl-16 md:pl-32 flex flex-col  top-60 text-gray-900 font-bold text-4xl leading-[50px]'><span>Get Easily &nbsp;<span className='text-primary'>HIRIED</span>  </span>  </h1>
+        <div className="h-[30rem] ">
+        <h1 className='absolute pl-16 md:pl-32 flex flex-col  top-60 text-gray-900 dark:text-white font-bold text-4xl leading-[50px]'><span>Get Easily &nbsp;<span className='text-primary'>HIRIED</span>  </span>  </h1>
         <div className=''>
           {/* <button className=''   >Post a Job</button> */}
           <button className='absolute ml-16 md:ml-[8rem] flex flex-col p-2 rounded-md bg-yellow-500 text-black font-semibold top-[25rem] sm:top-[23rem] md:top-80' onClick={popup}>Post a Skills</button>
@@ -164,17 +164,17 @@ function PostingCandidates({ files, setFiles, removeFile }) {
         <p className="main">Candidate Picture</p>
 
         </div>
-        <div class="container">
+        <div class="container bg-[#fff] dark:bg-slate-800">
         <div className='d-flex justify-content-between mx-3 cursor-pointer'>
-        <header>Post Your Skills</header>
-        <a ><i class="fas fa-times close-btn" onClick={popdown}></i></a>
+        <header className='text-blue-900 drop-shadow-lg font-bold mt-2 text-lg'>Post Your Skills</header>
+        <a ><i class="fas fa-times close-btn dark:text-white" onClick={popdown}></i></a>
         </div>
 
-        <Form>
+        <Form className='overflow-hidden'>
         <form action="#">
-            <div class="form first">
+            <div class="form first text-[#333] dark:text-white">
                 <div class="details personal">
-                    <span class="title">Company Details</span>
+                    <span class="title text-[#333] dark:text-white">Company Details</span>
 
                     <div class="fields">
                         
