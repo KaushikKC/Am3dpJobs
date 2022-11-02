@@ -1,17 +1,23 @@
 // const { connect } = require('./db')
 // eslint-disable-next-line no-unused-vars
+const JobUpload = require('./middeware/upload');
+const bodyParser = require("body-parser")
+const multer = require("multer");
+const path = require('path')
 const JobFormModel = require('./models/JobForm')
 const TallentFormModel = require('./models/TallentForm')
 const express = require('express');
 const cors = require('cors');
 const app = express();
+const router = express.Router();
+
 // let db;
 const mongoose = require('mongoose');
 // const JobForm = require('./models/form');
 const uri = "mongodb+srv://Kaushik:Kaushik17@cluster0.34e5lj3.mongodb.net/Forms?retryWrites=true&w=majority"
 
 // let dbConnection
-
+// const upload = multer({ storage: multer.memoryStorage() });
  async function connect() {
   try {
     await mongoose.connect(uri);
@@ -23,8 +29,52 @@ const uri = "mongodb+srv://Kaushik:Kaushik17@cluster0.34e5lj3.mongodb.net/Forms?
 
 const db = mongoose.connection;
 
+const storage = multer.diskStorage({
+  destination:"./uploads/",
+  filename: function(req, file, cb){
+    const fileName = file.originalname.toLowerCase().split(' ').join('-');
+    cb(null, Date.now() + '-' + fileName)
+  }
+});
+// const uploadpdf = multer({
+//   storage: storage,
+//   limits:{fileSize: 100000}  
+// }).single("file");
+
+// const upload = multer({
+//   storage: storage,
+//     fileFilter: (req, file, cb) => {
+//         if (file.mimetype == "image/png" || file.mimetype == "image/jpg" || file.mimetype == "image/jpeg" || file.mimetype == "application/pdf") {
+//             cb(null, true);
+//         } else {
+//             cb(null, false);
+//                  return cb(new Error('Only .png, .jpg .pdf and .jpeg  format allowed!'));
+//         }
+//     }
+// }).single("file");
+
+// router.post('/JobUpload/',upload,async (req, res) => {
+//   if(req.file ===  null) {
+//     return res.status(400).send({message: 'No file was uploaded'});
+//   }
+//   const url = req.protocol + '://' + req.get('host')
+
+//    const file = req.file
+//    if (file) {
+//     file.image =url + '/uploads/' + req.file.filename;
+//     const updatedFile = await file.save();
+//     if (updatedFile) {
+//       return res.status(200).send({ message: 'image Updated succesfully', file: updatedFile });
+//     }
+//   }
+//   return res.status(500).send({ message: ' Error in Updating image.' });
+   
+
+// })
 app.use(express.json())
 app.use(cors());
+
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use((err,req,res,next) => {
     res.status(500).send("Internet error: " + err.message);
@@ -33,6 +83,7 @@ app.use((err,req,res,next) => {
 app.get('/', (req,res) => {
   res.status(200).send('<h1>Hi</h1>')
 })
+
 
 
 app.get('/JobRead', (req,res) => {
@@ -73,6 +124,9 @@ app.post("/JobUpload", async (req, res) => {
   // const JobSkills = req.body.JobSkills
 
   // eslint-disable-next-line no-use-before-define
+
+  
+
   const JobForm = new JobFormModel({
     CompanyName: req.body.CompanyName,
     Title : req.body.Title,
@@ -89,14 +143,18 @@ app.post("/JobUpload", async (req, res) => {
     JoiningTime : req.body.JoiningTime,
     Interview : req.body.Interview,
     JobSkills : req.body.JobSkills,
+    CompanyLogo : req.body.file,
+    
     })
 
+  
     try{
       await JobForm.save();
       res.send("inserted data");
     } catch (err) {
       console.log(err)
     }
+  
 })
 
 app.post("/TallentUpload", async (req, res) => {

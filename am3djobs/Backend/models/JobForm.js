@@ -15,7 +15,8 @@ const JobFormSchema = new mongoose.Schema({
     JobFunction: String,
     JoiningTime: String,
     Interview: String,
-    JobSkills: String
+    JobSkills: String,
+    CompanyLogo: String,
 });
 
 const JobForm = mongoose.model("JobFormData", JobFormSchema);
