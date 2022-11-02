@@ -17,6 +17,7 @@ import SuperTokens, { getSuperTokensRoutesForReactRouterDom } from "supertokens-
 import ThirdPartyEmailPassword, { Google, Facebook} from "supertokens-auth-react/recipe/thirdpartyemailpassword";
 import Session from "supertokens-auth-react/recipe/session";
 import * as reactRouterDom from "react-router-dom";
+import CompanyCard from './components/CompanyCard';
 
 SuperTokens.init({
     appInfo: {
@@ -59,6 +60,7 @@ function App() {
           <Route path="/" element={<Navbar />}>
           <Route index element={<Jobs />} />
           <Route path="talent" element={<Talent />} />
+          <Route path="/company/:id" element={<CompanyCard />} />
           {/* <Route path="/">
             <Home />
           </Route> */}
