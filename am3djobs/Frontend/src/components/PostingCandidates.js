@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import axios from 'axios'
 import './PostingCandidates.css'
@@ -11,6 +11,9 @@ function PostingCandidates({ files, setFiles, removeFile }) {
   const [ActiveVar,SetActiveVar] = useState(false)
   const [form, setForm] = useState({})
     const [errors, setErrors] = useState({})
+    const [selectedFile, setSelectedFile] = useState()
+    const [preview, setPreview] = useState()
+    
 
     const setField = (field, value) => {
         setForm ({
@@ -24,6 +27,32 @@ function PostingCandidates({ files, setFiles, removeFile }) {
             [field]: null,
         })
     }
+
+    useEffect(() => {
+        if (!selectedFile) {
+            setPreview(undefined)
+            return
+        }
+
+        const objectUrl = URL.createObjectURL(selectedFile)
+        setPreview(objectUrl)
+        console.log("preview:",preview);
+
+        // free memory when ever this component is unmounted
+        return () => URL.revokeObjectURL(objectUrl)
+    }, [selectedFile])
+
+  const handleChange = (e) => {
+    if (!e.target.files || e.target.files.length === 0) {
+    setSelectedFile(undefined)
+            return
+        }
+
+        // I've kept this example simple by using the first image instead of multiple
+        setSelectedFile(e.target.files[0])
+    // setImage(e.target.files[0])
+    setField('file',e.target.value)
+  }
   const popup = () => {
     SetActiveVar(true);
   
@@ -151,12 +180,14 @@ function PostingCandidates({ files, setFiles, removeFile }) {
         <div className="file-card">
 
         <div className="file-inputs">
-            <input type="file" onChange={uploadHandler} />
-            <button>
-                <i>
+            <input type="file" name='file' onChange={handleChange} />
+            {selectedFile &&  <img className='z-5' src={preview} alt=''/> }
+            <button className={`${selectedFile ? 'hiddend' : ''}`}>
+                <i className='ml-[5.4rem]'>
                     <FontAwesomeIcon icon={faPlus} />
-                </i>
-                Upload
+                </i >
+                <p className='mt-3 text-2xl text-orange-600 font-bold drop-shadow-lg'>UPLOAD</p>
+                
             </button>
         </div>
         </div>

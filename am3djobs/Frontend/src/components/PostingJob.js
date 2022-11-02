@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './PostingJob.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
@@ -11,6 +11,13 @@ function PostingJob({ files, setFiles, removeFile }) {
     const [ActiveVar,SetActiveVar] = useState(false)
     const [form, setForm] = useState({})
     const [errors, setErrors] = useState({})
+    const [image, setImage] = useState();
+    const [selectedFile, setSelectedFile] = useState()
+    const [preview, setPreview] = useState()
+    const [url, setUrl] = useState();
+
+    const api_key = "242344273154512"
+    const Cloud_name = "dv0frgqvj"
 
     
     const setField = (field, value) => {
@@ -25,6 +32,55 @@ function PostingJob({ files, setFiles, removeFile }) {
             [field]: null,
         })
     }
+
+    useEffect(() => {
+        if (!selectedFile) {
+            setPreview(undefined)
+            return
+        }
+
+        const objectUrl = URL.createObjectURL(selectedFile)
+        setPreview(objectUrl)
+        console.log("preview:",selectedFile);
+
+        // free memory when ever this component is unmounted
+        return () => URL.revokeObjectURL(objectUrl)
+    }, [selectedFile])
+
+  const handleChange = (e) => {
+    setImage(e.target.files[0])
+    if (!e.target.files || e.target.files.length === 0) {
+    setSelectedFile(undefined)
+            return
+        }
+
+        // I've kept this example simple by using the first image instead of multiple
+        setSelectedFile(e.target.files[0])
+        console.log("selected File:", e.target.files[0])
+    // setImage(e.target.files[0])
+    setField('file',e.target.files[0])
+  }
+
+  const postDetails = () => {
+    const data = new FormData()
+    data.append("file",selectedFile)
+    data.append("upload_preset","JobForm_Img")
+    data.append("cloud_name","dv0frgqvj")
+    fetch("https://api.cloudinary.com/v1_1/dv0frgqvj/image/upload",{
+        method:"post",
+        body:data
+    })
+    .then(res=>res.json())
+    .then(data=>{
+        console.log("data:",data)
+       setUrl(data.url)
+    })
+    .catch(err=>{
+        console.log(err)
+    })
+  }
+
+
 
   const popup = () => {
     SetActiveVar(true);
@@ -113,7 +169,7 @@ function PostingJob({ files, setFiles, removeFile }) {
             JoiningTime: form.JoiningTime,
             Interview: form.Interview,
             JobSkills: form.JobSkills,
-            File: form.file,
+            file: url,
 
         })
     } catch (error) {
@@ -221,15 +277,18 @@ function PostingJob({ files, setFiles, removeFile }) {
         <div className="file-card">
 
         <div className="file-inputs">
-            <input onChange={e => setField('file',e.target.value)} type="file"  />
-            <button>
-                <i>
+            
+            <input onChange={handleChange} type="file" name='file'  />
+            {selectedFile &&  <img className='z-5' src={preview} alt=''/> }
+            <button className={`${selectedFile ? 'hiddend' : ''}`}>
+                <i className='ml-[5.4rem]'>
                     <FontAwesomeIcon icon={faPlus} />
                 </i>
-                Upload
+                <p className='mt-3 text-2xl text-orange-600 font-bold drop-shadow-lg'>UPLOAD</p>
             </button>
         </div>
         </div>
+        <button onClick={postDetails} className={`flex justify-center mx-auto font-bold ${selectedFile ? '' : 'hiddend'}`}>UPLOAD IT </button>
 
         <p className="text-blue-900 drop-shadow-lg font-bold mt-2 text-lg">Company Logo</p>
 
@@ -243,18 +302,19 @@ function PostingJob({ files, setFiles, removeFile }) {
         </div>
         
         
-        {/* <Form>
-        <form action="#" className='bg-gray-100 p-3'>
-            <div class="form first ">
-                <div class=" details personal">
-                    <span class="font-extrabold text-2xl drop-shadow-lg text-slate-400">Company Details</span>
-                    
-                    <div class="fieldsn grid mt-2 md:grid-cols-2 lg:grid-cols-3">
+        
+        <Form className='overflow-hidden'>
+        <form action="#" className='bg-[#fff] dark:bg-slate-800 'enctype="multipart/form-data" >
+            <div class="form first dark:bg-slate-800">
+                <div class="details personal dark:bg-slate-800 ">
+                    <span class="title text-[#333] dark:text-white">Company Details</span>
+
+                    <div class="fields">
                         
-                        <div class="input-field text-sm font-semibold">
+                        <div class="input-field text-[#333] dark:text-white">
                         <Form.Group>
                             <Form.Label>Company Name</Form.Label>
-                            <Form.Control className='' type="text" placeholder="Enter your Company name" 
+                            <Form.Control type="text" placeholder="Enter your Company name" 
                             required
                             value={form.Name}
                             onChange={e=> setField(`Name`,e.target.value)}
@@ -293,292 +353,6 @@ function PostingJob({ files, setFiles, removeFile }) {
                             </Form.Control.Feedback>
                             </Form.Group>
                         </div>
-                        
-
-                        
-                        <div class="input-field">
-                        <Form.Group>
-                            <label>Location</label>
-                            <Form.Control type="text" placeholder="Enter your City and PinCode" 
-                            required
-                            value={form.Loaction}
-                            onChange={e=> setField(`Location`,e.target.value)} />
-                            
-                            </Form.Group>
-                        </div>
-                        
-
-                        
-                        <div class="input-field">
-                        <Form.Group>
-                            <Form.Label>Mobile Number</Form.Label>
-                            <Form.Control type="number" placeholder="Enter mobile number with Country code" 
-                            required
-                            value={form.Number}
-                            onChange={e=> setField(`Number`,e.target.value)}
-                            isInvalid = {!!errors.Number} 
-                            />
-                            <Form.Control.Feedback type="invalid" >
-                                {errors.Number}
-                            </Form.Control.Feedback>
-                            </Form.Group>
-                        </div>
-                        
-
-                        
-                        <div class="input-field">
-                        <Form.Group>
-                            <Form.Label>Candidate type</Form.Label>
-                            <Form.Select 
-                            required
-                            value={form.CandidateType}
-                            onChange={e=> setField(`CandidateType`,e.target.value)}
-                            isInvalid = {!!errors.CandidateType}
-                            >
-                                <option disabled selected>Select Type</option>
-                                <option>Available</option>
-                                <option>Engaged</option>
-                              
-                            </Form.Select>
-                            <Form.Control.Feedback type="invalid" >
-                                {errors.CandidateType}
-                            </Form.Control.Feedback>
-                            </Form.Group>
-                        </div>
-                        
-                        
-                        
-                        <div class="input-field">
-                        <Form.Group>
-                            <Form.Label>Background</Form.Label>
-                            <Form.Select 
-                            required
-                            value={form.Background}
-                            onChange={e=> setField(`Background`,e.target.value)}
-                            isInvalid = {!!errors.Background}
-                            >
-                                <option disabled selected>Select Background</option>
-                                <option>Fresh</option>
-                                <option>Been There</option>
-                                <option>Done That</option>
-                            </Form.Select>
-                            <Form.Control.Feedback type="invalid" >
-                                {errors.Background}
-                            </Form.Control.Feedback>
-                            </Form.Group>
-                        </div>
-                        
-                    </div>
-                </div>
-
-                <div class="details ID ">
-                    {/* <span class="title">Identity Details</span> */}
-
-                    
-        {/* </Form> <div class="fieldsn grid md:grid-cols-2 lg:grid-cols-3">
-                    <div class="input-field">
-                            <Form.Group>
-                            <Form.Label>Type of work</Form.Label>
-                            <Form.Select 
-                            required
-                            value={form.TypeWork}
-                            onChange={e=> setField(`TypeWork`,e.target.value)}
-                            isInvalid = {!!errors.TypeWork}
-                            >
-                                <option disabled selected>Select work</option>
-                                <option>Gig</option>
-                                <option>Part-Time</option>
-                                <option>Full-Time</option>
-                            </Form.Select>
-                            <Form.Control.Feedback type="invalid" >
-                                {errors.TypeWork}
-                            </Form.Control.Feedback>
-                            </Form.Group>
-                        </div>
-
-                        <div class="input-field">
-                        <Form.Group>
-                            <Form.Label>Min Monthly Salary(INR)</Form.Label>
-                            <Form.Control type="number" placeholder="Enter Salary" 
-                            required 
-                            value={form.MonthlySalary}
-                            onChange={e=> setField(`MonthlySalary`,e.target.value)}
-                            isInvalid = {!!errors.MonthlySalary}
-                            />
-                            <Form.Control.Feedback type="invalid" >
-                                {errors.MonthlySalary}
-                            </Form.Control.Feedback>
-                            </Form.Group>
-                        </div>
-
-                        
-
-                        <div class="input-field">
-                        <Form.Group>
-                            <Form.Label>Job Specialisation</Form.Label>
-                            <Form.Select 
-                            required
-                            value={form.JobSpecialisation}
-                            onChange={e=> setField(`JobSpecialisation`,e.target.value)}
-                            isInvalid = {!!errors.JobSpecialisation}
-                            >
-                                <option disabled selected>Select specialisation</option>
-                                <option>Design</option>
-                                <option>CAD</option>
-                                <option>Manufacturing</option>
-                            </Form.Select>
-                            <Form.Control.Feedback type="invalid" >
-                                {errors.JobSpecialisation}
-                            </Form.Control.Feedback>
-                            </Form.Group>
-                        </div>
-
-                        <div class="input-field">
-                        <Form.Group>
-                        <Form.Label>Role type</Form.Label>
-                            <Form.Select 
-                            required
-                            value={form.RoleType}
-                            onChange={e=> setField(`RoleType`,e.target.value)}
-                            isInvalid = {!!errors.RoleType}
-                            >
-                                <option disabled selected>Select type</option>
-                                <option>Intern</option>
-                                <option>Contributor</option>
-                                <option>Team Lead</option>
-                                <option>Manager</option>
-                            </Form.Select>
-                            <Form.Control.Feedback type="invalid" >
-                                {errors.RoleType}
-                            </Form.Control.Feedback>
-                            </Form.Group>
-                        </div>
-
-                        <div class="input-field">
-                        <Form.Group>
-                            <Form.Label>Job Mode</Form.Label>
-                            <Form.Select 
-                            required
-                            value={form.JobMode}
-                            onChange={e=> setField(`JobMode`,e.target.value)}
-                            isInvalid = {!!errors.JobMode}
-                            >
-                                <option disabled selected>Select Mode</option>
-                                <option>On-site</option>
-                                <option>Remote</option>
-                            </Form.Select>
-                            <Form.Control.Feedback type="invalid" >
-                                {errors.JobMode}
-                            </Form.Control.Feedback>
-                            </Form.Group>
-                        </div>
-                        <div class="input-field">
-                        <Form.Group>
-                            <Form.Label>Job Function</Form.Label>
-                            <Form.Select 
-                            required
-                            value={form.JobFunction}
-                            onChange={e=> setField(`JobFunction`,e.target.value)}
-                            isInvalid = {!!errors.JobFunction}
-                            >
-                            <option disabled selected>Select Function</option>
-                                <option>Operations</option>
-                                <option>Sales</option>
-                                <option>Customer Service</option>
-                            </Form.Select>
-                            <Form.Control.Feedback type="invalid" >
-                                {errors.JobFunction}
-                            </Form.Control.Feedback>
-                            </Form.Group>
-                        </div>
-                        <div class="input-field">
-                        <Form.Group>
-                        <Form.Label>Joining Time</Form.Label>
-                            <Form.Select 
-                            required
-                            value={form.JoiningTime}
-                            onChange={e=> setField(`JoiningTime`,e.target.value)}
-                            isInvalid = {!!errors.JoiningTime}
-                            >
-                                <option disabled selected>Select Time</option>
-                                <option>Immediate</option>
-                                <option>One Week</option>
-                                <option>One Month</option>
-                            </Form.Select>
-                            <Form.Control.Feedback type="invalid" >
-                                {errors.JoiningTime}
-                            </Form.Control.Feedback>
-                            </Form.Group>
-                        </div>
-
-                        <div class="input-field">
-                        <Form.Group>
-                            <Form.Label>Interview</Form.Label>
-                            <Form.Select 
-                            required
-                            
-                            value={form.InterviewMode}
-                            onChange={e=> setField(`InterviewMode`,e.target.value)}
-                            isInvalid = {!!errors.InterviewMode}
-                            >
-                                <option disabled selected>Select Mode</option>
-                                <option>Face to Face</option>
-                                <option>Virtual Video</option>
-                                <option >Phone</option>
-                            </Form.Select>
-                            <Form.Control.Feedback type="invalid" >
-                                {errors.InterviewMode}
-                            </Form.Control.Feedback>
-                            </Form.Group>
-                        </div>
-                        <div class="input-field">
-                        <Form.Group>
-                            <Form.Label>Job Skills / Capabilities</Form.Label>
-                            <Form.Control type="text" placeholder="Enter the Skills Required" required
-                            value={form.Skill}
-                            onChange={e=> setField(`Skill`,e.target.value)}
-                            isInvalid = {!!errors.Skill}
-                            />
-                            <Form.Control.Feedback type="invalid" >
-                                {errors.Skill}
-                            </Form.Control.Feedback>
-                            </Form.Group>
-                        </div>
-                    </div>
-
-                    <button onClick={handleSubmit} className="sumbit py-2 px-3 rounded-md font-bold text-white mt-2  bg-blue-600">
-                            <span class="btnText">Submit</span>
-                            <i class="uil uil-navigator"></i>
-                    </button>
-                </div> 
-            </div>
-
-            
-                        
-        </form> */}
-        <Form className='overflow-hidden'>
-        <form action="#" className='bg-[#fff] dark:bg-slate-800 ' >
-            <div class="form first dark:bg-slate-800">
-                <div class="details personal dark:bg-slate-800 ">
-                    <span class="title text-[#333] dark:text-white">Company Details</span>
-
-                    <div class="fields">
-                        
-                        <div class="input-field text-[#333] dark:text-white">
-                        <Form.Group>
-                            <Form.Label>Candidate Name</Form.Label>
-                            <Form.Control type="text" placeholder="Enter your Company name" 
-                            required
-                            value={form.Name}
-                            onChange={e=> setField(`Name`,e.target.value)}
-                            isInvalid = {!!errors.Name}
-                            />
-                            <Form.Control.Feedback type="invalid" className='h-10 w-10'>
-                                {errors.Name}
-                            </Form.Control.Feedback>
-                            </Form.Group>
-                        </div>                       
-                        
                         
 
                         
@@ -621,7 +395,7 @@ function PostingJob({ files, setFiles, removeFile }) {
                             onChange={e=> setField(`CandidateType`,e.target.value)}
                             isInvalid = {!!errors.CandidateType}
                             >
-                                <option disabled selected>Select Status</option>
+                                <option disabled selected>Select Type</option>
                                 <option>In</option>
                                 <option>Out</option>
                               
@@ -632,27 +406,7 @@ function PostingJob({ files, setFiles, removeFile }) {
                             </Form.Group>
                         </div>
                         
-                        <div class="input-field text-[#333] dark:text-white">
-                            <Form.Group>
-                            <Form.Label>Type of work</Form.Label>
-                            <Form.Select 
-                            required
-                            value={form.TypeWork}
-                            onChange={e=> setField(`TypeWork`,e.target.value)}
-                            isInvalid = {!!errors.TypeWork}
-                            >
-                                <option disabled selected>Select work</option>
-                                <option>Gig</option>
-                                <option>Part-Time</option>
-                                <option>Full-Time</option>
-                            </Form.Select>
-                            <Form.Control.Feedback type="invalid" >
-                                {errors.TypeWork}
-                            </Form.Control.Feedback>
-                            </Form.Group>
-                        </div>
-                        
-                        <div class="input-field text-[#333] dark:text-white">
+                        <div class="input-field">
                         <Form.Group>
                             <Form.Label>Background</Form.Label>
                             <Form.Select 
@@ -672,6 +426,8 @@ function PostingJob({ files, setFiles, removeFile }) {
                             </Form.Group>
                         </div>
                         
+                        
+                        
                     </div>
                 </div>
 
@@ -679,6 +435,26 @@ function PostingJob({ files, setFiles, removeFile }) {
                     {/* <span class="title">Identity Details</span> */}
 
                     <div class="fields">
+                    <div class="input-field text-[#333] dark:text-white">
+                            <Form.Group>
+                            <Form.Label>Type of work</Form.Label>
+                            <Form.Select 
+                            required
+                            value={form.TypeWork}
+                            onChange={e=> setField(`TypeWork`,e.target.value)}
+                            isInvalid = {!!errors.TypeWork}
+                            >
+                                <option disabled selected>Select work</option>
+                                <option>Gig</option>
+                                <option>Part-Time</option>
+                                <option>Full-Time</option>
+                            </Form.Select>
+                            <Form.Control.Feedback type="invalid" >
+                                {errors.TypeWork}
+                            </Form.Control.Feedback>
+                            </Form.Group>
+                        </div>
+                        
                     
 
                         <div class="input-field text-[#333] dark:text-white">
@@ -720,7 +496,7 @@ function PostingJob({ files, setFiles, removeFile }) {
 
                         <div class="input-field text-[#333] dark:text-white">
                         <Form.Group>
-                        <Form.Label>Prefered Role</Form.Label>
+                        <Form.Label>Role type</Form.Label>
                             <Form.Select 
                             required
                             value={form.RoleType}
@@ -741,7 +517,7 @@ function PostingJob({ files, setFiles, removeFile }) {
 
                         <div class="input-field text-[#333] dark:text-white">
                         <Form.Group>
-                            <Form.Label>Prefered Mode</Form.Label>
+                            <Form.Label>Job Mode</Form.Label>
                             <Form.Select 
                             required
                             value={form.JobMode}
@@ -778,7 +554,7 @@ function PostingJob({ files, setFiles, removeFile }) {
                         </div>
                         <div class="input-field text-[#333] dark:text-white">
                         <Form.Group>
-                        <Form.Label>Availability</Form.Label>
+                        <Form.Label>Joining Time</Form.Label>
                             <Form.Select 
                             required
                             value={form.JoiningTime}
@@ -796,26 +572,7 @@ function PostingJob({ files, setFiles, removeFile }) {
                             </Form.Group>
                         </div>
 
-                        <div class="input-field text-[#333] dark:text-white">
-                        <Form.Group>
-                            <Form.Label>Preferred Companies</Form.Label>
-                            <Form.Select 
-                            required
-                            value={form.Companies}
-                            onChange={e=> setField(`Companies`,e.target.value)}
-                            isInvalid = {!!errors.Companies}
-                            >
-                                <option disabled selected>Select Job</option>
-                                <option>HP</option>
-                                <option>IBM</option>
-                                <option>Apple</option>
-                                
-                            </Form.Select>
-                            <Form.Control.Feedback type="invalid" >
-                                {errors.Companies}
-                            </Form.Control.Feedback>
-                            </Form.Group>
-                        </div>
+                        
 
                         <div class="input-field text-[#333] dark:text-white ">
                         <Form.Group>
@@ -839,7 +596,7 @@ function PostingJob({ files, setFiles, removeFile }) {
                         </div>
                         <div class="input-field text-[#333] dark:text-white">
                         <Form.Group>
-                            <Form.Label>Key Skills / Capabilities</Form.Label>
+                            <Form.Label>Job Skills / Capabilities</Form.Label>
                             <Form.Control type="text" placeholder="Enter the Skills Required" required
                             value={form.Skill}
                             onChange={e=> setField(`Skill`,e.target.value)}

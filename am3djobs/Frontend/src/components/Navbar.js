@@ -4,7 +4,14 @@ import './Navbar.css'
 import {Outlet} from 'react-router-dom'
 import {redirectToAuth} from 'supertokens-auth-react'
 import { useEffect } from 'react'
-import { SessionAuth } from 'supertokens-auth-react/recipe/session'
+// import { SessionAuth } from 'supertokens-auth-react/recipe/session'
+
+import { useSessionContext } from 'supertokens-auth-react/recipe/session'; 
+
+// Your dashboard component
+
+    
+
 import User from './User'
 
 function Navbar() {
@@ -35,6 +42,18 @@ function Navbar() {
     const EventToggeler = () => {
         setTheme(theme === 'dark' ? 'light' : 'dark')
     }
+
+    let session = useSessionContext();
+
+   
+
+    // let {doesSessionExist, userId, accessTokenPayload} = session;
+
+    
+    // let name = accessTokenPayload.userName;
+    // console.log(name);
+    // console.log(userId)
+    // console.log(accessTokenPayload)
     
 
     const SignUp = async () => {
