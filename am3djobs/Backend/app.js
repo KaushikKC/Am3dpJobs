@@ -84,7 +84,19 @@ app.get('/', (req,res) => {
   res.status(200).send('<h1>Hi</h1>')
 })
 
+// app.get('/JobRead/:id', (req,res) => {
+//   console.log(req.params.id)
+// })
 
+app.get('/JobRead/:id', (req,res) => {
+  JobFormModel.findById(req.params.id) 
+     .then(result => {
+      res.send(result)
+     })
+     .catch(err => {
+      console.log(err)
+     }) 
+})
 
 app.get('/JobRead', (req,res) => {
   JobFormModel.find({}, (err,result) => {
