@@ -13,6 +13,9 @@ function PostingCandidates({ files, setFiles, removeFile }) {
     const [errors, setErrors] = useState({})
     const [selectedFile, setSelectedFile] = useState()
     const [preview, setPreview] = useState()
+    const [image, setImage] = useState();
+    const [url, setUrl] = useState();
+
     
 
     const setField = (field, value) => {
@@ -43,6 +46,7 @@ function PostingCandidates({ files, setFiles, removeFile }) {
     }, [selectedFile])
 
   const handleChange = (e) => {
+    setImage(e.target.files[0])
     if (!e.target.files || e.target.files.length === 0) {
     setSelectedFile(undefined)
             return
@@ -52,6 +56,25 @@ function PostingCandidates({ files, setFiles, removeFile }) {
         setSelectedFile(e.target.files[0])
     // setImage(e.target.files[0])
     setField('file',e.target.value)
+  }
+
+  const postDetails = () => {
+    const data = new FormData()
+    data.append("file",selectedFile)
+    data.append("upload_preset","JobForm_Img")
+    data.append("cloud_name","dv0frgqvj")
+    fetch("https://api.cloudinary.com/v1_1/dv0frgqvj/image/upload",{
+        method:"post",
+        body:data
+    })
+    .then(res=>res.json())
+    .then(data=>{
+        console.log("data:",data)
+       setUrl(data.url)
+    })
+    .catch(err=>{
+        console.log(err)
+    })
   }
   const popup = () => {
     SetActiveVar(true);
@@ -134,6 +157,8 @@ function PostingCandidates({ files, setFiles, removeFile }) {
             JoiningTime: form.JoiningTime,
             Interview: form.Interview,
             JobSkills: form.JobSkills,
+            file: url,
+
 
         })
     } catch (error) {
@@ -181,7 +206,7 @@ function PostingCandidates({ files, setFiles, removeFile }) {
 
         <div className="file-inputs">
             <input type="file" name='file' onChange={handleChange} />
-            {selectedFile &&  <img className='z-5' src={preview} alt=''/> }
+            {selectedFile &&  <img className='z-5 h-[391px] w-[319px] my-12' src={preview} alt=''/> }
             <button className={`${selectedFile ? 'hiddend' : ''}`}>
                 <i className='ml-[5.4rem]'>
                     <FontAwesomeIcon icon={faPlus} />
@@ -191,6 +216,7 @@ function PostingCandidates({ files, setFiles, removeFile }) {
             </button>
         </div>
         </div>
+        <button onClick={postDetails} className={`flex justify-center mx-auto font-bold ${selectedFile ? '' : 'hiddend'}`}>UPLOAD IT </button>
 
         <p className="main">Candidate Picture</p>
 

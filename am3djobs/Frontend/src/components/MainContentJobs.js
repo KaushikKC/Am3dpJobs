@@ -131,11 +131,11 @@ function MainContentJobs() {
         </ol>
       </nav>
       <div className='shadow-smc'>
-      
+      <ul>
+      {JobList.map((val,key) => {
         return(
           <div>
-          <ul>
-          {JobList.map((val,key) => (
+          
           <li key={key}>
           <Link to={`/Company/${val._id}`}>
           <div className=' sm_shadow dark:text-white'>
@@ -176,33 +176,17 @@ function MainContentJobs() {
           Apply
         </span><div class="jb-btn__hover w-full h-full z-1 invisible absolute jb-btn--x-small text-xs px-3 rounded jb-btn--hover-outline"></div><span class="jb-btn--empty flex items-center mil-2 z-2"></span></button></object></div>
         </div>
-        </Link>
-        </li>
-        /* <div className='product'>
-        <div class={`popup-view ${ActiveVar ? 'active': ''}`}>
-          <div class="popup-card">
-            <a><i class="fas fa-times close-btn" onClick={popdown}></i></a>
-            <div class="product-img">
-              <img src="" alt=""/>
-            </div>
-            <div class="info">
-              <h2>{val.Title} <span>13 hours ago</span><br/><span className='location'> Washington, District of Columbia, United States </span><br /><span> American Iron and Steel Institute</span></h2>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-              <span class="price">Salery : $10000.00 /Aannum</span>
-              
-              <a href="/" class="add-wish">Apply</a>
-              <a href="/" class="add-cart-btn">Request for  Voice Call</a> */
-              /* {/* <a href="/" class="add-wish">Add to Wishlist</a> */
-              /* </div>
-          </div>
-        </div> */
-    /* </div>  */
-          )
-      )}
-      </ul>
+        
+         
+             
+               
+    </Link>
+    </li>
     </div>
         )
-        
+          
+      })}
+        </ul>
      
       </div>
       

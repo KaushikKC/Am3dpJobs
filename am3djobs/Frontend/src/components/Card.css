@@ -4,13 +4,13 @@
     position: fixed;
     top: 0;
     right: 0;
-    bottom: 0;
+    bottom: -104px;
     left: 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    opacity: 0;
-    visibility: hidden;
+    opacity: 1;
+    /* visibility: hidden; */
     transition: 0.5s;
   }
   
@@ -22,8 +22,8 @@
   .product .popup-card{
     position: relative;
     display: flex;
-    width: 800px;
-    height: 500px;
+    width: 1060px;
+    height: 650px;
     margin: 20px;
   }
   
@@ -44,8 +44,7 @@
   .product .popup-card .product-img img{
     z-index: 2;
     position: relative;
-    width: 450px;
-    left: -50px;
+   
   }
   
   .product .popup-card .info{
@@ -73,7 +72,7 @@
   .product .popup-card .info h2{
     font-size: 23px;
     line-height: 25px;
-    margin: 10px;
+    /* margin: 10px; */
   }
   
   .product .popup-card .info h2 span{
@@ -96,10 +95,10 @@
 
   
   
-  .product .popup-card .info p{
+  /* .product .popup-card .info p{
     font-size: 15px;
     margin: 10px;
-  }
+  } */
   
   .product .popup-card .info .price{
     font-size: 45px;
