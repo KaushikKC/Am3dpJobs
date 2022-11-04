@@ -3,17 +3,16 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from "react-router-dom";
-import { SuperTokensWrapper } from "supertokens-auth-react";
 import App from './App.js';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <SuperTokensWrapper>
+    
     <BrowserRouter>
     <App />
     </BrowserRouter>
-    </SuperTokensWrapper>
+   
   </React.StrictMode>
 );
 

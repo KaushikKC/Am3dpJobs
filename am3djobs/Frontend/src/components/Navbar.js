@@ -4,9 +4,11 @@ import './Navbar.css'
 import {Outlet} from 'react-router-dom'
 import {redirectToAuth} from 'supertokens-auth-react'
 import { useEffect } from 'react'
-// import { SessionAuth } from 'supertokens-auth-react/recipe/session'
-
+import { signOut } from "supertokens-auth-react/recipe/thirdpartypasswordless";
 import { useSessionContext } from 'supertokens-auth-react/recipe/session'; 
+
+// import { SessionAuth } from 'supertokens-auth-react/recipe/session'
+ 
 
 // Your dashboard component
 
@@ -15,6 +17,8 @@ import { useSessionContext } from 'supertokens-auth-react/recipe/session';
 import User from './User'
 
 function Navbar() {
+    let session = useSessionContext();
+    console.log(session)
 
     const [theme, setTheme] = useState("light")
 
@@ -43,7 +47,8 @@ function Navbar() {
         setTheme(theme === 'dark' ? 'light' : 'dark')
     }
 
-    let session = useSessionContext();
+    // let session = useSessionContext();
+    // co
 
    
 
@@ -55,6 +60,9 @@ function Navbar() {
     // console.log(userId)
     // console.log(accessTokenPayload)
     
+    async function SignOut() {
+        await signOut();
+      }
 
     const SignUp = async () => {
         redirectToAuth();
@@ -82,7 +90,8 @@ function Navbar() {
                         <ul className='flex justify-end ml-auto mt-3 '  style={{listStyle:"none"}}>
                             
                             <li  className='px-2'>
-                                <button type="button" onClick={SignUp} class="btn text-sm sm:text-base font-bold hover:bg-black hover:text-white dark:text-white border dark:hover:bg-white dark:hover:text-black">Sign Up</button>
+                                <button onClick={SignOut} class={`${session.doesSessionExist ? '' : 'hiddend '}btn text-sm sm:text-base font-bold hover:bg-black hover:text-white dark:text-white border dark:hover:bg-white dark:hover:text-black`}>Sign Out</button>
+                                <button type="button" onClick={SignUp} class={`${!session.doesSessionExist ? '' : 'hiddend '}btn text-sm sm:text-base font-bold hover:bg-black hover:text-white dark:text-white border dark:hover:bg-white dark:hover:text-black`}>Sign Up</button>
                             </li>
                             
                         </ul>     

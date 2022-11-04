@@ -2,7 +2,6 @@
   "name": "am3djobs",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:3000/",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.2.0",
     "@fortawesome/free-solid-svg-icons": "^6.2.0",
@@ -34,6 +33,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "api-server": "npx ts-node-dev --project api-server/tsconfig.json api-server/index.ts",
     "restart": "rimraf dist && npm run start",
     "dev": "nodemon app.js"
   },

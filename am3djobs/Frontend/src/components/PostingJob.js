@@ -16,8 +16,7 @@ function PostingJob({ files, setFiles, removeFile }) {
     const [preview, setPreview] = useState()
     const [url, setUrl] = useState();
 
-    const api_key = "242344273154512"
-    const Cloud_name = "dv0frgqvj"
+   
 
     
     const setField = (field, value) => {
@@ -132,12 +131,7 @@ function PostingJob({ files, setFiles, removeFile }) {
     e.preventDefault()
 
      
-    // console.log(formErrors)
-    // const f = e.currentTarget;
-    // if (f.checkValidity() === false) {
-    //   e.preventDefault();
-    //   e.stopPropagation();
-    // }
+
     try {
         const formErrors = await validateForm()
         if (Object.keys(formErrors).length > 0){
@@ -175,62 +169,11 @@ function PostingJob({ files, setFiles, removeFile }) {
     } catch (error) {
         console.error(error)
     }
-    // if (Object.keys(formErrors).length > 0){
-    //     setErrors(errors =>({
-    //         ...errors,
-    //         ...formErrors
-    //     }))
-    //     console.log( errors.Name)
-    //     console.log(validateForm())
-    // } else {
-    //     // else {
-    //     console.log('form submitted');
-    //     console.log(form)
-    //     // dispatch(registerUser(form))
-    // }
-
-    // setErrors(formErrors)
+   
     
   }
 
-//   const popdown = () => {
-//     SetActiveVar(false);
-//   }
 
-//   const registerUser = (form) => async (dispatch) => {
-//     try {
-//         dispatch({type: 'USER_REGISTER_REQUEST'})
-
-//         const config = {
-//             headers: {
-//                 'content-type': 'application/json'
-//             }
-//         }
-
-//         const {data} = await axios.post('/api/users/register',form,config)
-
-//         dispatch({
-//             type: 'USER_REGISTER_SUCCESS',
-//             playload: data
-//         })
-//     } catch (error) {
-//         dispatch({type: 'USER_REGISTER_FAIL',
-//         playload: error.message && error.message.data.message ? error.message.data.message: error.message})
-//     }
-//   }
-
-//   const userRigisterReducer = (state = {}, action) => {
-//     switch(action.type) {
-//         case 'USER_REGISTER_REQUEST':
-//             return {loading: true}
-//         case 'USER_REGISTER_SUCCESS':
-//             return {loading: false, success: true, userInfo: action.playload}
-//         case 'USER_REGISTER_FAIL':
-//             return {loading: false, error: action.playload}
-//         default:
-//             return state
-// }
-//   }
 
   const uploadHandler = (event) => {
     const file = event.target.files[0];

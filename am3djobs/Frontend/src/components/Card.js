@@ -1,22 +1,20 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 import './Card.css'
 
 function Card({val}) {
 
-    const [isActive, setisActive] = useState(true)
+    
     
 
     console.log(val)
 
-    const closepop = () => {
-        setisActive(false)
-        
-    }
+    
   return (
     <div className='product'>
-        <div class={`popup-view ${isActive ? 'active': ''}`}>
+        <div class={`popup-view`}>
           <div class="popup-card">
-            <a><i class="fas fa-times close-btn" onClick={closepop}></i></a>
+            <Link to={'/'}><i href="/" class="fas fa-times close-btn" ></i></Link>
             <div class="product-img">
               <img src="2.png" alt=""/>
             </div>
