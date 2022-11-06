@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import logo from '../Images/Logo.png'
 import './Navbar.css'
-import {Outlet} from 'react-router-dom'
+import {Link, Outlet} from 'react-router-dom'
 import {redirectToAuth} from 'supertokens-auth-react'
 import { useEffect } from 'react'
 import { signOut } from "supertokens-auth-react/recipe/thirdpartypasswordless";
@@ -16,11 +16,13 @@ import { useSessionContext } from 'supertokens-auth-react/recipe/session';
 
 import User from './User'
 
+
 function Navbar() {
     let session = useSessionContext();
     console.log(session)
 
     const [theme, setTheme] = useState("light")
+    const [profile, setProfile] = useState(false)
 
     useEffect (() => {
         if (theme === "dark"){
@@ -64,11 +66,31 @@ function Navbar() {
         await signOut();
       }
 
+    const popUp = () => {
+        setProfile(true)
+    }
+
+    const popDown = () => {
+        setProfile(false)
+    }
     const SignUp = async () => {
         redirectToAuth();
     }
   return (
     <div>
+        <div className={`absolute bg-slate-200/60 h-full w-full z-[5] ${profile ? '' : 'hiddend'}`}>
+        <div className='fixed h-[100%] w-[300px] bg-white top-0 right-0 z-10'>
+            <i class="fas fa-times close-btn dark:text-white absolute right-0 mr-4 mt-3 cursor-pointer" onClick={popDown}/>
+            <div className=' '>
+                <i class="relative top-8 bi bi-person-square text-4xl p-20 mt-2 m-14"></i>
+                <hr className='relative top-12 h-8 bg-black'/>
+            </div>
+            <div className='relative top-20'>
+                <Link to={'/CreateProfile'} className='ml-20 p-3 bg-yellow-500 rounded-lg font-bold'>Create Your Profile</Link>
+            </div>
+
+        </div>
+    </div>
     <div className=' bg-gray-200/30 dark:bg-gray-800/5 sticky shadow-lg dark:text-white'>
          
         <div className="overflow-auto">
@@ -97,15 +119,16 @@ function Navbar() {
                         </ul>     
                     </div>
                 </div>
-                <i class="bi cursor-pointer bi-person-circle flex justify-end items-center top-7 text-xl  absolute right-0 sm:mr-10"></i>
+                <i class="bi cursor-pointer bi-person-circle flex justify-end items-center top-7 text-xl  absolute right-0 sm:mr-10" onClick={popUp}></i>
                 {/* <SessionAuth>
                     <User />
                 </SessionAuth> */}
             </nav>
         </div>
-
-                
+       
+    <hr />       
     </div>
+  
     <Outlet />
     </div>
   )

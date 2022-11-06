@@ -7,8 +7,9 @@ import PostingJob from '../components/PostingJob'
 function Jobs() {
   return (
     <div className=''>
-       <hr />
+       
       <PostingJob />
+
       <MainContentJobs />
       <Footer/> 
     </div>
