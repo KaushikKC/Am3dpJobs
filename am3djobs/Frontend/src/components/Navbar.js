@@ -108,8 +108,10 @@ function Navbar() {
                 <i onClick={EventToggeler} class="cursor-pointer bi bi-moon-fill"></i>
                 </div>
                 <div className='flex justify-end  absolute right-10 sm:mr-10 '>
+                    
+                    
                     <div className=''  id="navbarNav">
-                        <ul className='flex justify-end ml-auto mt-3 '  style={{listStyle:"none"}}>
+                        <ul className='flex justify-end ml-auto mt-3 mr-3 '  style={{listStyle:"none"}}>
                             
                             <li  className='px-2'>
                                 <button onClick={SignOut} class={`${session.doesSessionExist ? '' : 'hiddend '}btn text-sm sm:text-base font-bold hover:bg-black hover:text-white dark:text-white border dark:hover:bg-white dark:hover:text-black`}>Sign Out</button>
@@ -118,6 +120,7 @@ function Navbar() {
                             
                         </ul>     
                     </div>
+                    <div class="gnav mt-4 ml-6"></div>
                 </div>
                 <i class="bi cursor-pointer bi-person-circle flex justify-end items-center top-7 text-xl  absolute right-0 sm:mr-10" onClick={popUp}></i>
                 {/* <SessionAuth>

@@ -7,6 +7,16 @@
     color: aqua;
 }
 
+.gnav {
+    box-sizing: border-box;
+    margin: 0;
+    min-width: 0;
+    width: 0.1025rem;
+    height: 1.8rem;
+    background-color: #d4d2d0;
+    margin-top: 0.75rem;
+}
+
 @media (min-width: 768px) {
     .npadding {
         padding-left: 2.5rem;

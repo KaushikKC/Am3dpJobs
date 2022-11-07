@@ -58,9 +58,9 @@ function CompanyProfile() {
     // dispatch(updateProfile({ name, email, password, pic }));
   };
   return (
-    <div>
-      <Row className="profileContainer">
-          <Col md={6} className="w-full">
+    <div className='h-full'>
+      <Row className="profileContainer h-full">
+          <Col md={6} className="w-full h-full">
             <Form className='flex' onSubmit={submitHandler}>
               {/* {loading && <Loading />}
               {success && (
@@ -69,9 +69,9 @@ function CompanyProfile() {
                 </ErrorMessage>
               )}
               {error && <ErrorMessage variant="danger">{error}</ErrorMessage>} */}
-              <div className='w-[45%] pt-24 h-full pl-14'>
+              <div className='w-[35%] pt-24 h-full pl-14'>
               <Form.Group controlId="name">
-                <Form.Label>Name</Form.Label>
+                <Form.Label>Company Name</Form.Label>
                 <Form.Control
                   type="text"
                   placeholder="Enter Name"
@@ -80,7 +80,7 @@ function CompanyProfile() {
                 ></Form.Control>
               </Form.Group>
               <Form.Group controlId="email">
-                <Form.Label>Email Address</Form.Label>
+                <Form.Label>HQ City</Form.Label>
                 <Form.Control
                   type="email"
                   placeholder="Enter Email"
@@ -89,7 +89,7 @@ function CompanyProfile() {
                 ></Form.Control>
               </Form.Group>
               <Form.Group controlId="password">
-                <Form.Label>Location</Form.Label>
+                <Form.Label>Recruiter Name</Form.Label>
                 <Form.Control
                   type="password"
                   placeholder="Enter Location"
@@ -97,21 +97,43 @@ function CompanyProfile() {
                   onChange={(e) => setPassword(e.target.value)}
                 ></Form.Control>
               </Form.Group>
+               
+              </div>
+              <div className='w-[35%] pt-24 h-full pl-14'>
               <Form.Group controlId="confirmPassword">
-                <Form.Label>Domain</Form.Label>
+                <Form.Label>Recruiter Mobile Phone</Form.Label>
                 <Form.Control
                   type="password"
                   placeholder="Enter Domain"
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
                 ></Form.Control>
-              </Form.Group>{" "} 
+              </Form.Group>{" "}
+              <Form.Group controlId="name">
+                <Form.Label>Company UID</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Enter Name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                ></Form.Control>
+              </Form.Group>
+              <Form.Group controlId="email">
+                <Form.Label>Specialisation</Form.Label>
+                <Form.Control
+                  type="email"
+                  placeholder="Enter Email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                ></Form.Control>
+              </Form.Group>
+              
               </div>
               {/* {picMessage && (
                 <ErrorMessage variant="danger">{picMessage}</ErrorMessage>
               )} */}
               <div className='flex justify-center items-center mx-auto'>
-              <Form.Group controlId="pic">
+              <Form.Group className='ml-20 mt-10' controlId="pic">
                 <Form.Label>Change Profile Picture</Form.Label>
                 <div className='h-28'>
                 <i class="text-[7.2rem] bi bi-person-square ml-6"></i>

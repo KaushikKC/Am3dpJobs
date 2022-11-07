@@ -28,9 +28,9 @@ function CandidateProfile() {
                 </ErrorMessage>
               )}
               {error && <ErrorMessage variant="danger">{error}</ErrorMessage>} */}
-              <div className='w-[45%] pt-24 h-full pl-14'>
+              <div className='w-[25%] pt-24 h-full pl-14'>
               <Form.Group controlId="name">
-                <Form.Label>Name</Form.Label>
+                <Form.Label>Full Name</Form.Label>
                 <Form.Control
                   type="text"
                   placeholder="Enter Name"
@@ -39,7 +39,7 @@ function CandidateProfile() {
                 ></Form.Control>
               </Form.Group>
               <Form.Group controlId="email">
-                <Form.Label>Email Address</Form.Label>
+                <Form.Label>Current City</Form.Label>
                 <Form.Control
                   type="email"
                   placeholder="Enter Email"
@@ -48,7 +48,7 @@ function CandidateProfile() {
                 ></Form.Control>
               </Form.Group>
               <Form.Group controlId="password">
-                <Form.Label>Location</Form.Label>
+                <Form.Label>Mobile Phone</Form.Label>
                 <Form.Control
                   type="password"
                   placeholder="Enter Location"
@@ -57,7 +57,7 @@ function CandidateProfile() {
                 ></Form.Control>
               </Form.Group>
               <Form.Group controlId="confirmPassword">
-                <Form.Label>Domain</Form.Label>
+                <Form.Label>ID Number</Form.Label>
                 <Form.Control
                   type="password"
                   placeholder="Enter Domain"
@@ -65,12 +65,125 @@ function CandidateProfile() {
                   onChange={(e) => setConfirmPassword(e.target.value)}
                 ></Form.Control>
               </Form.Group>{" "} 
+              <Form.Group controlId="password">
+                <Form.Label>Specialisation</Form.Label>
+                <Form.Control
+                  type="password"
+                  placeholder="Enter Location"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                ></Form.Control>
+              </Form.Group>
+              <Form.Group controlId="confirmPassword">
+                <Form.Label>Current Status</Form.Label>
+                <Form.Control
+                  type="password"
+                  placeholder="Enter Domain"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                ></Form.Control>
+              </Form.Group>{" "}
+              </div>
+              <div className='w-[25%] pt-24 h-full pl-14'>
+              <Form.Group controlId="name">
+                <Form.Label>Current Job Type</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Enter Name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                ></Form.Control>
+              </Form.Group>
+              <Form.Group controlId="email">
+                <Form.Label>Current Level</Form.Label>
+                <Form.Control
+                  type="email"
+                  placeholder="Enter Email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                ></Form.Control>
+              </Form.Group>
+              <Form.Group controlId="password">
+                <Form.Label>Key Skills</Form.Label>
+                <Form.Control
+                  type="password"
+                  placeholder="Enter Location"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                ></Form.Control>
+              </Form.Group>
+              <Form.Group controlId="confirmPassword">
+                <Form.Label>Preferred City</Form.Label>
+                <Form.Control
+                  type="password"
+                  placeholder="Enter Domain"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                ></Form.Control>
+              </Form.Group>{" "} 
+              <Form.Group controlId="password">
+                <Form.Label>Preferred Company</Form.Label>
+                <Form.Control
+                  type="password"
+                  placeholder="Enter Location"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                ></Form.Control>
+              </Form.Group>
+              <Form.Group controlId="confirmPassword">
+                <Form.Label>Preferred Function</Form.Label>
+                <Form.Control
+                  type="password"
+                  placeholder="Enter Domain"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                ></Form.Control>
+              </Form.Group>{" "}
+              </div>
+              <div className='w-[25%] pt-24 h-full pl-14'>
+              <Form.Group controlId="name">
+                <Form.Label>Preferred Role</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Enter Name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                ></Form.Control>
+              </Form.Group>
+              <Form.Group controlId="email">
+                <Form.Label>Preferred Mode</Form.Label>
+                <Form.Control
+                  type="email"
+                  placeholder="Enter Email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                ></Form.Control>
+              </Form.Group>
+              <Form.Group controlId="password">
+                <Form.Label>Preferred Monthly Salary</Form.Label>
+                <Form.Control
+                  type="password"
+                  placeholder="Enter Location"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                ></Form.Control>
+              </Form.Group>
+              <Form.Group controlId="confirmPassword">
+                <Form.Label>Availability for Interview</Form.Label>
+                <Form.Control
+                  type="password"
+                  placeholder="Enter Domain"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                ></Form.Control>
+              </Form.Group>{" "} 
+              
               </div>
               {/* {picMessage && (
                 <ErrorMessage variant="danger">{picMessage}</ErrorMessage>
               )} */}
               <div className='flex justify-center items-center mx-auto'>
-              <Form.Group controlId="pic">
+              <Form.Group className='ml-20 mt-10' controlId="pic">
                 <Form.Label>Change Profile Picture</Form.Label>
                 <div className='h-28'>
                 <i class="text-[7.2rem] bi bi-person-square ml-6"></i>
