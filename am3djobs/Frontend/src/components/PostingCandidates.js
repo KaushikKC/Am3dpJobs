@@ -156,6 +156,7 @@ function PostingCandidates({ files, setFiles, removeFile }) {
             JobFunction: form.JobFunction,
             JoiningTime: form.JoiningTime,
             Interview: form.Interview,
+            Company : form.Companies,
             JobSkills: form.JobSkills,
             file: url,
 
