@@ -5,6 +5,8 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons'
 // import {useDispatch} from 'react-redux'
 import axios from 'axios'
 import Form from 'react-bootstrap/Form';
+import Board from "../Images/NoticeBoard.png"
+import { Link } from 'react-router-dom'
 
 
 function PostingJob({ files, setFiles, removeFile }) {
@@ -204,14 +206,27 @@ function PostingJob({ files, setFiles, removeFile }) {
     console.log(form.file)
   
   return (
-    <div className=''>
-        <img className='absolute right-0 top-36' src="https://www.freepnglogos.com/uploads/businessman-png/business-png-businessman-png-image-private-32.png" alt="" />
+    <div className='bg-cover w-full h-[39rem] bg-no-repeat bg-[url("https://d1csarkz8obe9u.cloudfront.net/posterpreviews/office-wall-background-design-template-dd0953bfc1ba6b4f1729746483c0396f_screen.jpg?ts=1615661380")]'>
+        <div className='opacity-50 absolute left-0 top-80 text-5xl cursor-pointer'>
+            <Link to={'/'} class="bi bi-chevron-left"></Link>
+        </div>
+        <img className='h-48 absolute left-64' src={Board} alt="" />
+        {/* <img className='absolute right-0 top-36' src="https://www.freepnglogos.com/uploads/businessman-png/business-png-businessman-png-image-private-32.png" alt="" /> */}
         {/* <div className="h-[30rem] bg-[url('https://img.freepik.com/free-vector/smooth-white-wave-background_52683-55288.jpg?w=2000')] dark:bg-[url('https://media.istockphoto.com/photos/the-black-and-silver-are-light-gray-with-white-the-gradient-is-the-picture-id1332097112?b=1&k=20&m=1332097112&s=170667a&w=0&h=D_26WN2nM805ssHpKsrqFe9mE63_j2bNefybNF0wOLw=')] bg-cover"> */}
-        <div className='h-[30rem]'>
-        <h1 className='absolute pl-16 md:pl-32 flex flex-col  top-60 font-bold dark:text-white text-gray-900 d text-4xl leading-[50px]'><span>Very Simplified and Easiest &nbsp;<span className='text-blue-600 dark:text-fuchsia-500'>HIRING</span>  </span>  </h1>
+        <div className='h-[39rem]'>
+            <h1 className='absolute text-center ml-16 md:ml-[17.5rem] h-[70%] flex flex-col  top-36 font-medium dark:text-white text-gray-900 d text-md leading-[40px]'>
+            The Resume is Dead. <br />
+What you did does not matter.. <br />
+What you want to do, does!
+            </h1>
+        <h1 className='absolute ml-16 md:ml-[7rem] flex flex-col  top-[22rem] font-bold dark:text-white text-gray-900 d text-4xl leading-[50px]'><span>Create your &nbsp;<span className='text-blue-600 dark:text-fuchsia-500'>CARD</span> to apply for jobs  </span>  </h1>
+        <p className='absolute ml-16 md:ml-[7rem] flex flex-col  top-[25.5rem] font-semibold dark:text-white text-gray-900 d text-xl leading-[50px]'>Takes only a few clicks!</p>
         <div className=''>
           {/* <button className=''   >Post a Job</button> */}
-          <button className='absolute ml-16 md:ml-[8rem] flex flex-col p-2 rounded-md  text-[#fff] bg-sky-500 dark:bg-emerald-500 dark:text-black font-bold top-[25rem] sm:top-[23rem] md:top-80' onClick={popup}>Post a Job</button>
+          <button className='absolute ml-16 md:ml-[7rem] flex flex-col p-2 rounded-md  text-[#fff] bg-sky-500 dark:bg-emerald-500 dark:text-black font-bold top-[25rem] sm:top-[23rem] md:top-[29rem]' onClick={popup}>Post a Job</button>
+        </div>
+        <div className='opacity-50 absolute right-0 top-80 text-5xl cursor-pointer'>
+            <Link to={'/talent'} class="bi bi-chevron-right"></Link>
         </div>
         
         <div className='product'>

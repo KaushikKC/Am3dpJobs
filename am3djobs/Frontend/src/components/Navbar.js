@@ -85,10 +85,18 @@ function Navbar() {
                 <i class="relative top-8 bi bi-person-square text-4xl p-20 mt-2 m-14"></i>
                 <hr className='relative top-12 h-8 bg-black'/>
             </div>
-            <div className='relative top-20'>
-                <Link to={'/CreateProfile'} className='ml-20 p-3 bg-yellow-500 rounded-lg font-bold'>Create Your Profile</Link>
+            <div className='relative top-20 right-0'>
+            <h1 className='mb-4 ml-[5.6rem]  font-bold text-xl'>For Comapany</h1>
+            <Link to={'/CreateProfile/CompanyProfile'} className='p-3 ml-[3.3rem] mb-6 rounded-lg bg-yellow-500 text-black font-bold'onClick={popDown} >Create Company Profile</Link>
+            <div className='flex justify-center items-center mt-10'>
+                <div class="gnah mb-2 "></div>
+                <p className='mx-2'>OR</p>
+                <div class="gnah mb-2"></div>
             </div>
-
+         <h1 className='mb-4 ml-[5.6rem] mt-4 font-bold text-xl'>For Candidates</h1>
+            <Link to={'/CreateProfile/CandidateProfile'} className='p-3 ml-[3.3rem] rounded-lg bg-yellow-500 text-black font-bold'onClick={popDown}>Create Candidate Profile</Link>
+            </div>
+            
         </div>
     </div>
     <div className=' bg-gray-200/30 dark:bg-gray-800/5 sticky shadow-lg dark:text-white'>
@@ -98,10 +106,13 @@ function Navbar() {
                 {/* <a className="navbar-brand fs-2 fw-bold" href="/">
                     AM 3-d Jobs
                 </a> */}
-                <img className="navbar-brand mt-4 w-[150px] h-[45px] sm:w-[200px] sm:h-[50px]" src={logo} alt="" />
+                <a href="/">
+                <img  className="navbar-brand mt-4 w-[150px] h-[45px] sm:w-[200px] sm:h-[50px] cursor-pointer" src={logo} alt="" />
+                </a>
+                
                 
                 <div className='space-x-8 p-5 ml-4 font-bold cursor-pointer hidden md:inline'>
-                    <a href="/">Job</a>
+                    <a href="/job">Job</a>
                     <a href="/Talent">Tallent</a>
                 </div>
                 <div className='flex items-center'>

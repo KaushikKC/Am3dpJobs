@@ -20,9 +20,9 @@ import EmailVerification from "supertokens-auth-react/recipe/emailverification";
 import ThirdPartyPasswordless from "supertokens-auth-react/recipe/thirdpartypasswordless";
 import CompanyCard from './components/CompanyCard';
 import CandidateCard from './components/CandidateCard';
-import CreateProfile from './components/CreateProfile';
 import CandidateProfile from './components/CandidateProfile';
 import CompanyProfile from './components/CompanyProfile';
+import Home from './pages/Home';
 
 SuperTokens.init({
   appInfo: {
@@ -60,11 +60,11 @@ function App() {
      <Routes>
           {getSuperTokensRoutesForReactRouterDom(require('react-router-dom'))}
           <Route path="/" element={<Navbar />}>
-          <Route index element={<Jobs />} />
+          <Route index element={<Home />} />
+          <Route path="job" element={<Jobs />} />
           <Route path="talent" element={<Talent />} />
           <Route path="/company/:id" element={<CompanyCard />} />
           <Route path="/candidate/:id" element={<CandidateCard />} />
-          <Route path="/CreateProfile" element={<CreateProfile />} />
           <Route path="/CreateProfile/CompanyProfile" element={<CompanyProfile />} />
           <Route path="/CreateProfile/CandidateProfile" element={<CandidateProfile />} />
         </Route>
