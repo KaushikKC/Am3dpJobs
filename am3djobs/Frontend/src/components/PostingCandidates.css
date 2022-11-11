@@ -10,6 +10,11 @@
     min-height: 80px;
     height: 500px;
 }
+.backgroundt {
+    background: linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.3)),url('../Images/Talent.jpeg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 
 .file-card .file-inputs {
         position: relative;

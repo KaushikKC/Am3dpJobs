@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom';
-import Card from './Card'
+// import Card from './Card'
 
 function CandidateCard() {
   const [product, setProduct] = useState('');

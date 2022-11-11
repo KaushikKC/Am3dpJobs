@@ -193,17 +193,18 @@ function PostingCandidates({ files, setFiles, removeFile }) {
           });
         }
   return (
-    <div className='bg-no-repeat bg-cover bg-[url("https://images.unsplash.com/opengraph/1x1.png?auto=format&fit=crop&w=1200&h=630&q=60&mark-w=64&mark-align=top%2Cleft&mark-pad=50&blend-w=1&mark=https%3A%2F%2Fimages.unsplash.com%2Fopengraph%2Flogo.png&blend=https%3A%2F%2Fplus.unsplash.com%2Fpremium_photo-1661962373769-2018b980f456%3Fcrop%3Dfaces%252Cedges%26cs%3Dtinysrgb%26fit%3Dcrop%26fm%3Djpg%26ixid%3DMnwxMjA3fDB8MXxzZWFyY2h8MXx8aHVtYW4lMjByZXNvdXJjZXxlbnwwfHx8fDE2Njc4NTA3MjE%26ixlib%3Drb-4.0.3%26q%3D60%26w%3D1200%26auto%3Dformat%26h%3D630%26mark-w%3D750%26mark-align%3Dmiddle%252Ccenter%26blend-mode%3Dnormal%26blend-alpha%3D10%26mark%3Dhttps%253A%252F%252Fimages.unsplash.com%252Fopengraph%252Fsearch-input.png%253Fauto%253Dformat%2526fit%253Dcrop%2526w%253D750%2526h%253D84%2526q%253D60%2526txt-color%253D000000%2526txt-size%253D40%2526txt-align%253Dmiddle%25252Cleft%2526txt-pad%253D80%2526txt-width%253D660%2526txt-clip%253Dellipsis%2526txt%253Dhuman%252520resource%26blend%3D000000")]'>
+    <div className='bg-no-repeat bg-cover backgroundt'>
         <div className="h-[39rem] ">
-        <div className='opacity-50 absolute left-0 top-80 text-5xl cursor-pointer'>
+        <div className='opacity-50 absolute left-0 top-80 text-5xl cursor-pointer text-white'>
             <Link to={'/job'} class="bi bi-chevron-left"></Link>
         </div>
-            <div className='flex flex-col justify-end items-center font-semibold absolute mx-auto w-full top-[10rem]'>
-                <p>Finding Candidates does not have to be so difficult.</p>
-                <p>Hire the best relevant Talent without hassle</p>
+            <div className='flex flex-col justify-end items-center font-medium text-sm font-mono absolute mx-auto w-full top-[10rem] opacity-50 text-white'>
+                <p>"Finding Candidates does not have to be so difficult. Hire the best relevant Talent without hassle"</p>
+            
             </div>
-        <h1 className=' flex flex-col justify-end h-[13rem] items-center top-60 text-gray-900 dark:text-white font-bold text-4xl leading-[50px]'><span>Create your &nbsp;<span Card className='text-primary'>CARD</span> to find candidates   </span>  </h1>
-        <div className=' flex flex-col justify-center  items-center mt-4'>
+        <h1 className=' flex flex-col justify-end h-[13rem] items-center top-60  text-white font-bold text-4xl leading-[50px]'><span>Create your &nbsp;<span Card className='text-primary'>CARD</span> to find candidates   </span>  </h1>
+        <p className='absolute mx-auto w-full md:mx-auto flex flex-col items-center  top-[18.7rem] font-semibold text-white d text-xl leading-[50px]'>Takes only a few clicks!</p>
+        <div className=' flex flex-col justify-center  items-center mt-8 '>
           {/* <button className=''   >Post a Job</button> */}
           <button className=' flex flex-col justify-center  items-center p-2 rounded-md bg-yellow-500 text-black font-semibold top-[25rem] sm:top-[23rem] md:top-80' onClick={popup}>Post a Skills</button>
         </div>

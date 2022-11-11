@@ -5,10 +5,10 @@ import './CompanyProfile.css'
 function CompanyProfile() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [pic, setPic] = useState();
+  // const [pic, setPic] = useState();
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [picMessage, setPicMessage] = useState();
+  // const [picMessage, setPicMessage] = useState();
 
   // const dispatch = useDispatch();
 
