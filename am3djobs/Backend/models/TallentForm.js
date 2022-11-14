@@ -15,6 +15,7 @@ const JobFormSchema = new mongoose.Schema({
     JoiningTime: String,
     Companies: String,
     Interview: String,
+    Company : String,
     JobSkills: String,
     CondidateImg: String,
 });
