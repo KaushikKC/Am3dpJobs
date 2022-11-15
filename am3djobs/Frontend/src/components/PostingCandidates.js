@@ -141,8 +141,8 @@ function PostingCandidates({ files, setFiles, removeFile }) {
             console.log('form submitted');
             console.log(form)
             // dispatch(registerUser(form))
-        }
-        await axios.post("http://localhost:3002/TallentUpload", {
+      
+        await axios.post("https://backend.am3dpjobs.com/TallentUpload", {
             CandidateName: form.Name,
             Title: form.Title,
             Location: form.Location,
@@ -163,7 +163,7 @@ function PostingCandidates({ files, setFiles, removeFile }) {
 
 
         })
-    } catch (error) {
+    } popdown() } catch (error) {
         console.error(error)
     }
 }
@@ -181,7 +181,7 @@ function PostingCandidates({ files, setFiles, removeFile }) {
         file,
         file.name
     )
-    axios.post('http://localhost:8080/upload', formData)
+    axios.post('https://backend.am3dpjobs.com/upload', formData)
         .then((res) => {
             file.isUploading = false;
             setFiles([...files, file])
@@ -226,7 +226,7 @@ function PostingCandidates({ files, setFiles, removeFile }) {
             </button>
         </div>
         </div>
-        <button onClick={postDetails} className={`flex justify-center mx-auto font-bold ${selectedFile ? '' : 'hiddend'}`}>UPLOAD IT </button>
+        <button onClick={postDetails} className={`flex text-red-600 rounded-lg p-3 bg-white justify-center mx-auto font-bold ${selectedFile ? '' : 'hiddend'}`}>UPLOAD IT </button>
 
         <p className="main">Candidate Picture</p>
 
@@ -254,9 +254,7 @@ function PostingCandidates({ files, setFiles, removeFile }) {
                             onChange={e=> setField(`Name`,e.target.value)}
                             isInvalid = {!!errors.Name}
                             />
-                            <Form.Control.Feedback type="invalid" className='h-10 w-10'>
-                                {errors.Name}
-                            </Form.Control.Feedback>
+                            
                             </Form.Group>
                         </div>                       
                         
@@ -285,9 +283,7 @@ function PostingCandidates({ files, setFiles, removeFile }) {
                             onChange={e=> setField(`Number`,e.target.value)}
                             isInvalid = {!!errors.Number} 
                             />
-                            <Form.Control.Feedback type="invalid" >
-                                {errors.Number}
-                            </Form.Control.Feedback>
+                            
                             </Form.Group>
                         </div>
                         
@@ -307,9 +303,7 @@ function PostingCandidates({ files, setFiles, removeFile }) {
                                 <option>Out</option>
                               
                             </Form.Select>
-                            <Form.Control.Feedback type="invalid" >
-                                {errors.CandidateType}
-                            </Form.Control.Feedback>
+                           =
                             </Form.Group>
                         </div>
                         
@@ -327,9 +321,7 @@ function PostingCandidates({ files, setFiles, removeFile }) {
                                 <option>Part-Time</option>
                                 <option>Full-Time</option>
                             </Form.Select>
-                            <Form.Control.Feedback type="invalid" >
-                                {errors.TypeWork}
-                            </Form.Control.Feedback>
+                            
                             </Form.Group>
                         </div>
                         
@@ -347,9 +339,7 @@ function PostingCandidates({ files, setFiles, removeFile }) {
                                 <option>Been There</option>
                                 <option>Done That</option>
                             </Form.Select>
-                            <Form.Control.Feedback type="invalid" >
-                                {errors.Background}
-                            </Form.Control.Feedback>
+                            
                             </Form.Group>
                         </div>
                         
@@ -371,9 +361,7 @@ function PostingCandidates({ files, setFiles, removeFile }) {
                             onChange={e=> setField(`MonthlySalary`,e.target.value)}
                             isInvalid = {!!errors.MonthlySalary}
                             />
-                            <Form.Control.Feedback type="invalid" >
-                                {errors.MonthlySalary}
-                            </Form.Control.Feedback>
+                            
                             </Form.Group>
                         </div>
 
@@ -393,9 +381,7 @@ function PostingCandidates({ files, setFiles, removeFile }) {
                                 <option>CAD</option>
                                 <option>Manufacturing</option>
                             </Form.Select>
-                            <Form.Control.Feedback type="invalid" >
-                                {errors.JobSpecialisation}
-                            </Form.Control.Feedback>
+                           
                             </Form.Group>
                         </div>
 
@@ -414,9 +400,7 @@ function PostingCandidates({ files, setFiles, removeFile }) {
                                 <option>Team Lead</option>
                                 <option>Manager</option>
                             </Form.Select>
-                            <Form.Control.Feedback type="invalid" >
-                                {errors.RoleType}
-                            </Form.Control.Feedback>
+                            
                             </Form.Group>
                         </div>
 
@@ -433,9 +417,7 @@ function PostingCandidates({ files, setFiles, removeFile }) {
                                 <option>On-site</option>
                                 <option>Remote</option>
                             </Form.Select>
-                            <Form.Control.Feedback type="invalid" >
-                                {errors.JobMode}
-                            </Form.Control.Feedback>
+                           
                             </Form.Group>
                         </div>
                         <div class="input-field">
@@ -452,9 +434,7 @@ function PostingCandidates({ files, setFiles, removeFile }) {
                                 <option>Sales</option>
                                 <option>Customer Service</option>
                             </Form.Select>
-                            <Form.Control.Feedback type="invalid" >
-                                {errors.JobFunction}
-                            </Form.Control.Feedback>
+                            
                             </Form.Group>
                         </div>
                         <div class="input-field">
@@ -471,9 +451,7 @@ function PostingCandidates({ files, setFiles, removeFile }) {
                                 <option>One Week</option>
                                 <option>One Month</option>
                             </Form.Select>
-                            <Form.Control.Feedback type="invalid" >
-                                {errors.JoiningTime}
-                            </Form.Control.Feedback>
+                            
                             </Form.Group>
                         </div>
 
@@ -492,9 +470,7 @@ function PostingCandidates({ files, setFiles, removeFile }) {
                                 <option>Apple</option>
                                 
                             </Form.Select>
-                            <Form.Control.Feedback type="invalid" >
-                                {errors.Companies}
-                            </Form.Control.Feedback>
+                            
                             </Form.Group>
                         </div>
 
@@ -513,9 +489,7 @@ function PostingCandidates({ files, setFiles, removeFile }) {
                                 <option>Virtual Video</option>
                                 <option >Phone</option>
                             </Form.Select>
-                            <Form.Control.Feedback type="invalid" >
-                                {errors.InterviewMode}
-                            </Form.Control.Feedback>
+                            
                             </Form.Group>
                         </div>
                         <div class="input-field">
@@ -526,9 +500,7 @@ function PostingCandidates({ files, setFiles, removeFile }) {
                             onChange={e=> setField(`Skill`,e.target.value)}
                             isInvalid = {!!errors.Skill}
                             />
-                            <Form.Control.Feedback type="invalid" >
-                                {errors.Skill}
-                            </Form.Control.Feedback>
+                            
                             </Form.Group>
                         </div>
                     </div>

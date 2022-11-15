@@ -149,29 +149,30 @@ function PostingJob({ files, setFiles, removeFile }) {
             console.log('form submitted');
             console.log(form)
             // dispatch(registerUser(form))
-        }
-        await axios.post("http://localhost:3002/JobUpload", {
-            CompanyName: form.Name,
-            Title: form.Title,
-            Location: form.Location,
-            Number: form.Number,
-            CandidateType: form.CandidateType,
-            Background: form.Background,
-            TypeOfWork: form.TypeWork,
-            MonthlySalary: form.MonthlySalary,
-            JobSpecialisation: form.JobSpecialisation,
-            RoleType: form.RoleType,
-            JobMode: form.JobMode,
-            JobFunction: form.JobFunction,
-            JoiningTime: form.JoiningTime,
-            Interview: form.Interview,
-            JobSkills: form.JobSkills,
-            file: url,
+        
+            await axios.post("https://backend.am3dpjobs.com/JobUpload", {
+                CompanyName: form.Name,
+                Title: form.Title,
+                Location: form.Location,
+                Number: form.Number,
+                CandidateType: form.CandidateType,
+                Background: form.Background,
+                TypeOfWork: form.TypeWork,
+                MonthlySalary: form.MonthlySalary,
+                JobSpecialisation: form.JobSpecialisation,
+                RoleType: form.RoleType,
+                JobMode: form.JobMode,
+                JobFunction: form.JobFunction,
+                JoiningTime: form.JoiningTime,
+                Interview: form.Interview,
+                JobSkills: form.JobSkills,
+                file: url,
 
-        })
-    } catch (error) {
+            })
+    } popdown()} catch (error) {
         console.error(error)
     }
+    
    
     
   }
@@ -191,7 +192,7 @@ function PostingJob({ files, setFiles, removeFile }) {
         file,
         file.name
     )
-    axios.post('http://localhost:3002/upload', formData)
+    axios.post('https://backend.am3dpjobs.com/upload', formData)
         .then((res) => {
             file.isUploading = false;
             setFiles([...files, file])
@@ -280,9 +281,7 @@ What you want to do, does!"
                             onChange={e=> setField(`Name`,e.target.value)}
                             isInvalid = {!!errors.Name}
                             />
-                            <Form.Control.Feedback type="invalid" className='h-10 w-10'>
-                                {errors.Name}
-                            </Form.Control.Feedback>
+                            
                             </Form.Group>
                         </div>                       
                         <div class="input-field">
@@ -308,9 +307,7 @@ What you want to do, does!"
                                 <option>Center Manager</option>
                                 <option>Materials Specialist</option>
                             </Form.Select>
-                            <Form.Control.Feedback type="invalid" >
-                                {errors.Title}
-                            </Form.Control.Feedback>
+                            
                             </Form.Group>
                         </div>
                         
@@ -338,9 +335,7 @@ What you want to do, does!"
                             onChange={e=> setField(`Number`,e.target.value)}
                             isInvalid = {!!errors.Number} 
                             />
-                            <Form.Control.Feedback type="invalid" >
-                                {errors.Number}
-                            </Form.Control.Feedback>
+                            
                             </Form.Group>
                         </div>
                         
@@ -360,9 +355,7 @@ What you want to do, does!"
                                 <option>Out</option>
                               
                             </Form.Select>
-                            <Form.Control.Feedback type="invalid" >
-                                {errors.CandidateType}
-                            </Form.Control.Feedback>
+                            
                             </Form.Group>
                         </div>
                         
@@ -380,9 +373,7 @@ What you want to do, does!"
                                 <option>Been There</option>
                                 <option>Done That</option>
                             </Form.Select>
-                            <Form.Control.Feedback type="invalid" >
-                                {errors.Background}
-                            </Form.Control.Feedback>
+                           
                             </Form.Group>
                         </div>
                         
@@ -409,9 +400,7 @@ What you want to do, does!"
                                 <option>Part-Time</option>
                                 <option>Full-Time</option>
                             </Form.Select>
-                            <Form.Control.Feedback type="invalid" >
-                                {errors.TypeWork}
-                            </Form.Control.Feedback>
+                           
                             </Form.Group>
                         </div>
                         
@@ -426,9 +415,7 @@ What you want to do, does!"
                             onChange={e=> setField(`MonthlySalary`,e.target.value)}
                             isInvalid = {!!errors.MonthlySalary}
                             />
-                            <Form.Control.Feedback type="invalid" >
-                                {errors.MonthlySalary}
-                            </Form.Control.Feedback>
+                            
                             </Form.Group>
                         </div>
 
@@ -448,9 +435,7 @@ What you want to do, does!"
                                 <option>CAD</option>
                                 <option>Manufacturing</option>
                             </Form.Select>
-                            <Form.Control.Feedback type="invalid" >
-                                {errors.JobSpecialisation}
-                            </Form.Control.Feedback>
+                            
                             </Form.Group>
                         </div>
 
@@ -469,9 +454,7 @@ What you want to do, does!"
                                 <option>Team Lead</option>
                                 <option>Manager</option>
                             </Form.Select>
-                            <Form.Control.Feedback type="invalid" >
-                                {errors.RoleType}
-                            </Form.Control.Feedback>
+                            
                             </Form.Group>
                         </div>
 
@@ -488,9 +471,7 @@ What you want to do, does!"
                                 <option>On-site</option>
                                 <option>Remote</option>
                             </Form.Select>
-                            <Form.Control.Feedback type="invalid" >
-                                {errors.JobMode}
-                            </Form.Control.Feedback>
+                            
                             </Form.Group>
                         </div>
                         <div class="input-field text-[#333] dark:text-white">
@@ -507,9 +488,7 @@ What you want to do, does!"
                                 <option>Sales</option>
                                 <option>Customer Service</option>
                             </Form.Select>
-                            <Form.Control.Feedback type="invalid" >
-                                {errors.JobFunction}
-                            </Form.Control.Feedback>
+                            
                             </Form.Group>
                         </div>
                         <div class="input-field text-[#333] dark:text-white">
@@ -526,9 +505,7 @@ What you want to do, does!"
                                 <option>One Week</option>
                                 <option>One Month</option>
                             </Form.Select>
-                            <Form.Control.Feedback type="invalid" >
-                                {errors.JoiningTime}
-                            </Form.Control.Feedback>
+                            
                             </Form.Group>
                         </div>
 
@@ -549,9 +526,7 @@ What you want to do, does!"
                                 <option>Virtual Video</option>
                                 <option >Phone</option>
                             </Form.Select>
-                            <Form.Control.Feedback type="invalid" >
-                                {errors.InterviewMode}
-                            </Form.Control.Feedback>
+                            
                             </Form.Group>
                         </div>
                         <div class="input-field text-[#333] dark:text-white">
@@ -562,9 +537,7 @@ What you want to do, does!"
                             onChange={e=> setField(`Skill`,e.target.value)}
                             isInvalid = {!!errors.Skill}
                             />
-                            <Form.Control.Feedback type="invalid" >
-                                {errors.Skill}
-                            </Form.Control.Feedback>
+                            
                             </Form.Group>
                         </div>
                     </div>

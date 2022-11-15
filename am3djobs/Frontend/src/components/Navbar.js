@@ -85,7 +85,12 @@ function Navbar() {
                 <i class="relative top-8 bi bi-person-square text-4xl p-20 mt-2 m-14"></i>
                 <hr className='relative top-12 h-8 bg-black'/>
             </div>
-            <div className='relative top-20 right-0'>
+            <div className={`relative top-20 right-0 ${session.doesSessionExist ? "" : 'hiddend'}`}>
+            <div className='flex flex-col justify-center items-center'>
+                <p>Your login ID:</p>
+                <p className='flex text-sm mb-4 mt-2'>{session.userId}</p>
+            </div>
+            
             <h1 className='mb-4 ml-[5.6rem]  font-bold text-xl'>For Comapany</h1>
             <Link to={'/CreateProfile/CompanyProfile'} className='p-3 ml-[3.3rem] mb-6 rounded-lg bg-yellow-500 text-black font-bold'onClick={popDown} >Create Company Profile</Link>
             <div className='flex justify-center items-center mt-10'>
@@ -95,6 +100,10 @@ function Navbar() {
             </div>
          <h1 className='mb-4 ml-[5.6rem] mt-4 font-bold text-xl'>For Candidates</h1>
             <Link to={'/CreateProfile/CandidateProfile'} className='p-3 ml-[3.3rem] rounded-lg bg-yellow-500 text-black font-bold'onClick={popDown}>Create Candidate Profile</Link>
+            </div>
+            <div className={`relative flex flex-col justify-center items-center top-20 right-0 ${session.doesSessionExist ? "hiddend" : ''}`}>
+                <h1 className='font-bold'>Need to Sign Up to create a Profile</h1>
+                <button type="button" onClick={SignUp} class={`mt-4 btn text-sm sm:text-base font-bold hover:bg-black hover:text-white dark:text-white border dark:hover:bg-white dark:hover:text-black`}>Sign Up</button>
             </div>
             
         </div>
