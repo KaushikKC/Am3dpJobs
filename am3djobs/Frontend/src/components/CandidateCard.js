@@ -30,7 +30,7 @@ function CandidateCard() {
             <div class="info">
               <div className='mb-4 flex justify-evenly'>
               <div className='w-[15rem]'>
-              <h3 className='text-base font-bold'>Candidate Name:</h3>
+              <h3 className='text-base font-bold'>Company Name:</h3>
               <p className='text-[1.1rem]'>{product.CandidateName}</p>
               </div>
               <div className='w-[15rem]'>

@@ -176,7 +176,7 @@ form.secActive .form.first{
 .container form .fields{
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     flex-wrap: wrap;
 }
 form .fields .input-field{
