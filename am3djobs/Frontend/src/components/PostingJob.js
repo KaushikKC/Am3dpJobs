@@ -216,26 +216,26 @@ function PostingJob({ files, setFiles, removeFile }) {
   
   return (
     <div className='bg-cover w-full h-[39rem] bg-no-repeat background overlay'>
-        <div className='opacity-50 text-white absolute left-0 top-80 text-5xl cursor-pointer'>
+        <div className='opacity-50 text-white absolute left-0 top-80 text-5xl z-20 cursor-pointer'>
             <Link to={'/'} class="bi bi-chevron-left"></Link>
         </div>
         {/* <img className='h-48 absolute left-64' src={Board} alt="" /> */}
         {/* <img className='absolute right-0 top-36' src="https://www.freepnglogos.com/uploads/businessman-png/business-png-businessman-png-image-private-32.png" alt="" /> */}
         {/* <div className="h-[30rem] bg-[url('https://img.freepik.com/free-vector/smooth-white-wave-background_52683-55288.jpg?w=2000')] dark:bg-[url('https://media.istockphoto.com/photos/the-black-and-silver-are-light-gray-with-white-the-gradient-is-the-picture-id1332097112?b=1&k=20&m=1332097112&s=170667a&w=0&h=D_26WN2nM805ssHpKsrqFe9mE63_j2bNefybNF0wOLw=')] bg-cover"> */}
         <div className='h-[39rem]'>
-        <h1 className='absolute opacity-50 text-center top-[10rem] font-mono flex flex-col items-center mx-auto w-full font-medium text-white d text-sm leading-[40px]'>
-            "The Resume is Dead. 
-What you did does not matter.. 
-What you want to do, does!"
+        <h1 className='absolute text-center top-[15rem] flex flex-col items-center mx-auto w-full font-bold text-white drop-shadow-lg d text-3xl leading-[40px]'>
+            The Resume is Dead. 
+What you did does not matter.. <br />
+What you want to do, does!
             </h1>
-        <h1 className='absolute mx-auto w-full md:mx-auto flex flex-col  top-[15rem] font-bold text-white  d text-4xl leading-[50px]'><span className='mx-auto'>Create your &nbsp;<span className='text-yellow-600 dark:text-fuchsia-500'>CARD</span> to apply for jobs  </span>  </h1>
-        <p className='absolute mx-auto w-full md:mx-auto flex flex-col items-center  top-[18rem] font-semibold text-white d text-xl leading-[50px]'>Takes only a few clicks!</p>
+        <h1 className='absolute opacity mx-auto w-full md:mx-auto flex flex-col  md:top-[19.5rem] sm:top-[22rem] top-[24rem] sm:font-medium lg:font-semibold text-yellow-500 italic text-md leading-[50px]'><span className='mx-auto'>Create your &nbsp;CARD to apply for jobs  </span>  </h1>
+        <p className='absolute opacity mx-auto w-full md:mx-auto flex flex-col items-center  md:top-[21rem] sm:top-[24rem] top-[26rem] lg:font-semibold text-slate-300 italic text-md leading-[50px]'>Takes only a few clicks!</p>
         <div className='mx-auto w-full flex flex-col items-center '>
           {/* <button className=''   >Post a Job</button> */}
-          <button className='absolute mx-auto flex flex-col items-center justify-center p-2 rounded-md  text-[#fff] bg-sky-500 dark:bg-emerald-500 dark:text-black font-bold top-[25rem] sm:top-[23rem] md:top-[22rem]' onClick={popup}>Create a Card</button>
+          <button className='absolute mx-auto flex flex-col items-center justify-center p-2 rounded-md  text-[#fff] bg-sky-500 dark:bg-emerald-500 dark:text-black font-bold top-[28.5rem] sm:top-[27rem] md:top-[24rem]' onClick={popup}>Create a Card</button>
         </div>
         
-        <div className='opacity-50 text-white absolute right-0 top-80 text-5xl cursor-pointer'>
+        <div className='opacity-50 z-20 text-white absolute right-0 top-80 text-5xl cursor-pointer'>
             <Link to={'/talent'} class="bi bi-chevron-right"></Link>
         </div>
         

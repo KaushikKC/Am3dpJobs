@@ -97,7 +97,9 @@
                 opacity: 1;
                 visibility: visible;
           }
-
+.drop {
+    filter: drop-shadow(0 0 0.75rem white);
+}
 .main {
     font-weight: bold;
     font-size: 1.5rem;

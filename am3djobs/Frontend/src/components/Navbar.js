@@ -124,9 +124,9 @@ function Navbar() {
                     <a href="/job">Job</a>
                     <a href="/Talent">Tallent</a>
                 </div>
-                <div className='flex items-center'>
+                {/* <div className='flex items-center'>
                 <i onClick={EventToggeler} class="cursor-pointer bi bi-moon-fill"></i>
-                </div>
+                </div> */}
                 <div className='flex justify-end  absolute right-10 sm:mr-10 '>
                     
                     
