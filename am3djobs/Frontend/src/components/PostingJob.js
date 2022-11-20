@@ -228,7 +228,7 @@ function PostingJob({ files, setFiles, removeFile }) {
 What you did does not matter.. <br />
 What you want to do, does!
             </h1>
-        <h1 className='absolute opacity mx-auto w-full md:mx-auto flex flex-col  md:top-[19.5rem] sm:top-[22rem] top-[24rem] sm:font-medium lg:font-semibold text-yellow-500 italic text-md leading-[50px]'><span className='mx-auto'>Create your &nbsp;CARD to apply for jobs  </span>  </h1>
+        <h1 className='absolute opacity mx-auto w-full md:mx-auto flex flex-col  md:top-[19.5rem] sm:top-[22rem] top-[24rem] sm:font-medium lg:font-semibold text-blue-400 italic text-md leading-[50px]'><span className='mx-auto'>Create your &nbsp;CARD to apply for jobs  </span>  </h1>
         <p className='absolute opacity mx-auto w-full md:mx-auto flex flex-col items-center  md:top-[21rem] sm:top-[24rem] top-[26rem] lg:font-semibold text-slate-300 italic text-md leading-[50px]'>Takes only a few clicks!</p>
         <div className='mx-auto w-full flex flex-col items-center '>
           {/* <button className=''   >Post a Job</button> */}

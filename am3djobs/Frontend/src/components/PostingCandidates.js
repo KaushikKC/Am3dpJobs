@@ -211,15 +211,15 @@ function PostingCandidates({ files, setFiles, removeFile }) {
             <Link to={'/job'} class="bi bi-chevron-left"></Link>
         </div>
             <div className='flex flex-col justify-end items-center text-center font-bold text-3xl absolute mx-auto w-full top-[14rem] text-white'>
-                <p>Finding Candidates does not have to be so difficult. <br />
-                    Hire the best relevant Talent without hassle</p>
+                <p>Finding Candidates does not have to be so Difficult. <br />
+                    Hire the best relevant Talent without Hassle</p>
             
             </div>
-        <h1 className=' flex flex-col justify-end h-[21rem] sm:h-[17.5rem] md:h-[15.5rem] items-center top-[15rem] italic text-slate-300 md:text-blue-600 md:font-semibold text-md sm:leading-[50px]'><span>Create your &nbsp;CARD to find candidates   </span>  </h1>
+        <h1 className=' flex flex-col justify-end h-[21rem] sm:h-[17.5rem] md:h-[15.5rem] items-center top-[15rem] italic text-slate-300 md:text-red-600 md:font-semibold text-md sm:leading-[50px]'><span>Create your &nbsp;CARD to find candidates   </span>  </h1>
         <p className='absolute mx-auto w-full md:mx-auto flex flex-col items-center top:[22rem] sm:top-[21.7rem] md:top-[19.5rem] text-slate-300 md:font-semibold md:text-slate-400  italic d text-md sm:leading-[50px]'>Takes only a few clicks!</p>
         <div className=' flex flex-col justify-center  items-center mt-5 '>
           {/* <button className=''   >Post a Job</button> */}
-          <button className=' flex flex-col justify-center  items-center p-2 rounded-md bg-yellow-500 text-black font-semibold top-[25rem] sm:top-[23rem] md:top-[22rem]' onClick={popup}>Create Job</button>
+          <button className=' flex flex-col justify-center  items-center p-2 rounded-md bg-red-600 text-white font-semibold top-[25rem] sm:top-[23rem] md:top-[22rem]' onClick={popup}>Create Job</button>
         </div>
 
         <div className='product'>

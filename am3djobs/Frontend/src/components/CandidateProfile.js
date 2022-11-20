@@ -29,8 +29,8 @@ function CandidateProfile() {
               )}
               {error && <ErrorMessage variant="danger">{error}</ErrorMessage>} */}
               <div className='w-[25%] pt-24 h-full pl-14'>
-              <Form.Group controlId="name">
-                <Form.Label>Full Name</Form.Label>
+              <Form.Group controlId="name" className='mb-3'>
+                <Form.Label>Candidate Name</Form.Label>
                 <Form.Control
                   type="text"
                   placeholder="Enter Name"
@@ -38,145 +38,84 @@ function CandidateProfile() {
                   onChange={(e) => setName(e.target.value)}
                 ></Form.Control>
               </Form.Group>
-              <Form.Group controlId="email">
-                <Form.Label>Current City</Form.Label>
+              <Form.Group controlId="C"  className='mb-3'>
+                <Form.Label>City</Form.Label>
                 <Form.Control
-                  type="email"
-                  placeholder="Enter Email"
+                  type="text"
+                  placeholder="Enter city"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 ></Form.Control>
               </Form.Group>
-              <Form.Group controlId="password">
+              <Form.Group controlId="password" className='mb-3'>
                 <Form.Label>Mobile Phone</Form.Label>
                 <Form.Control
-                  type="password"
-                  placeholder="Enter Location"
+                  type="number"
+                  placeholder="Enter number"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 ></Form.Control>
               </Form.Group>
-              <Form.Group controlId="confirmPassword">
-                <Form.Label>ID Number</Form.Label>
+              </div>
+              <div className='w-[25%] pt-24 h-full pl-14'>
+              <Form.Group controlId="name" className='mb-3'>
+                <Form.Label>ID number</Form.Label>
                 <Form.Control
-                  type="password"
-                  placeholder="Enter Domain"
-                  value={confirmPassword}
-                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  type="number"
+                  placeholder="Enter number"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
                 ></Form.Control>
-              </Form.Group>{" "} 
-              <Form.Group controlId="password">
+              </Form.Group>
+              <Form.Group controlId="name" className='mb-3'>
                 <Form.Label>Specialisation</Form.Label>
                 <Form.Control
-                  type="password"
-                  placeholder="Enter Location"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                ></Form.Control>
-              </Form.Group>
-              <Form.Group controlId="confirmPassword">
-                <Form.Label>Current Status</Form.Label>
-                <Form.Control
-                  type="password"
-                  placeholder="Enter Domain"
-                  value={confirmPassword}
-                  onChange={(e) => setConfirmPassword(e.target.value)}
-                ></Form.Control>
-              </Form.Group>{" "}
-              </div>
-              <div className='w-[25%] pt-24 h-full pl-14'>
-              <Form.Group controlId="name">
-                <Form.Label>Current Job Type</Form.Label>
-                <Form.Control
                   type="text"
-                  placeholder="Enter Name"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                ></Form.Control>
-              </Form.Group>
-              <Form.Group controlId="email">
-                <Form.Label>Current Level</Form.Label>
-                <Form.Control
-                  type="email"
-                  placeholder="Enter Email"
+                  placeholder="Enter your Specialisation"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 ></Form.Control>
               </Form.Group>
-              <Form.Group controlId="password">
+              <Form.Group controlId="name" className='mb-3'>
                 <Form.Label>Key Skills</Form.Label>
                 <Form.Control
-                  type="password"
-                  placeholder="Enter Location"
+                  type="text"
+                  placeholder="Enter Skill"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 ></Form.Control>
               </Form.Group>
-              <Form.Group controlId="confirmPassword">
-                <Form.Label>Preferred City</Form.Label>
-                <Form.Control
-                  type="password"
-                  placeholder="Enter Domain"
-                  value={confirmPassword}
-                  onChange={(e) => setConfirmPassword(e.target.value)}
-                ></Form.Control>
-              </Form.Group>{" "} 
-              <Form.Group controlId="password">
-                <Form.Label>Preferred Company</Form.Label>
-                <Form.Control
-                  type="password"
-                  placeholder="Enter Location"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                ></Form.Control>
-              </Form.Group>
-              <Form.Group controlId="confirmPassword">
-                <Form.Label>Preferred Function</Form.Label>
-                <Form.Control
-                  type="password"
-                  placeholder="Enter Domain"
-                  value={confirmPassword}
-                  onChange={(e) => setConfirmPassword(e.target.value)}
-                ></Form.Control>
-              </Form.Group>{" "}
+              
               </div>
               <div className='w-[25%] pt-24 h-full pl-14'>
-              <Form.Group controlId="name">
-                <Form.Label>Preferred Role</Form.Label>
+              <Form.Group controlId="name" className='mb-3'>
+                <Form.Label>Current Status</Form.Label>
                 <Form.Control
                   type="text"
-                  placeholder="Enter Name"
+                  placeholder="Enter Status"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                 ></Form.Control>
               </Form.Group>
-              <Form.Group controlId="email">
-                <Form.Label>Preferred Mode</Form.Label>
+              <Form.Group controlId="name" className='mb-3'>
+                <Form.Label>Current Role</Form.Label>
                 <Form.Control
-                  type="email"
-                  placeholder="Enter Email"
+                  type="text"
+                  placeholder="Enter Role"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 ></Form.Control>
               </Form.Group>
-              <Form.Group controlId="password">
-                <Form.Label>Preferred Monthly Salary</Form.Label>
+              <Form.Group controlId="name" className='mb-3'>
+                <Form.Label>Current Level</Form.Label>
                 <Form.Control
-                  type="password"
-                  placeholder="Enter Location"
+                  type="text"
+                  placeholder="Enter Level"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 ></Form.Control>
               </Form.Group>
-              <Form.Group controlId="confirmPassword">
-                <Form.Label>Availability for Interview</Form.Label>
-                <Form.Control
-                  type="password"
-                  placeholder="Enter Domain"
-                  value={confirmPassword}
-                  onChange={(e) => setConfirmPassword(e.target.value)}
-                ></Form.Control>
-              </Form.Group>{" "} 
+              
               
               </div>
               {/* {picMessage && (
@@ -196,9 +135,9 @@ function CandidateProfile() {
               </div>
                
             </Form>
-            <Button className='mt-4 ml-14 text-black' type="submit" >
+            <button className='mt-4 px-4 py-2 bg-yellow-400 rounded-lg font-bold hover:bg-yellow-600 ml-14 text-black hover:text-white' type="submit" >
                 Update
-              </Button>
+              </button>
           </Col>
           <Col
             style={{

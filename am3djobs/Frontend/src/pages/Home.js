@@ -11,7 +11,7 @@ function Home() {
     >
         <div className='bg-no-repeat fixed h-full bg-cover w-full bg-[url("https://www.workitdaily.com/media-library/image.jpg?id=21988626&width=980")]'>
             <div className='flex flex-col justify-center items-center h-[80%] '>
-            <h1 className='font-bold text-4xl mb-3'>Connecting <span className='text-red-600'>Talent</span>  with <span className='text-blue-600'>Opportunity ..</span></h1>
+            <h1 className='font-bold text-4xl mb-3'>Connecting <a href="/talent" className='text-red-600 cursor-pointer'>Talent</a>  with <a href='/job' className='text-blue-600'>Opportunity ..</a></h1>
             <h1 className='font-semibold text-xl mb-10'>in a few clicks, through AI</h1>
             {/* <div className=''>
                 <Link to={'/job'} className='py-3 font-bold px-5 bg-yellow-600 text-black rounded-lg mr-5'>Jobs</Link>

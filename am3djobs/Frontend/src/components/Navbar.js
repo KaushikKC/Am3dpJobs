@@ -121,8 +121,8 @@ function Navbar() {
                 
                 
                 <div className='space-x-8 p-5 ml-4 font-bold cursor-pointer hidden md:inline'>
-                    <a href="/job">Job</a>
-                    <a href="/Talent">Tallent</a>
+                    <a href="/job" className='text-blue-600'>Job</a>
+                    <a href="/Talent" className='text-red-600'>Talent</a>
                 </div>
                 {/* <div className='flex items-center'>
                 <i onClick={EventToggeler} class="cursor-pointer bi bi-moon-fill"></i>
