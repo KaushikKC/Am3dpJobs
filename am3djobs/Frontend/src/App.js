@@ -4,6 +4,7 @@ import {
   // Switch,
   Route,
   // Link
+  useLocation
 } from 'react-router-dom';
 import './App.css';
 import Navbar from './components/Navbar.js';
@@ -23,6 +24,7 @@ import CandidateCard from './components/CandidateCard';
 import CandidateProfile from './components/CandidateProfile';
 import CompanyProfile from './components/CompanyProfile';
 import Home from './pages/Home';
+import { AnimatePresence } from "framer-motion"
 
 SuperTokens.init({
   appInfo: {
@@ -54,10 +56,12 @@ SuperTokens.init({
 
 
 function App() {
+  const location = useLocation();
   return (
     <SuperTokensWrapper>
     <div className=" bg-[url('https://img.freepik.com/free-vector/smooth-white-wave-background_52683-55288.jpg?w=2000')] dark:bg-[url('https://images.pling.com/img/00/00/62/67/35/1584405/577c4dc30402a8dfa3915867a59e64a89b7b3498e9f327bcfb0bcc7dfcbf99908e32.jpg')] bg-cover -z-2">
-     <Routes>
+      <AnimatePresence>
+     <Routes  location={location} key={location.pathname}>
           {getSuperTokensRoutesForReactRouterDom(require('react-router-dom'))}
           <Route path="/" element={<Navbar />}>
           <Route index element={<Home />} />
@@ -69,6 +73,7 @@ function App() {
           <Route path="/CreateProfile/CandidateProfile" element={<CandidateProfile />} />
         </Route>
       </Routes>
+      </AnimatePresence>
     </div>
     </SuperTokensWrapper>
   );

@@ -12,7 +12,7 @@ function CompanyCard() {
 
 
     const getSingleProduct = async () => {
-      const {data} = await axios.get(`http://localhost:3002/JobRead/${id}`)
+      const {data} = await axios.get(`https://backend.am3dpjobs.com/JobRead/${id}`)
       setProduct(data)
 
 
@@ -29,7 +29,7 @@ function CompanyCard() {
         <div className='product'>
         <div class={`popup-view`}>
           <div class="popup-card">
-            <Link to={'/'}><i href="/" class="fas fa-times close-btn" ></i></Link>
+            <Link to={'/job'}><i href="/" class="fas fa-times close-btn" ></i></Link>
             <div class="product-img">
               <img src={product.CompanyLogo} alt=""/>
             </div>

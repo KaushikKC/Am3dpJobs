@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom';
-import Card from './Card'
+// import Card from './Card'
 
 function CandidateCard() {
   const [product, setProduct] = useState('');
@@ -9,7 +9,7 @@ function CandidateCard() {
 
 
     const getSingleProduct = async () => {
-      const {data} = await axios.get(`http://localhost:3002/TallentRead/${id}`)
+      const {data} = await axios.get(`https://backend.am3dpjobs.com/TallentRead/${id}`)
       setProduct(data)
 
 
@@ -23,14 +23,14 @@ function CandidateCard() {
       <div className='product'>
         <div class={`popup-view`}>
           <div class="popup-card">
-            <Link to={'/'}><i href="/" class="fas fa-times close-btn" ></i></Link>
+            <Link to={'/talent'}><i href="/" class="fas fa-times close-btn" ></i></Link>
             <div class="product-img">
               <img src={product.CompanyLogo} alt=""/>
             </div>
             <div class="info">
               <div className='mb-4 flex justify-evenly'>
               <div className='w-[15rem]'>
-              <h3 className='text-base font-bold'>Candidate Name:</h3>
+              <h3 className='text-base font-bold'>Company Name:</h3>
               <p className='text-[1.1rem]'>{product.CandidateName}</p>
               </div>
               <div className='w-[15rem]'>

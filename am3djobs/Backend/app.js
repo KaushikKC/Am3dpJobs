@@ -98,6 +98,16 @@ app.get('/JobRead/:id', (req,res) => {
      }) 
 })
 
+app.get('/TallentRead/:id', (req,res) => {
+  TallentFormModel.findById(req.params.id) 
+  .then(result => {
+   res.send(result)
+  })
+  .catch(err => {
+   console.log(err)
+  }) 
+})
+
 app.get('/JobRead', (req,res) => {
   JobFormModel.find({}, (err,result) => {
     if(err) {
@@ -154,6 +164,7 @@ app.post("/JobUpload", async (req, res) => {
     JobFunction : req.body.JobFunction,
     JoiningTime : req.body.JoiningTime,
     Interview : req.body.Interview,
+    Company : req.body.Company,
     JobSkills : req.body.JobSkills,
     CompanyLogo : req.body.file,
     

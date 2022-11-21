@@ -10,11 +10,11 @@ function MainContentTallent() {
     // const dispatch = useDispatch()
 
     useEffect(() => {
-        axios.get("http://localhost:3002/Tallentread").then((response) => {
-            console.log(response.data)
+        axios.get("https://backend.am3dpjobs.com/Tallentread").then((response) => {
+            // console.log(response.data)
             setTallentList(response.data)
         });
-    },[]);
+    });
 
   const popup = () => {
     SetActiveVar(true);

@@ -25,7 +25,7 @@ const websiteDomain = process.env.REACT_APP_WEBSITE_URL || `http://localhost:${w
 supertokens.init({
     framework: "express",
     supertokens: {
-        // TODO: This is a core hosted for demo purposes. You can use this, but make sure to change it to your core instance URI eventually.
+       
         connectionURI: "https://79b812c1521911edb08d8f5f16736e96-us-east-1.aws.supertokens.io:3570",
         apiKey: "W-oDkU-LTzrJ4jjpsMOMJAujloHUqR",
     },
@@ -42,8 +42,7 @@ supertokens.init({
         }),
         ThirdPartyPasswordless.init({
             providers: [
-                // We have provided you with development keys which you can use for testing.
-                // IMPORTANT: Please replace them with your own OAuth keys for production use.
+                
                 ThirdPartyPasswordless.Google({
                     clientId: "1060725074195-kmeum4crr01uirfl2op9kd5acmi9jutn.apps.googleusercontent.com",
                     clientSecret: "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"
@@ -76,23 +75,10 @@ app.use(
         credentials: true,
     })
 );
-// app.use(morgan("dev"));
-// app.use(
-//     helmet({
-//         contentSecurityPolicy: false,
-//     })
-// );
+
 app.use(middleware());
 
-// An example API that requires session verification
-// app.get("/sessioninfo", verifySession(), async (req: SessionRequest, res) => {
-//     let session = req.session!;
-//     res.send({
-//         sessionHandle: session.getHandle(),
-//         userId: session.getUserId(),
-//         accessTokenPayload: session.getAccessTokenPayload(),
-//     });
-// });
+
 
 app.use(errorHandler());
 

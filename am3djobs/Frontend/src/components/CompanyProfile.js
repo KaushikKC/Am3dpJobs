@@ -5,10 +5,10 @@ import './CompanyProfile.css'
 function CompanyProfile() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [pic, setPic] = useState();
+  // const [pic, setPic] = useState();
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [picMessage, setPicMessage] = useState();
+  // const [picMessage, setPicMessage] = useState();
 
   // const dispatch = useDispatch();
 
@@ -70,7 +70,7 @@ function CompanyProfile() {
               )}
               {error && <ErrorMessage variant="danger">{error}</ErrorMessage>} */}
               <div className='w-[35%] pt-24 h-full pl-14'>
-              <Form.Group controlId="name">
+              <Form.Group controlId="name" className='mb-3'>
                 <Form.Label>Company Name</Form.Label>
                 <Form.Control
                   type="text"
@@ -79,54 +79,55 @@ function CompanyProfile() {
                   onChange={(e) => setName(e.target.value)}
                 ></Form.Control>
               </Form.Group>
-              <Form.Group controlId="email">
+              <Form.Group controlId="email" className='mb-3'>
                 <Form.Label>HQ City</Form.Label>
                 <Form.Control
-                  type="email"
-                  placeholder="Enter Email"
+                  type="text"
+                  placeholder="Enter your city"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 ></Form.Control>
               </Form.Group>
-              <Form.Group controlId="password">
+              <Form.Group controlId="password" className='mb-3'>
                 <Form.Label>Recruiter Name</Form.Label>
                 <Form.Control
-                  type="password"
-                  placeholder="Enter Location"
+                  type="text"
+                  placeholder="Enter Name"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 ></Form.Control>
               </Form.Group>
                
               </div>
-              <div className='w-[35%] pt-24 h-full pl-14'>
-              <Form.Group controlId="confirmPassword">
-                <Form.Label>Recruiter Mobile Phone</Form.Label>
-                <Form.Control
-                  type="password"
-                  placeholder="Enter Domain"
-                  value={confirmPassword}
-                  onChange={(e) => setConfirmPassword(e.target.value)}
-                ></Form.Control>
-              </Form.Group>{" "}
-              <Form.Group controlId="name">
-                <Form.Label>Company UID</Form.Label>
+              <div className='w-[35%] pt-24 h-full mb-4 pl-14'>
+              <Form.Group controlId="email" className='mb-3'>
+                <Form.Label>Compnay Industry</Form.Label>
                 <Form.Control
                   type="text"
-                  placeholder="Enter Name"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                ></Form.Control>
-              </Form.Group>
-              <Form.Group controlId="email">
-                <Form.Label>Specialisation</Form.Label>
-                <Form.Control
-                  type="email"
-                  placeholder="Enter Email"
+                  placeholder="Enter your Industry"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 ></Form.Control>
               </Form.Group>
+              <Form.Group controlId="name" className='mb-3'>
+                <Form.Label>Company UID</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Enter UID"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                ></Form.Control>
+              </Form.Group>
+              
+              <Form.Group controlId="confirmPassword" className='mb-3'>
+                <Form.Label>Recruiter Mobile Phone</Form.Label>
+                <Form.Control
+                  type="number"
+                  placeholder="Enter Number"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                ></Form.Control>
+              </Form.Group>{" "}
               
               </div>
               {/* {picMessage && (

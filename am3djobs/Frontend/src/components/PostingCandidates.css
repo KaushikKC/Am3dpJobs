@@ -10,6 +10,11 @@
     min-height: 80px;
     height: 500px;
 }
+.backgroundt {
+    background: linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.3)),url('../Images/Talent.jpeg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 
 .file-card .file-inputs {
         position: relative;
@@ -92,7 +97,9 @@
                 opacity: 1;
                 visibility: visible;
           }
-
+.drop {
+    filter: drop-shadow(0 0 0.75rem white);
+}
 .main {
     font-weight: bold;
     font-size: 1.5rem;
@@ -171,7 +178,7 @@ form.secActive .form.first{
 .container form .fields{
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     flex-wrap: wrap;
 }
 form .fields .input-field{

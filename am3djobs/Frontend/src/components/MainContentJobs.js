@@ -10,11 +10,11 @@ function MainContentJobs() {
     // const dispatch = useDispatch()
 
     useEffect(() => {
-        axios.get("http://localhost:3002/JobRead").then((response) => {
-            console.log(response.data)
+        axios.get("https://backend.am3dpjobs.com/JobRead").then((response) => {
+            // console.log(response.data)
             setJobList(response.data)
         });
-    },[]);
+    });
 
  
 
