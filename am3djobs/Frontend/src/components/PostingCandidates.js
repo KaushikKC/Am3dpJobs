@@ -3,12 +3,15 @@ import React, { useEffect, useState } from 'react'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import axios from 'axios'
 import './PostingCandidates.css'
+import {redirectToAuth} from 'supertokens-auth-react'
 import Form from 'react-bootstrap/Form';
 import { Link } from 'react-router-dom'
+import { useSessionContext } from 'supertokens-auth-react/recipe/session'; 
 
 
 function PostingCandidates({ files, setFiles, removeFile }) {
 
+    const session = useSessionContext();
   const [ActiveVar,SetActiveVar] = useState(false)
   const [form, setForm] = useState({})
     const [errors, setErrors] = useState({})
@@ -16,9 +19,12 @@ function PostingCandidates({ files, setFiles, removeFile }) {
     const [preview, setPreview] = useState()
     const [image, setImage] = useState();
     const [url, setUrl] = useState();
+    const [change, setChange] = useState(false);
 
     
-
+    const display = () => {
+        setChange(true)
+    }
     const setField = (field, value) => {
         setForm ({
             ...form,
@@ -87,6 +93,9 @@ function PostingCandidates({ files, setFiles, removeFile }) {
     SetActiveVar(false);
   }
 
+  const SignUp = async () => {
+    redirectToAuth();
+}
 
   const validateForm = () => {
     const {Name,CompanyIndustry,CompanyHQ,CompanyUID,RecruiterName,RecruiterNumber,JobDescription,JobTitle, Background, CandidateType, InterviewMode, JobFunction, JobMode,JoiningTime, MonthlySalary, Skill,TypeWork} = form
@@ -222,7 +231,15 @@ function PostingCandidates({ files, setFiles, removeFile }) {
           <button className=' flex flex-col justify-center  items-center p-2 rounded-md bg-red-600 text-white font-semibold top-[25rem] sm:top-[23rem] md:top-[22rem]' onClick={popup}>Create Job</button>
         </div>
 
-        <div className='product'>
+        <div className={`product ${session.doesSessionExist ? 'hiddend' : ''}`}>
+        <div className={`field drop-shadow-md ${ActiveVar ? 'active' : ''}`}>
+            <button className='font-bold text-xl px-3 py-2 bg-red-500 rounded-lg text-white' onClick={SignUp}>Sign up to Create a Job</button>
+            <a className='absolute top-16 right-5 text-xl cursor-pointer'><i class="fas fa-times close-btn dark:text-white" onClick={popdown}></i></a>
+
+        </div>
+        </div>
+
+        <div className={`product ${session.doesSessionExist ? '' : 'hiddend'}`}>
         <div className={`field ${ActiveVar ? 'active': ''}`}>
         <div className='my-auto'>
         <div className="file-card">
@@ -253,7 +270,10 @@ function PostingCandidates({ files, setFiles, removeFile }) {
         <Form className='overflow-hidden'>
         <form action="#">
             <div class="form first text-[#333] dark:text-white">
-                <div class="details personal">
+                <div className={`${change ? 'hiddend' : ''}`}>
+                    <button onClick={display} className='bg-red-500'>Change Company / Details</button>
+                </div>
+                <div class={`details personal ${change ? "" : 'hiddend'}`}>
                     <span class="title text-[#333] dark:text-white">Company Info</span>
 
                     <div class="fields">

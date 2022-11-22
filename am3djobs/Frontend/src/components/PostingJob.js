@@ -4,13 +4,17 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 // import {useDispatch} from 'react-redux'
 import axios from 'axios'
+import {redirectToAuth} from 'supertokens-auth-react'
 import Form from 'react-bootstrap/Form';
 import Board from "../Images/NoticeBoard.png"
 import { Link } from 'react-router-dom'
+import { useSessionContext } from 'supertokens-auth-react/recipe/session'; 
+
 // import jobs from '../Images/Jobs.jpg'
 
 
 function PostingJob({ files, setFiles, removeFile }) {
+    const session = useSessionContext();
     const [ActiveVar,SetActiveVar] = useState(false)
     const [form, setForm] = useState({})
     const [errors, setErrors] = useState({})
@@ -94,6 +98,10 @@ function PostingJob({ files, setFiles, removeFile }) {
   
   }
 
+  const SignUp = async () => {
+    redirectToAuth();
+}
+
   const validateForm = () => {
     const {Name, Background,Location,IDNumber,PrefferedLocation,Companies, CandidateType, InterviewMode, JobFunction, JobMode, JobSpecialisation, JoiningTime, MonthlySalary, Number,Skill, TypeWork} = form
     const newErrors = {}
@@ -156,12 +164,12 @@ function PostingJob({ files, setFiles, removeFile }) {
             // dispatch(registerUser(form))
         
             await axios.post("https://backend.am3dpjobs.com/JobUpload", {
-                CompanyName: form.Name,     
+                CandidateName: form.Name,     
                 Location: form.Location,
                 Number: form.Number,
                 IDNumber: form.IDNumber,
                 JobSpecialisation: form.JobSpecialisation,
-                Skills: form.Skills,
+                Skills: form.Skill,
                 CandidateType: form.CandidateType,
                 Background: form.Background,
                 PrefferedLocation: form.PrefferedLocation,
@@ -239,7 +247,15 @@ What you want to do, does!
             <Link to={'/talent'} class="bi bi-chevron-right"></Link>
         </div>
         
-        <div className='product'>
+        <div className={`product ${session.doesSessionExist ? 'hiddend' : ''}`}>
+        <div className={`field drop-shadow-md ${ActiveVar ? 'active' : ''}`}>
+            <button className='font-bold text-xl px-3 py-2 bg-blue-500 rounded-lg text-white' onClick={SignUp}>Sign up to Create a card</button>
+            <a className='absolute top-16 right-5 text-xl cursor-pointer'><i class="fas fa-times close-btn dark:text-white" onClick={popdown}></i></a>
+
+        </div>
+        </div>
+
+        <div className={`product ${session.doesSessionExist ? '' : 'hiddend'}`}>
         <div className={`field drop-shadow-md ${ActiveVar ? 'active': ''}`}>
         <div className=' my-auto'>
         <div className="file-card">
@@ -274,7 +290,7 @@ What you want to do, does!
         <Form className='overflow-hidden'>
         <form action="#" className='bg-[#fff] dark:bg-slate-800 'enctype="multipart/form-data" >
             <div class="form first dark:bg-slate-800">
-                <div class="details personal dark:bg-slate-800 ">
+                {/* <div class="details personal dark:bg-slate-800 ">
                     <span class="title text-[#333] dark:text-white">Candidate Info</span>
 
                     <div class="fields">
@@ -290,7 +306,7 @@ What you want to do, does!
                             />
                             
                             </Form.Group>
-                        </div>                       
+                        </div>                        */}
                         {/* <div class="input-field">
                         <Form.Group>
                             <Form.Label>Job Title</Form.Label>
@@ -320,7 +336,7 @@ What you want to do, does!
                          */}
 
                         
-                        <div class="input-field text-[#333] dark:text-white">
+                        {/* <div class="input-field text-[#333] dark:text-white">
                         <Form.Group>
                             <label>City</label>
                             <Form.Control type="text" placeholder="Enter your City and PinCode" 
@@ -429,7 +445,7 @@ What you want to do, does!
                         
                         
                     </div>
-                </div>
+                </div> */}
 
                 <div class="details ID dark:bg-slate-800">
                     <span class="title">Job Prefrences</span>
