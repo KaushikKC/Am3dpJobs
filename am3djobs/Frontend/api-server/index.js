@@ -17,10 +17,13 @@ let Dashboard = require("supertokens-node/recipe/dashboard");
 
 require("dotenv").config();
 
-const apiPort = process.env.REACT_APP_API_PORT || 'http://auth.am3dpjobs.com/';
-const apiDomain = process.env.REACT_APP_API_URL || `http://localhost:${apiPort}`;
-const websitePort = process.env.REACT_APP_WEBSITE_PORT || 'https://am3dpjobs.com/';
-const websiteDomain = process.env.REACT_APP_WEBSITE_URL || `http://localhost:${websitePort}`;
+// https://am3dpjobs.com/
+// https://auth.am3dpjobs.com/
+
+// const apiPort = process.env.REACT_APP_API_PORT || 'https://auth.am3dpjobs.com/';
+// const apiDomain = process.env.REACT_APP_API_URL || `http://localhost:${apiPort}`;
+// const websitePort = process.env.REACT_APP_WEBSITE_PORT || 'https://am3dpjobs.com/';
+// const websiteDomain = process.env.REACT_APP_WEBSITE_URL || `http://localhost:${websitePort}`;
 
 supertokens.init({
     framework: "express",
@@ -31,8 +34,8 @@ supertokens.init({
     },
     appInfo: {
         appName: "AM 3-d  Jobs",
-        apiDomain: "http://auth.am3dpjobs.com/",
-        websiteDomain: "https://am3dpjobs.com/",
+        apiDomain: "http://localhost:3001",
+        websiteDomain: "http://localhost:3000",
         apiBasePath: "/auth",
         websiteBasePath: "/auth"
     },
@@ -69,7 +72,7 @@ const app = express();
 
 app.use(
     cors({
-        origin: "https://am3dpjobs.com/",
+        origin: "http://localhost:3000",
         methods: ["GET", "PUT", "POST", "DELETE"],
         allowedHeaders: ["content-type", ...supertokens.getAllCORSHeaders()],
         credentials: true,
@@ -88,3 +91,4 @@ app.use((err, req, res, next) => {
 });
 
 app.listen(3001, () => console.log(`API Server listening on port ${3001}`));
+// app.listen();
