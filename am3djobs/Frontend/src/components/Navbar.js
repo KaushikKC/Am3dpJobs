@@ -6,7 +6,7 @@ import {redirectToAuth} from 'supertokens-auth-react'
 import { useEffect } from 'react'
 import { signOut } from "supertokens-auth-react/recipe/thirdpartypasswordless";
 import { useSessionContext } from 'supertokens-auth-react/recipe/session'; 
-
+import { useAuth0 } from "@auth0/auth0-react";
 // import { SessionAuth } from 'supertokens-auth-react/recipe/session'
  
 
@@ -19,10 +19,15 @@ import User from './User'
 
 function Navbar() {
     let session = useSessionContext();
-    console.log(session)
+    // console.log(session)
+   
 
     const [theme, setTheme] = useState("light")
     const [profile, setProfile] = useState(false)
+    const { loginWithRedirect,user, isAuthenticated, isLoading } = useAuth0();
+    const { logout } = useAuth0();
+    console.log(user)
+    console.log(isAuthenticated)
 
     useEffect (() => {
         if (theme === "dark"){
@@ -77,6 +82,8 @@ function Navbar() {
         redirectToAuth();
     }
   return (
+    
+    
     <div>
         <div className={`absolute bg-slate-200/60 h-full w-full z-[5] ${profile ? '' : 'hiddend'}`}>
         <div className='fixed h-[100%] w-[300px] bg-white top-0 right-0 z-10'>
@@ -88,6 +95,9 @@ function Navbar() {
             <div className={`relative top-20 right-0 ${session.doesSessionExist ? "" : 'hiddend'}`}>
             <div className='flex flex-col justify-center items-center'>
                 <p>Your login ID:</p>
+                
+                {/* <h2>{user.name}</h2>
+                <p>{user.email}</p> */}
                 <p className='flex text-sm mb-4 mt-2'>{session.userId}</p>
             </div>
             
@@ -134,8 +144,11 @@ function Navbar() {
                         <ul className='flex justify-end ml-auto mt-3 mr-3 '  style={{listStyle:"none"}}>
                             
                             <li  className='px-2'>
-                                <button onClick={SignOut} class={`${session.doesSessionExist ? '' : 'hiddend '}btn text-sm sm:text-base font-bold hover:bg-black hover:text-white dark:text-white border dark:hover:bg-white dark:hover:text-black`}>Sign Out</button>
-                                <button type="button" onClick={SignUp} class={`${!session.doesSessionExist ? '' : 'hiddend '}btn text-sm sm:text-base font-bold hover:bg-black hover:text-white dark:text-white border dark:hover:bg-white dark:hover:text-black`}>Sign Up</button>
+                                {/* <button onClick={SignOut} class={`${session.doesSessionExist ? '' : 'hiddend '}btn text-sm sm:text-base font-bold hover:bg-black hover:text-white dark:text-white border dark:hover:bg-white dark:hover:text-black`}>Sign Out</button>
+                                
+                                <button type="button" onClick={SignUp} class={`${!session.doesSessionExist ? '' : 'hiddend '}btn text-sm sm:text-base font-bold hover:bg-black hover:text-white dark:text-white border dark:hover:bg-white dark:hover:text-black`}>Sign Up</button> */}
+                                <button type="button" onClick={() => loginWithRedirect()} class={`btn text-sm sm:text-base font-bold hover:bg-black hover:text-white dark:text-white border dark:hover:bg-white dark:hover:text-black`}>Sign Up</button>
+                                <button onClick={() => logout({ returnTo: window.location.origin })} class={`btn text-sm sm:text-base font-bold hover:bg-black hover:text-white dark:text-white border dark:hover:bg-white dark:hover:text-black`}>Sign Out</button>
                             </li>
                             
                         </ul>     
