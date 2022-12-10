@@ -17,10 +17,13 @@ let Dashboard = require("supertokens-node/recipe/dashboard");
 
 require("dotenv").config();
 
-const apiPort = process.env.REACT_APP_API_PORT || 3001;
-const apiDomain = process.env.REACT_APP_API_URL || `http://localhost:${apiPort}`;
-const websitePort = process.env.REACT_APP_WEBSITE_PORT || 3000;
-const websiteDomain = process.env.REACT_APP_WEBSITE_URL || `http://localhost:${websitePort}`;
+// https://am3dpjobs.com/
+// https://auth.am3dpjobs.com/
+
+// const apiPort = process.env.REACT_APP_API_PORT || 'https://auth.am3dpjobs.com/';
+// const apiDomain = process.env.REACT_APP_API_URL || `http://localhost:${apiPort}`;
+// const websitePort = process.env.REACT_APP_WEBSITE_PORT || 'https://am3dpjobs.com/';
+// const websiteDomain = process.env.REACT_APP_WEBSITE_URL || `http://localhost:${websitePort}`;
 
 supertokens.init({
     framework: "express",
@@ -88,3 +91,4 @@ app.use((err, req, res, next) => {
 });
 
 app.listen(3001, () => console.log(`API Server listening on port ${3001}`));
+// app.listen();

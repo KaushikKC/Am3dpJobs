@@ -126,47 +126,34 @@ app.get('/TallentRead', (req,res) => {
   })
 })
 
+app.post("/CompanyProfile", (req, res) => {
+  
+})
+
+app.post("/CandidateProfile", (req, res) => {
+  
+})
+
+
 app.post("/JobUpload", async (req, res) => {
-  
-	
-  // const CompanyName = req.body.CompanyName
-  // const Title = req.body.Title
-  // const Location = req.body.Location
-  // const Number = req.body.Number
-  // const CandidateType = req.body.CandidateType
-  // const Background = req.body.Background
-  // const TypeOfWork = req.body.TypeOfWork
-  // const MonthlySalary = req.body.MonthlySalary
-  // const JobSpecialisation = req.body.JobSpecialisation
-  // const RoleType = req.body.RoleType
-  // const JobMode = req.body.JobMode
-  // const JobFunction = req.body.JobFunction
-  // const JoiningTime = req.body.JoiningTime
-  // const Interview = req.body.Interview
-  // const JobSkills = req.body.JobSkills
-
-  // eslint-disable-next-line no-use-before-define
-
-  
-
   const JobForm = new JobFormModel({
-    CompanyName: req.body.CompanyName,
-    Title : req.body.Title,
+    CandidateName: req.body.CandidateName,
     Location : req.body.Location,
     Number : req.body.Number,
+    IDNumber: req.body.IDNumber,
+    JobSpecialisation : req.body.JobSpecialisation,
+    Skills : req.body.Skills,
     CandidateType : req.body.CandidateType,
     Background : req.body.Background,
-    TypeOfWork : req.body.TypeOfWork,
-    MonthlySalary : req.body.MonthlySalary,
-    JobSpecialisation : req.body.JobSpecialisation,
-    RoleType : req.body.RoleType,
-    JobMode : req.body.JobMode,
+    PrefferedLocation: req.body.PrefferedLocation,
+    Companies : req.body.Companies,
     JobFunction : req.body.JobFunction,
-    JoiningTime : req.body.JoiningTime,
+    TypeOfWork : req.body.TypeOfWork,
+    JobMode : req.body.JobMode,
+    MonthlySalary : req.body.MonthlySalary,
     Interview : req.body.Interview,
-    Company : req.body.Company,
-    JobSkills : req.body.JobSkills,
-    CompanyLogo : req.body.file,
+    JoiningTime : req.body.JoiningTime, 
+    CandidatePicture : req.body.file,
     
     })
 
@@ -182,21 +169,24 @@ app.post("/JobUpload", async (req, res) => {
 
 app.post("/TallentUpload", async (req, res) => {
   const TallentForm = new TallentFormModel({
-    CandidateName: req.body.CandidateName,   
-    Location : req.body.Location,
-    Number : req.body.Number,
-    CandidateType : req.body.CandidateType,
-    TypeOfWork : req.body.TypeOfWork,
-    Background : req.body.Background, 
-    MonthlySalary : req.body.MonthlySalary,
-    JobSpecialisation : req.body.JobSpecialisation,
-    RoleType : req.body.RoleType,
+    CompanyName: req.body.CompanyName,   
+    CompanyIndustry : req.body.CompanyIndustry,
+    CompanyHQ : req.body.CompanyHQ,
+    CompanyUID : req.body.CompanyUID,
+    RecruiterName : req.body.RecruiterName,
+    RecruiterNumber : req.body.RecruiterNumber, 
+    JobDescription: req.body.JobDescription,
+    JobTitle : req.body.JobTitle,
     JobMode : req.body.JobMode,
     JobFunction : req.body.JobFunction,
-    JoiningTime : req.body.JoiningTime,
-    Companies : req.body.Companies,
-    Interview : req.body.Interview,
-    JobSkills : req.body.JobSkills,
+    Skills : req.body.Skills,
+    MonthlySalary: req.body.MonthlySalary,
+    CandidateType : req.body.CandidateType,
+    TypeOfWork : req.body.TypeOfWork,
+    Background: req.body.Background,
+    JoiningTime: req.body.JoiningTime,
+    Interview: req.body.Interview,
+    CompanyLogo: req.body.file,
     })
 
     try{

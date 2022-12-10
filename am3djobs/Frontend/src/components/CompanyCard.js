@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
+
 // import Card from './Card';
 import './Card.css'
 
@@ -26,68 +27,103 @@ function CompanyCard() {
   return (
     <div>
         
-        <div className='product'>
+        <div className='product '>
         <div class={`popup-view`}>
-          <div class="popup-card">
+          <div class="popup-card ">
             <Link to={'/job'}><i href="/" class="fas fa-times close-btn" ></i></Link>
             <div class="product-img">
               <img src={product.CompanyLogo} alt=""/>
             </div>
-            <div class="info">
-              <div className='mb-4 flex justify-evenly'>
-              <div className='w-[15rem]'>
-              <h3 className='text-base font-bold'>Job Title:</h3>
-              <p className='text-[1.1rem]'>{product.Title}</p>
+            <div class="info overflow-y-auto">
+              <div className='mb-4 flex '>
+              <div className='w-[10rem]'>
+              <h3 className='text-base font-bold'>Candidate Name:</h3>
+              <span className='text-base'>{product.CandidateName}</span>
               </div>
-              <div className='w-[15rem]'>
-              <p className='text-base font-bold'>Location:</p>
+              <div className='w-[10rem]'>
+              <h3 className='text-base font-bold'>Location:</h3>
               
               <span className='location text-base mr-2'>{product.Location} </span>
-              <span>({product.JobMode})</span>
+      
+              </div>
+              <div className='w-[10rem]'>
+              <h3 className='text-base font-bold'>Mobile Phone:</h3>
+              
+              <span className='location text-base mr-2'>{product.Number} </span>
               </div>
               </div>
               <div className='mb-3 flex  '>
               <div className='w-[10rem] '>
-              <h3 className='text-base font-bold mb-2'>Company Name :</h3>
-              <p className='text-[1.1rem]'>{product.CompanyName}</p>
+              <h3 className='text-base font-bold mb-2'> ID Number:</h3>
+              <span className='text-base'>{product.IDNumber}</span>
               </div>
-              <div className='w-[14rem] mx-3' >
-              <p className='text-base font-bold mb-2'>Specialisation Required:</p>
+              <div className='w-[10rem] mx-3' >
+              <h3 className='text-base font-bold mb-2'>Specialisation:</h3>
               <span className='location text-base'>{product.JobSpecialisation} </span>
               </div>
               <div className='w-[10rem]'>
-                <p className='text-base font-bold mb-2'>Job Function:</p>
+                <h3 className='text-base font-bold mb-2'>Key Skills:</h3>
+                <span className='text-base'>{product.Skills}</span>
+              </div>
+              </div>
+              <div className='flex mb-3'>
+              <div className='w-[10rem] '>
+              <h3 className='text-base font-bold mb-2'>Current Status:</h3>
+              <span className='text-base'>{product.CandidateType}</span>
+              </div>
+              <div className='w-[14rem] mx-3' >
+              <h3 className='text-base font-bold mb-2'>Current Role:</h3>
+              <span className='location text-base'>{product.TypeOfWork} </span>
+              </div>
+              <div className='w-[10rem]'>
+                <h3 className='text-base font-bold mb-2'>Current Level:</h3>
+                <span className='text-base'>{product.Background}</span>
+              </div>
+              
+              </div>
+              <div className='flex mb-3'>
+              <div className='w-[10rem] '>
+              <h3 className='text-base font-bold mb-2'>Preffered City:</h3>
+              <span className='text-base'>{product.PrefferedLocation}</span>
+              </div>
+              <div className='w-[10rem] mx-3' >
+              <h3 className='text-base font-bold mb-2'>Prefferd Company:</h3>
+              <span className='location text-base'>{product.Companies} </span>
+              </div>
+              <div className='w-[10rem]'>
+                <h3 className='text-base font-bold mb-2'>Prefferd Fuction:</h3>
                 <span className='text-base'>{product.JobFunction}</span>
               </div>
               </div>
               <div className='flex mb-3'>
               <div className='w-[10rem] '>
-              <h3 className='text-base font-bold mb-2'>Role Type:</h3>
-              <p className='text-[1.1rem]'>{product.RoleType}</p>
+              <h3 className='text-base font-bold mb-2'>Preffered Role:</h3>
+              <p className='text-base'>{product.TypeOfWork}</p>
               </div>
-              <div className='w-[14rem] mx-3' >
-              <p className='text-base font-bold mb-2'>Type of work:</p>
-              <span className='location text-base'>{product.TypeOfWork} </span>
+              <div className='w-[10rem] mx-3' >
+              <h3 className='text-base font-bold mb-2'>Preffered Mode:</h3>
+              <span className='location text-base'>{product.JobMode} </span>
               </div>
               <div className='w-[10rem]'>
-                <p className='text-base font-bold mb-2'>Expericence:</p>
-                <span className='text-base'>{product.Background}</span>
+                <h3 className='text-base font-bold mb-2'>Prefferd Salary:</h3>
+                <span className='text-base'>{product.MonthlySalary} INR/Month</span>
               </div>
+              
+              
               </div>
               <div className='mb-5 flex'>
               <div className='w-[10rem]'>
-              <h3 className='text-base font-bold'>Joinig Time:</h3>
-              <p className='text-[1.1rem]'>{product.JoiningTime}</p>
+              <h3 className='text-base font-bold'>Interview Mode:</h3>
+              <p className=''>{product.Interview}</p>
               </div>
               <div className='w-[14rem]'>
-              <p className='text-base font-bold'>Salary:</p>
+              <h3 className='text-base font-bold'>Interview Availability:</h3>
               
-              <span className='location text-base mr-2'>{product.MonthlySalary} INR /Month </span>
+              <span className='location text-base mr-2'>{product.JoiningTime}</span>
               
               </div>
               </div>
-              <h3 className='text-base font-bold'>Description:</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.....</p>
+              
             
               <a href="/" class="add-cart-btn mt-4">APPLY</a>
               <div className='flex justify-center'>
