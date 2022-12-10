@@ -6,7 +6,7 @@ import { Link, useParams } from 'react-router-dom';
 function CandidateCard() {
   const [product, setProduct] = useState('');
     let {id} = useParams();
-
+    
 
     const getSingleProduct = async () => {
       const {data} = await axios.get(`https://backend.am3dpjobs.com/TallentRead/${id}`)
