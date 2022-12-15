@@ -1,9 +1,12 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { Form, Button, Row, Col } from "react-bootstrap";
+import { Navigate } from 'react-router-dom';
 import './CompanyProfile.css'
+import { useNavigate } from 'react-router-dom';
 
 function CompanyProfile() {
+  const navigate = useNavigate();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -93,7 +96,7 @@ function CompanyProfile() {
               console.log('form submitted');
               console.log(form)
 
-              await axios.post("http://localhost:3002/CompanyProfile", {
+              await axios.post("https://backend.am3dpjobs.com/CompanyProfile", {
                 CandidateName: form.Name,     
                 Location: form.City,
                 RecruiterName: form.RecruiterName,
@@ -103,7 +106,7 @@ function CompanyProfile() {
                 file: url,
 
             })
-
+            navigate('/')
           } } catch (error) {
             console.error(error)
         }

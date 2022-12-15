@@ -8,13 +8,12 @@ import {redirectToAuth} from 'supertokens-auth-react'
 import Form from 'react-bootstrap/Form';
 import Board from "../Images/NoticeBoard.png"
 import { Link } from 'react-router-dom'
-import { useSessionContext } from 'supertokens-auth-react/recipe/session'; 
-
+import { useAuth0 } from "@auth0/auth0-react";
 // import jobs from '../Images/Jobs.jpg'
 
 
 function PostingJob({ files, setFiles, removeFile }) {
-    const session = useSessionContext();
+    const {isAuthenticated } = useAuth0();
     const [ActiveVar,SetActiveVar] = useState(false)
     const [form, setForm] = useState({})
     const [errors, setErrors] = useState({})
@@ -247,7 +246,7 @@ What you want to do, does!
             <Link to={'/talent'} class="bi bi-chevron-right"></Link>
         </div>
         
-        <div className={`product ${session.doesSessionExist ? 'hiddend' : ''}`}>
+        <div className={`product ${isAuthenticated ? 'hiddend' : ''}`}>
         <div className={`field drop-shadow-md ${ActiveVar ? 'active' : ''}`}>
             <button className='font-bold text-xl px-3 py-2 bg-blue-500 rounded-lg text-white' onClick={SignUp}>Sign up to Create a card</button>
             <a className='absolute top-16 right-5 text-xl cursor-pointer'><i class="fas fa-times close-btn dark:text-white" onClick={popdown}></i></a>
@@ -255,7 +254,7 @@ What you want to do, does!
         </div>
         </div>
 
-        <div className={`product ${session.doesSessionExist ? '' : 'hiddend'}`}>
+        <div className={`product ${isAuthenticated ? '' : 'hiddend'}`}>
         <div className={`field drop-shadow-md ${ActiveVar ? 'active': ''}`}>
         <div className=' my-auto'>
         <div className="file-card">

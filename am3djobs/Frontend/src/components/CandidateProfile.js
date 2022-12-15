@@ -3,13 +3,15 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { Form, Button, Row, Col } from "react-bootstrap";
 import './CompanyProfile.css'
+import { useNavigate } from 'react-router-dom';
 
-function CandidateProfile() {
+function CandidateProfile({userprofile}) {
+  const navigate = useNavigate();
     const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [pic, setPic] = useState();
   const [password, setPassword] = useState("");
-  const [form, setForm] = useState({})
+  const [form, setForm] = useState()
   const [errors, setErrors] = useState({})
   const [image, setImage] = useState();
   const [selectedFile, setSelectedFile] = useState()
@@ -71,7 +73,7 @@ function CandidateProfile() {
     .then(data=>{
         console.log("data:",data)
         console.log(data.url)
-      setUrl(data.url1)
+      setUrl(data.url)
     })
     .catch(err=>{
         console.log(err)
@@ -88,13 +90,15 @@ function CandidateProfile() {
                   ...formErrors
               }))
               console.log( errors.Name)
+            
               console.log(validateForm())
           } else {
               // else {
               console.log('form submitted');
               console.log(form)
 
-              await axios.post("https://localhost:3002/CandidateProfile", {
+              await axios.post("https://backend.am3dpjobs.com/CandidateProfile", {
+                User_id: userprofile.sub,
                 CandidateName: form.Name,     
                 Location: form.City,
                 Number: form.Number,
@@ -106,9 +110,11 @@ function CandidateProfile() {
                 Role: form.Role, 
                 file: url,
 
-            })  
+            })
+            navigate('/')  
           } } catch (error) {
             console.error(error)
+      
         }
         }
 
@@ -163,7 +169,7 @@ function CandidateProfile() {
                 <Form.Control
                   type="text"
                   placeholder="Enter Name"
-                  value={form.Name}
+                  value={form?.name}
                   onChange={(e) => setField(`Name`,e.target.value)}
                   isInvalid = {!!errors.Name}
                 ></Form.Control>
@@ -173,7 +179,7 @@ function CandidateProfile() {
                 <Form.Control
                   type="text"
                   placeholder="Enter city"
-                  value={form.City}
+                  value={form?.City}
                   onChange={(e) => setField(`City`,e.target.value)}
                   isInvalid = {!!errors.City}
                 ></Form.Control>
@@ -183,7 +189,7 @@ function CandidateProfile() {
                 <Form.Control
                   type="number"
                   placeholder="Enter number"
-                  value={form.Number}
+                  value={form?.Number}
                   onChange={(e) => setField(`Number`,e.target.value)}
                   isInvalid = {!!errors.Number}
                 ></Form.Control>
@@ -195,7 +201,7 @@ function CandidateProfile() {
                 <Form.Control
                   type="number"
                   placeholder="Enter number"
-                  value={form.IDNumber}
+                  value={form?.IDNumber}
                   onChange={(e) => setField(`IDNumber`,e.target.value)}
                   isInvalid = {!!errors.IDNumber}
                 ></Form.Control>
@@ -205,7 +211,7 @@ function CandidateProfile() {
                 <Form.Control
                   type="text"
                   placeholder="Enter your Specialisation"
-                  value={form.Specialisation}
+                  value={form?.Specialisation}
                   onChange={(e) => setField(`Specialisation`,e.target.value)}
                   isInvalid = {!!errors.Specialisation}
                 ></Form.Control>
@@ -215,7 +221,7 @@ function CandidateProfile() {
                 <Form.Control
                   type="text"
                   placeholder="Enter Skill"
-                  value={form.Skills}
+                  value={form?.Skills}
                   onChange={(e) => setField(`Skills`,e.target.value)}
                   isInvalid = {!!errors.Skills}
                 ></Form.Control>
@@ -228,7 +234,7 @@ function CandidateProfile() {
                 <Form.Control
                   type="text"
                   placeholder="Enter Status"
-                  value={form.Status}
+                  value={form?.Status}
                   onChange={(e) => setField(`Status`,e.target.value)}
                   isInvalid = {!!errors.Status}
                 ></Form.Control>
@@ -238,7 +244,7 @@ function CandidateProfile() {
                 <Form.Control
                   type="text"
                   placeholder="Enter Role"
-                  value={form.Role}
+                  value={form?.Role}
                   onChange={(e) => setField(`Role`,e.target.value)}
                   isInvalid = {!!errors.Role}
                 ></Form.Control>
@@ -248,7 +254,7 @@ function CandidateProfile() {
                 <Form.Control
                   type="text"
                   placeholder="Enter Level"
-                  value={form.Level}
+                  value={form?.Level}
                   onChange={(e) => setField(`Level`,e.target.value)}
                   isInvalid = {!!errors.Level}
                 ></Form.Control>
