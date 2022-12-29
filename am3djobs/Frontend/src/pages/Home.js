@@ -21,8 +21,9 @@ function Home() {
             <div className='opacity-50 absolute right-0 top-60 text-5xl cursor-pointer'>
             <Link to={'/job'} class="bi bi-chevron-right"></Link>
             </div>
-            
+            <h1 className='font-bold text-md text-gray-500 drop-shadow-lg z-20'>Build-27.12.2022</h1>
         </div>
+        
         
     </motion.div>
   )

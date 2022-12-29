@@ -139,31 +139,31 @@ const UserProfile = () => {
         </div>
       <form onSubmit={handleSubmit} className='p-4 grid grid-cols-4 gap-4 items-center'>
         <label htmlFor="name">Name:</label>
-        <input className='' type="text" id="name" name="name" onChange={handleChange} value={updatedUser.Name} />
+        <input placeholder={User.CandidateName} className='' type="text" id="name" name="name" onChange={handleChange} value={updatedUser.Name} />
 
         <label htmlFor="city">City:</label>
-        <input type="text" id="city" name="city" onChange={handleChange} value={updatedUser.Location} />
+        <input placeholder={User.Location} type="text" id="city" name="city" onChange={handleChange} value={updatedUser.Location} />
 
         <label htmlFor="numbetr">Number:</label>
-        <input type="number" id="number" name="number" onChange={handleChange} value={updatedUser.Number} />
+        <input placeholder={User.Number} type="number" id="number" name="number" onChange={handleChange} value={updatedUser.Number} />
 
         <label htmlFor="idnumber">ID Number:</label>
-        <input type="number" id="idnumber" name="idnumber" onChange={handleChange} value={updatedUser.IDNumber} />
+        <input placeholder={User.IDNumber} type="number" id="idnumber" name="idnumber" onChange={handleChange} value={updatedUser.IDNumber} />
 
         <label htmlFor="jobspecialisation">Job Specialisation:</label>
-        <input type="text" id="jobspecialisation" name="jobspecialisation" onChange={handleChange} value={updatedUser.JobSpecialisation} />
+        <input placeholder={User.JobSpecialisation} type="text" id="jobspecialisation" name="jobspecialisation" onChange={handleChange} value={updatedUser.JobSpecialisation} />
 
         <label htmlFor="skills">Skills:</label>
-        <input type="text" id="skills" name="skills" onChange={handleChange} value={updatedUser.Skills} />
+        <input placeholder={User.Skills} type="text" id="skills" name="skills" onChange={handleChange} value={updatedUser.Skills} />
 
         <label htmlFor="status">Status:</label>
-        <input type="text" id="status" name="status" onChange={handleChange} value={updatedUser.Status} />
+        <input placeholder={User.Status} type="text" id="status" name="status" onChange={handleChange} value={updatedUser.Status} />
 
         <label htmlFor="level">Level:</label>
-        <input type="text" id="level" name="level" onChange={handleChange} value={updatedUser.Level} />
+        <input placeholder={User.Level} type="text" id="level" name="level" onChange={handleChange} value={updatedUser.Level} />
 
         <label htmlFor="role">Role:</label>
-        <input type="text" id="role" name="role" onChange={handleChange} value={updatedUser.Level} />
+        <input placeholder={User.Role} type="text" id="role" name="role" onChange={handleChange} value={updatedUser.Level} />
 
 
         <label htmlFor="bio">Bio:</label>

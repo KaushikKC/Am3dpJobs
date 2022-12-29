@@ -13,18 +13,34 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 
 function PostingJob({ files, setFiles, removeFile }) {
-    const {isAuthenticated } = useAuth0();
+    const {isAuthenticated,user } = useAuth0();
     const [ActiveVar,SetActiveVar] = useState(false)
     const [form, setForm] = useState({})
     const [errors, setErrors] = useState({})
     const [image, setImage] = useState();
     const [selectedFile, setSelectedFile] = useState()
-    const [preview, setPreview] = useState()
-    const [url, setUrl] = useState();
-
    
+    const [url, setUrl] = useState();
+    const [candidate, setCandidate] = useState({});
+    const [createCard, setCreateCard] = useState(true);
 
-    
+    const getSingleProduct = async () => {
+    // const dataCompany = await axios.get(`https://backend.am3dpjobs.com/CompanyProfileRead/${user?.sub}`);  // http://localhost:3002/CompanyProfileRead/${user?.sub}
+    const {data} = await axios.get(`https://backend.am3dpjobs.com/CandidateProfileRead/${user?.sub}`);
+    const once = await axios.get(`https://backend.am3dpjobs.com/jobReadonce/${user?.sub}`)
+    if(Object.keys(once.data).length !== 0){
+        setCreateCard(false)
+    } else if(Object.keys(once.data).length === 0){
+        setCreateCard(true)
+    }
+    setCandidate(data)    
+}
+
+    useEffect(() => {
+        getSingleProduct();
+      });
+    const [preview, setPreview] = useState()
+    //   console.log(candidate)
     const setField = (field, value) => {
         setForm ({
             ...form,
@@ -37,7 +53,7 @@ function PostingJob({ files, setFiles, removeFile }) {
             [field]: null,
         })
     }
-
+    // console.log(createCard)
     useEffect(() => {
         if (!selectedFile) {
             setPreview(undefined)
@@ -79,7 +95,7 @@ function PostingJob({ files, setFiles, removeFile }) {
     .then(data=>{
         console.log("data:",data)
         console.log(data.url)
-       setUrl(data.url1)
+       setUrl(data.url)
     })
     .catch(err=>{
         console.log(err)
@@ -106,22 +122,22 @@ function PostingJob({ files, setFiles, removeFile }) {
     const newErrors = {}
     // console.log("name", Name)
 
-    if (!Name || Name === "") 
-        newErrors.Name = "Please enter the valid Name"
-    if (!Location || Location === " ") 
-        newErrors.Location = "Please enter the valid Location"
-    if (!Number || Number === "") 
-        newErrors.Number = "Please enter the valid Mobile Number"
-    if (!IDNumber || IDNumber === "") 
-        newErrors.IDNumber = "Please enter the valid ID-Number"
-    if (!JobSpecialisation || JobSpecialisation === "") 
-        newErrors.JobSpecialisation = "Please enter the valid Job Specialisation"
-    if (!Skill || Skill === "") 
-        newErrors.Skill = "Please enter the valid Skill"
-    if (!CandidateType || CandidateType === "") 
-        newErrors.CandidateType = "Please enter the valid Candidate Type"
-    if (!Background || Background === " ") 
-        newErrors.Background = "Please enter the valid Background"
+    // if (!Name || Name === "") 
+    //     newErrors.Name = "Please enter the valid Name"
+    // if (!Location || Location === " ") 
+    //     newErrors.Location = "Please enter the valid Location"
+    // if (!Number || Number === "") 
+    //     newErrors.Number = "Please enter the valid Mobile Number"
+    // if (!IDNumber || IDNumber === "") 
+    //     newErrors.IDNumber = "Please enter the valid ID-Number"
+    // if (!JobSpecialisation || JobSpecialisation === "") 
+    //     newErrors.JobSpecialisation = "Please enter the valid Job Specialisation"
+    // if (!Skill || Skill === "") 
+    //     newErrors.Skill = "Please enter the valid Skill"
+    // if (!CandidateType || CandidateType === "") 
+    //     newErrors.CandidateType = "Please enter the valid Candidate Type"
+    // if (!Background || Background === " ") 
+    //     newErrors.Background = "Please enter the valid Background"
     if (!PrefferedLocation || PrefferedLocation === "") 
         newErrors.PrefferedLocation = "Please enter the valid Location"
     if (!Companies || Companies === "") 
@@ -163,12 +179,16 @@ function PostingJob({ files, setFiles, removeFile }) {
             // dispatch(registerUser(form))
         
             await axios.post("https://backend.am3dpjobs.com/JobUpload", {
-                CandidateName: form.Name,     
-                Location: form.Location,
-                Number: form.Number,
-                IDNumber: form.IDNumber,
-                JobSpecialisation: form.JobSpecialisation,
-                Skills: form.Skill,
+                User_id: candidate.User_id,
+                CandidateName: candidate.CandidateName,     
+                Location: candidate.Location,
+                Number: candidate.Number,
+                IDNumber: candidate.IDNumber,
+                JobSpecialisation: candidate.JobSpecialisation,
+                Skills: candidate.Skills,
+                Status: candidate.Status,
+                Level: candidate.Level,
+                Role: candidate.Role,
                 CandidateType: form.CandidateType,
                 Background: form.Background,
                 PrefferedLocation: form.PrefferedLocation,
@@ -179,7 +199,7 @@ function PostingJob({ files, setFiles, removeFile }) {
                 MonthlySalary: form.MonthlySalary,
                 Interview: form.InterviewMode,
                 JoiningTime: form.JoiningTime, 
-                file: url,
+                file: candidate.CandidateImg,
 
             })
             popdown()
@@ -235,11 +255,11 @@ function PostingJob({ files, setFiles, removeFile }) {
 What you did does not matter.. <br />
 What you want to do, does!
             </h1>
-        <h1 className='absolute opacity mx-auto w-full md:mx-auto flex flex-col  md:top-[19.5rem] sm:top-[22rem] top-[24rem] sm:font-medium lg:font-semibold text-blue-400 italic text-md leading-[50px]'><span className='mx-auto'>Create your &nbsp;CARD to apply for jobs  </span>  </h1>
-        <p className='absolute opacity mx-auto w-full md:mx-auto flex flex-col items-center  md:top-[21rem] sm:top-[24rem] top-[26rem] lg:font-semibold text-slate-300 italic text-md leading-[50px]'>Takes only a few clicks!</p>
+        <h1 className={`${candidate?.User_id && createCard ? '' : 'hiddend' } absolute opacity mx-auto w-full md:mx-auto flex flex-col  md:top-[19.5rem] sm:top-[22rem] top-[24rem] sm:font-medium lg:font-semibold text-blue-400 italic text-md leading-[50px]`}><span className='mx-auto'>Create your &nbsp;CARD to apply for jobs  </span>  </h1>
+        <p className={`${candidate?.User_id && createCard  ? '' : 'hiddend' } absolute opacity mx-auto w-full md:mx-auto flex flex-col items-center  md:top-[21rem] sm:top-[24rem] top-[26rem] lg:font-semibold text-slate-300 italic text-md leading-[50px]`}>Takes only a few clicks!</p>
         <div className='mx-auto w-full flex flex-col items-center '>
           {/* <button className=''   >Post a Job</button> */}
-          <button className='absolute mx-auto flex flex-col items-center justify-center p-2 rounded-md  text-[#fff] bg-sky-500 dark:bg-emerald-500 dark:text-black font-bold top-[28.5rem] sm:top-[27rem] md:top-[24rem]' onClick={popup}>Create a Card</button>
+          <button className={`${candidate?.User_id && createCard ? '' : 'hiddend' } absolute mx-auto flex flex-col items-center justify-center p-2 rounded-md  text-[#fff] bg-sky-500 dark:bg-emerald-500 dark:text-black font-bold top-[28.5rem] sm:top-[27rem] md:top-[24rem]`} onClick={popup}>Create a Card</button>
         </div>
         
         <div className='opacity-50 z-20 text-white absolute right-0 top-80 text-5xl cursor-pointer'>
@@ -261,40 +281,72 @@ What you want to do, does!
 
         <div className="file-inputs">
             
-            <input onChange={handleChange} type="file" name='file'  />
+            {/* <input onChange={handleChange} type="file" name='file'  />
             {selectedFile &&  <img className='z-5' src={preview} alt=''/> }
             <button className={`${selectedFile ? 'hiddend' : ''}`}>
                 <i className='ml-[5.4rem]'>
                     <FontAwesomeIcon icon={faPlus} />
                 </i>
                 <p className='mt-3 text-2xl text-orange-600 font-bold drop-shadow-lg'>UPLOAD</p>
-            </button>
+            </button> */}
+            <img className='w-[500px]' src={candidate?.CandidateImg} alt="" />
         </div>
         </div>
         <button onClick={postDetails} className={`flex justify-center mx-auto font-bold ${selectedFile ? '' : 'hiddend'}`}>UPLOAD IT </button>
 
-        <p className="text-blue-900 drop-shadow-lg font-bold mt-2 text-lg">Company Logo</p>
-
+        <p className="text-blue-900 drop-shadow-lg font-bold mt-2 text-lg">Candidate Picture</p>
         </div>
         {/* <div className=' absolute left-[30rem] w-[60%]'> */}
         <div class=" container bg-[#fff] dark:bg-slate-800 ">
         <div className='d-flex justify-content-between mx-3 cursor-pointer'>
-        <header className='font-bold text-blue-600 text-xl drop-shadow-lg'>Post a Job</header>
+        <header className='font-bold text-blue-600 text-xl drop-shadow-lg'>Candidate Card</header>
         <a ><i class="fas fa-times close-btn dark:text-white" onClick={popdown}></i></a>
-
         </div>
-        
-        
-        
         <Form className='overflow-hidden'>
         <form action="#" className='bg-[#fff] dark:bg-slate-800 'enctype="multipart/form-data" >
             <div class="form first dark:bg-slate-800">
-                {/* <div class="details personal dark:bg-slate-800 ">
-                    <span class="title text-[#333] dark:text-white">Candidate Info</span>
+                <div class="details personal dark:bg-slate-800 ">
+                    <span class="title text-[#333] font-bold dark:text-white">Candidate Info</span>
 
-                    <div class="fields">
+                    <div class=" grid grid-cols-4 gap-4">
+                        <div>
+                            <h3 className='font-semibold mb-2'>Name:</h3>
+                            <p>{candidate.CandidateName}</p>
+                        </div>
+                        <div>
+                            <h3 className='font-semibold mb-2'>Location:</h3>
+                            <p>{candidate.Location}</p>
+                        </div>
+                        <div>
+                            <h3 className='font-semibold mb-2'>Number:</h3>
+                            <p>{candidate.Number}</p>
+                        </div>
+                        <div>
+                            <h3 className='font-semibold mb-2'>IDNumber:</h3>
+                            <p>{candidate.IDNumber}</p>
+                        </div>
+                        <div>
+                            <h3 className='font-semibold mb-2'>JobSpecialisation:</h3>
+                            <p>{candidate.JobSpecialisation}</p>
+                        </div>
+                        <div>
+                            <h3 className='font-semibold mb-2'>Skills</h3>
+                            <p>{candidate.Skills}</p>
+                        </div>
+                        <div>
+                            <h3 className='font-semibold mb-2'>Status:</h3>
+                            <p>{candidate.Status}</p>
+                        </div>
+                        <div>
+                            <h3 className='font-semibold mb-2'>Level:</h3>
+                            <p>{candidate.Level}</p>
+                        </div>
+                        <div>
+                            <h3 className='font-semibold mb-2'>Role:</h3>
+                            <p>{candidate.Role}</p>
+                        </div>
                         
-                        <div class="input-field text-[#333] dark:text-white">
+                        {/* <div class="input-field text-[#333] dark:text-white">
                         <Form.Group>
                             <Form.Label>Candidate Name</Form.Label>
                             <Form.Control type="text" placeholder="Enter your Company name" 
@@ -305,8 +357,8 @@ What you want to do, does!
                             />
                             
                             </Form.Group>
-                        </div>                        */}
-                        {/* <div class="input-field">
+                        </div>                       
+                        <div class="input-field">
                         <Form.Group>
                             <Form.Label>Job Title</Form.Label>
                             <Form.Select 
@@ -332,10 +384,10 @@ What you want to do, does!
                             
                             </Form.Group>
                         </div>
-                         */}
+                        
 
                         
-                        {/* <div class="input-field text-[#333] dark:text-white">
+                        <div class="input-field text-[#333] dark:text-white">
                         <Form.Group>
                             <label>City</label>
                             <Form.Control type="text" placeholder="Enter your City and PinCode" 
@@ -439,12 +491,12 @@ What you want to do, does!
                             </Form.Select>
                            
                             </Form.Group>
-                        </div>
+                        </div> */}
                         
                         
                         
                     </div>
-                </div> */}
+                </div>
 
                 <div class="details ID dark:bg-slate-800">
                     <span class="title">Job Prefrences</span>

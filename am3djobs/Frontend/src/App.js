@@ -28,6 +28,7 @@ import Home from './pages/Home';
 import Call from './pages/Call.js'
 import { AnimatePresence } from "framer-motion"
 import UserProfile from './components/UserProfile';
+import CompanyUserProfile from './components/CompanyUserProfile';
 
 
 // SuperTokens.init({
@@ -77,6 +78,7 @@ function App() {
           <Route path="/CreateProfile/CompanyProfile" element={<CompanyProfile userprofile={user}/>} />
           <Route path="/CreateProfile/CandidateProfile" element={<CandidateProfile userprofile={user}/>} />
           <Route path="/userprofile/:id" element={<UserProfile/>} />
+          <Route path="/companyprofile/:id" element={<CompanyUserProfile/>} />
         </Route>
       </Routes>
       </AnimatePresence>

@@ -11,7 +11,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 function PostingCandidates({ files, setFiles, removeFile }) {
 
-    const { isAuthenticated } = useAuth0();
+    const { isAuthenticated,user } = useAuth0();
   const [ActiveVar,SetActiveVar] = useState(false)
   const [form, setForm] = useState({})
     const [errors, setErrors] = useState({})
@@ -20,11 +20,22 @@ function PostingCandidates({ files, setFiles, removeFile }) {
     const [image, setImage] = useState();
     const [url, setUrl] = useState();
     const [change, setChange] = useState(false);
+    const [company, setCompany] = useState();
 
+    const getSingleProduct = async () => {
+        const dataCompany = await axios.get(`https://backend.am3dpjobs.com/CompanyProfileRead/${user?.sub}`);  // http://localhost:3002/CompanyProfileRead/${user?.sub}
+        setCompany(dataCompany?.data)
+        // console.log(dataCompany?.data)
+        // const {data} = await axios.get(`https://backend.am3dpjobs.com/CandidateProfileRead/${user?.sub}`);
+    }
     
+    useEffect(() => {
+        getSingleProduct();
+    });
     const display = () => {
         setChange(true)
     }
+    
     const setField = (field, value) => {
         setForm ({
             ...form,
@@ -64,7 +75,7 @@ function PostingCandidates({ files, setFiles, removeFile }) {
     // setImage(e.target.files[0])
     setField('file',e.target.value)
   }
-
+//   console.log(company)
   const postDetails = () => {
     const data = new FormData()
     data.append("file",selectedFile)
@@ -102,18 +113,18 @@ function PostingCandidates({ files, setFiles, removeFile }) {
     const newErrors = {}
     // console.log("name", Name)
 
-    if (!Name || Name === "") 
-        newErrors.Name = "Please enter the valid Name"
-    if (!CompanyIndustry || CompanyIndustry === "") 
-        newErrors.CompanyIndustry = "Please enter the valid Name"
-    if (!CompanyHQ || CompanyHQ === "") 
-        newErrors.CompanyHQ = "Please enter the valid Name"
-    if (!CompanyUID || CompanyUID === "") 
-        newErrors.CompanyUID = "Please enter the valid Name"
-    if (!RecruiterName || RecruiterName === "") 
-        newErrors.RecruiterName = "Please enter the valid Name"
-    if (!RecruiterNumber || RecruiterNumber === "") 
-        newErrors.RecruiterNumber = "Please enter the valid Name"
+    // if (!Name || Name === "") 
+    //     newErrors.Name = "Please enter the valid Name"
+    // if (!CompanyIndustry || CompanyIndustry === "") 
+    //     newErrors.CompanyIndustry = "Please enter the valid Name"
+    // if (!CompanyHQ || CompanyHQ === "") 
+    //     newErrors.CompanyHQ = "Please enter the valid Name"
+    // if (!CompanyUID || CompanyUID === "") 
+    //     newErrors.CompanyUID = "Please enter the valid Name"
+    // if (!RecruiterName || RecruiterName === "") 
+    //     newErrors.RecruiterName = "Please enter the valid Name"
+    // if (!RecruiterNumber || RecruiterNumber === "") 
+    //     newErrors.RecruiterNumber = "Please enter the valid Name"
     if (!JobDescription || JobDescription === "") 
         newErrors.JobDescription = "Please enter the valid Name"
     if (!JobTitle || JobTitle === "") 
@@ -162,12 +173,13 @@ function PostingCandidates({ files, setFiles, removeFile }) {
             // dispatch(registerUser(form))
       
         await axios.post("https://backend.am3dpjobs.com/TallentUpload", {
-            CompanyName: form.Name,
-            CompanyIndustry: form.CompanyIndustry,
-            CompanyHQ: form.CompanyHQ,
-            CompanyUID: form.CompanyUID,
-            RecruiterName: form.RecruiterName,
-            RecruiterNumber: form.RecruiterNumber,
+            User_id : company.User_id,
+            CompanyName: company.CompanyName,
+            CompanyIndustry: company.CompanyIndustry,
+            Location: company.Location,
+            CompanyUID: company.CompanyUID,
+            RecruiterName: company.RecruiterName,
+            RecruiterNumber: company.RecruiterNumber,
             JobDescription: form.JobDescription,
             JobTitle: form.JobTitle,
             JobMode: form.JobMode,
@@ -179,7 +191,7 @@ function PostingCandidates({ files, setFiles, removeFile }) {
             Background: form.Background,
             JoiningTime: form.JoiningTime,
             Interview: form.InterviewMode,
-            file: url,
+            file: company?.CompanyLogo,
 
 
         })
@@ -188,7 +200,8 @@ function PostingCandidates({ files, setFiles, removeFile }) {
         console.error(error)
     }
 }
-  
+
+
   const uploadHandler = (event) => {
     const file = event.target.files[0];
     if(!file) return;
@@ -224,11 +237,11 @@ function PostingCandidates({ files, setFiles, removeFile }) {
                     Hire the best relevant Talent without Hassle</p>
             
             </div>
-        <h1 className=' flex flex-col justify-end h-[21rem] sm:h-[17.5rem] md:h-[15.5rem] items-center top-[15rem] italic text-slate-300 md:text-red-600 md:font-semibold text-md sm:leading-[50px]'><span>Create your &nbsp;CARD to find candidates   </span>  </h1>
-        <p className='absolute mx-auto w-full md:mx-auto flex flex-col items-center top:[22rem] sm:top-[21.7rem] md:top-[19.5rem] text-slate-300 md:font-semibold md:text-slate-400  italic d text-md sm:leading-[50px]'>Takes only a few clicks!</p>
+        <h1 className={` ${company?.User_id ? '' : 'hiddend'} flex flex-col justify-end h-[21rem] sm:h-[17.5rem] md:h-[15.5rem] items-center top-[15rem] italic text-slate-300 md:text-red-600 md:font-semibold text-md sm:leading-[50px]`}><span>Create your &nbsp;CARD to find candidates   </span>  </h1>
+        <p className={`${company?.User_id ? '' : 'hiddend'} absolute mx-auto w-full md:mx-auto flex flex-col items-center top:[22rem] sm:top-[21.7rem] md:top-[19.5rem] text-slate-300 md:font-semibold md:text-slate-400  italic d text-md sm:leading-[50px]`}>Takes only a few clicks!</p>
         <div className=' flex flex-col justify-center  items-center mt-5 '>
           {/* <button className=''   >Post a Job</button> */}
-          <button className=' flex flex-col justify-center  items-center p-2 rounded-md bg-red-600 text-white font-semibold top-[25rem] sm:top-[23rem] md:top-[22rem]' onClick={popup}>Create Job</button>
+          <button className={` ${company?.User_id ? '' : 'hiddend'}  flex flex-col justify-center  items-center p-2 rounded-md bg-red-600 text-white font-semibold top-[25rem] sm:top-[23rem] md:top-[22rem]`} onClick={popup}>Create Job</button>
         </div>
 
         <div className={`product ${isAuthenticated ? 'hiddend' : ''}`}>
@@ -245,7 +258,7 @@ function PostingCandidates({ files, setFiles, removeFile }) {
         <div className="file-card">
 
         <div className="file-inputs">
-            <input type="file" name='file' onChange={handleChange} />
+            {/* <input type="file" name='file' onChange={handleChange} />
             {selectedFile &&  <img className='z-5 h-[391px] w-[319px] my-12' src={preview} alt=''/> }
             <button className={`${selectedFile ? 'hiddend' : ''}`}>
                 <i className='ml-[5.4rem]'>
@@ -253,117 +266,58 @@ function PostingCandidates({ files, setFiles, removeFile }) {
                 </i >
                 <p className='mt-3 text-2xl text-orange-600 font-bold drop-shadow-lg'>UPLOAD</p>
                 
-            </button>
+            </button> */}
+            <img className='w-[500px]' src={company?.CompanyLogo} alt="" />
         </div>
         </div>
         <button onClick={postDetails} className={`flex text-red-600 rounded-lg p-3 bg-white justify-center mx-auto font-bold ${selectedFile ? '' : 'hiddend'}`}>UPLOAD IT </button>
 
-        <p className="main">Candidate Picture</p>
+        <p className="main">Company Picture</p>
 
         </div>
         <div class="container bg-[#fff] dark:bg-slate-800">
         <div className='d-flex justify-content-between mx-3 cursor-pointer'>
-        <header className='text-blue-900 drop-shadow-lg font-bold mt-2 text-lg'>Post Your Skills</header>
+        <header className='text-blue-900 drop-shadow-lg font-bold mt-2 text-lg'>Job Card</header>
         <a ><i class="fas fa-times close-btn dark:text-white" onClick={popdown}></i></a>
         </div>
 
         <Form className='overflow-hidden'>
         <form action="#">
             <div class="form first text-[#333] dark:text-white">
-                <div className={`${change ? 'hiddend' : ''}`}>
-                    <button onClick={display} className='bg-red-500'>Change Company / Details</button>
-                </div>
-                <div class={`details personal ${change ? "" : 'hiddend'}`}>
+                
+                <div class={`details personal`}>
                     <span class="title text-[#333] dark:text-white">Company Info</span>
 
-                    <div class="fields">
-                        
-                        <div class="input-field">
-                        <Form.Group>
-                            <Form.Label>Company Name</Form.Label>
-                            <Form.Control type="text" placeholder="Enter your Company name" 
-                            required
-                            value={form.Name}
-                            onChange={e=> setField(`Name`,e.target.value)}
-                            isInvalid = {!!errors.Name}
-                            />
-                            
-                            </Form.Group>
-                        </div>                       
-                        
-                        <div class="input-field">
-                        <Form.Group>
-                            <label>Company Industry</label>
-                            <Form.Control type="text" placeholder="Enter the Industry" 
-                            required
-                            value={form.CompanyIndustry}
-                            onChange={e=> setField(`CompanyIndustry`,e.target.value)} 
-                            isInvalid = {!!errors.CompanyIndustry}
-                            />
-                            
-                            </Form.Group>
+                    <div class="grid grid-cols-4 gap-4">
+                        <div>
+                            <h3 className='font-semibold mb-2'>Company Name:</h3>
+                            <p>{company?.CompanyName}</p>
                         </div>
-
-                        <div class="input-field">
-                        <Form.Group>
-                            <label>Company HQ</label>
-                            <Form.Control type="text" placeholder="Enter the company HQ" 
-                            required
-                            value={form.CompanyHQ}
-                            onChange={e=> setField(`CompanyHQ`,e.target.value)} 
-                            isInvalid = {!!errors.CompanyHQ}
-                            />
-                            
-                            </Form.Group>
+                        <div>
+                            <h3 className='font-semibold mb-2'>Location:</h3>
+                            <p>{company?.Location}</p>
                         </div>
-
-                        <div class="input-field">
-                        <Form.Group>
-                            <label>Company UID</label>
-                            <Form.Control type="text" placeholder="Enter the Company UID" 
-                            required
-                            value={form.CompanyUID}
-                            onChange={e=> setField(`CompanyUID`,e.target.value)} 
-                            isInvalid= {!!errors.CompanyUID}
-                            />
-                            
-                            </Form.Group>
+                        <div>
+                            <h3 className='font-semibold mb-2'>Recruiter Name: </h3>
+                            <p>{company?.RecruiterName}</p>
                         </div>
-
-                        
-                        <div class="input-field">
-                        <Form.Group>
-                            <label>Recruiter name</label>
-                            <Form.Control type="text" placeholder="Enter the name" 
-                            required
-                            value={form.RecruiterName}
-                            onChange={e=> setField(`RecruiterName`,e.target.value)} 
-                            isInvalid = {!!errors.RecruiterName}
-                            />
-                            
-                            </Form.Group>
+                        <div>
+                            <h3 className='font-semibold mb-2'>Company Industry:</h3>
+                            <p>{company?.CompanyIndustry}</p>
                         </div>
-                        
-
-                        
-                        <div class="input-field">
-                        <Form.Group>
-                            <Form.Label>Recruiter Mobile Number</Form.Label>
-                            <Form.Control type="number" placeholder="Enter mobile number with Country code" 
-                            required
-                            value={form.RecruiterNumber}
-                            onChange={e=> setField(`RecruiterNumber`,e.target.value)}
-                            isInvalid = {!!errors.RecruiterNumber} 
-                            />
-                            
-                            </Form.Group>
+                        <div>
+                            <h3 className='font-semibold mb-2'>CompanyUID :</h3>
+                            <p>{company?.CompanyUID}</p>
                         </div>
-                        
-
-                        
+                        <div>
+                            <h3 className='font-semibold mb-2'>Recruiter Number:</h3>
+                            <p>{company?.RecruiterNumber}</p>
+                        </div>
                        
                     </div>
                 </div>
+                
+                
 
                 <div class="details ID">
                     <span class="title">Job info</span>

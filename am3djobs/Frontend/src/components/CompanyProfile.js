@@ -5,7 +5,7 @@ import { Navigate } from 'react-router-dom';
 import './CompanyProfile.css'
 import { useNavigate } from 'react-router-dom';
 
-function CompanyProfile() {
+function CompanyProfile({userprofile}) {
   const navigate = useNavigate();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -73,7 +73,7 @@ function CompanyProfile() {
     .then(data=>{
         console.log("data:",data)
         console.log(data.url)
-      setUrl(data.url1)
+      setUrl(data.url)
     })
     .catch(err=>{
         console.log(err)
@@ -97,7 +97,8 @@ function CompanyProfile() {
               console.log(form)
 
               await axios.post("https://backend.am3dpjobs.com/CompanyProfile", {
-                CandidateName: form.Name,     
+                User_id: userprofile.sub,  
+                CompanyName: form.Name,     
                 Location: form.City,
                 RecruiterName: form.RecruiterName,
                 Industry: form.Industry,

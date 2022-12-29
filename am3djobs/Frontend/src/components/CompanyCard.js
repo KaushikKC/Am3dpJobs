@@ -32,7 +32,7 @@ function CompanyCard() {
           <div class="popup-card ">
             <Link to={'/job'}><i href="/" class="fas fa-times close-btn" ></i></Link>
             <div class="product-img">
-              <img src={product.CompanyLogo} alt=""/>
+              <img src={product.CandidatePicture} alt=""/>
             </div>
             <div class="info overflow-y-auto">
               <div className='mb-4 flex '>
