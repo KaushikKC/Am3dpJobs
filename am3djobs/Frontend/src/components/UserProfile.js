@@ -96,14 +96,13 @@ const UserProfile = () => {
     try {
     await axios.put(`https://backend.am3dpjobs.com/UpdateCandidateProfile/${id}`, {
                 CandidateName: updatedUser.name,     
-                Location: updatedUser.city,
-                Number: updatedUser.number,
-                IDNumber: updatedUser.idNumber,
-                JobSpecialisation: updatedUser.jobspecialisation,
-                Skills: updatedUser.skills,
-                Status: updatedUser.status,
-                Level: updatedUser.level,
-                Role: updatedUser.role, 
+                CandidateLocation: updatedUser.city,
+                CandidateNumber: updatedUser.number,
+                CandidateUID: updatedUser.idNumber,
+                CandidateCompany: updatedUser.company,
+                CandidateIndustry: updatedUser.industry,
+                Signal: updatedUser.signal,
+                CandidateEmail: updatedUser.mail,
                 file: url,
 
             })
@@ -130,44 +129,33 @@ const UserProfile = () => {
                 <div className={`h-28 mb-6 ${selectedFile ? 'hiddend' : ''}`}>
                 <i class="text-[7.2rem] bi bi-person-square ml-6 mb-6"></i>
                 </div>
-                {selectedFile &&  <img className='z-5 w-[200px] h-[200px] mt-3' src={preview} alt=''/> }
+                {/* {selectedFile &&  <img className='z-5 w-[200px] h-[200px] mt-3' src={preview} alt=''/> }
                 <input onChange={handleImgChange} className='rounded-lg p-4 profilePic mt-2 dark:text-white' type="file" name="" id="" />
-                <button onClick={postDetails} className={`flex justify-center mx-auto px-3 py-2 bg-red-500 text-white rounded-lg font-bold ${selectedFile ? '' : 'hiddend'}`}>UPLOAD IT </button>
+                <button onClick={postDetails} className={`flex justify-center mx-auto px-3 py-2 bg-red-500 text-white rounded-lg font-bold ${selectedFile ? '' : 'hiddend'}`}>UPLOAD IT </button> */}
                 
               </form>
               </div>
         </div>
       <form onSubmit={handleSubmit} className='p-4 grid grid-cols-4 gap-4 items-center'>
+        <label htmlFor="idnumber">ID Number:</label>
+        <input placeholder={User.CandidateUID} type="number" id="idnumber" name="idnumber" onChange={handleChange} value={updatedUser.CandidateUID} />
         <label htmlFor="name">Name:</label>
         <input placeholder={User.CandidateName} className='' type="text" id="name" name="name" onChange={handleChange} value={updatedUser.Name} />
-
+        <label htmlFor="company">Company:</label>
+        <input placeholder={User.CandidateCompany} type="text" id="company" name="company" onChange={handleChange} value={updatedUser.CandidateCompany} />
         <label htmlFor="city">City:</label>
-        <input placeholder={User.Location} type="text" id="city" name="city" onChange={handleChange} value={updatedUser.Location} />
+        <input placeholder={User.CandidateLocation} type="text" id="city" name="city" onChange={handleChange} value={updatedUser.CandidateLocation} />
+        <label htmlFor="industry">Industry:</label>
+        <input placeholder={User.CandidateIndustry} type="text" id="jobspecialisation" name="jobspecialisation" onChange={handleChange} value={updatedUser.CandidateIndustry} />
+        <label htmlFor="number">Number:</label>
+        <input placeholder={User.CandidateNumber} type="number" id="number" name="number" onChange={handleChange} value={updatedUser.CandidateNumber} />
+        <label htmlFor="mail">Mail:</label>
+        <input placeholder={User.CandidateEmail} type="mail" id="mail" name="mail" onChange={handleChange} value={updatedUser.CandidateEmail} />
 
-        <label htmlFor="numbetr">Number:</label>
-        <input placeholder={User.Number} type="number" id="number" name="number" onChange={handleChange} value={updatedUser.Number} />
+        <label htmlFor="signal">Signal:</label>
+        <input placeholder={User.Signal} type="text" id="signal" name="signal" onChange={handleChange} value={updatedUser.Signal} />
 
-        <label htmlFor="idnumber">ID Number:</label>
-        <input placeholder={User.IDNumber} type="number" id="idnumber" name="idnumber" onChange={handleChange} value={updatedUser.IDNumber} />
-
-        <label htmlFor="jobspecialisation">Job Specialisation:</label>
-        <input placeholder={User.JobSpecialisation} type="text" id="jobspecialisation" name="jobspecialisation" onChange={handleChange} value={updatedUser.JobSpecialisation} />
-
-        <label htmlFor="skills">Skills:</label>
-        <input placeholder={User.Skills} type="text" id="skills" name="skills" onChange={handleChange} value={updatedUser.Skills} />
-
-        <label htmlFor="status">Status:</label>
-        <input placeholder={User.Status} type="text" id="status" name="status" onChange={handleChange} value={updatedUser.Status} />
-
-        <label htmlFor="level">Level:</label>
-        <input placeholder={User.Level} type="text" id="level" name="level" onChange={handleChange} value={updatedUser.Level} />
-
-        <label htmlFor="role">Role:</label>
-        <input placeholder={User.Role} type="text" id="role" name="role" onChange={handleChange} value={updatedUser.Level} />
-
-
-        <label htmlFor="bio">Bio:</label>
-        <textarea id="bio" name="bio" onChange={handleChange} value={updatedUser.bio} />
+        
         <div>
         <button className='px-4 py-2 ml-4 w-[100px] mt-6 bg-black text-white rounded-3xl font-semibold' type="submit" onClick={handleSubmit} >Save</button>
         <button className='px-4 py-2 ml-4 w-[100px] mt-6 bg-black text-white rounded-3xl font-semibold' onClick={back}>Back</button>
@@ -186,15 +174,14 @@ const UserProfile = () => {
       
 
     <div className='ml-5 grid grid-cols-4 gap-4 items-center font-semibold'>
+      <p>UID Number: {User.CandidateUID}</p>
       <p>Name: {User.CandidateName}</p>
-      <p>Location: {User.Location}</p>
-      <p>Number: {User.Number}</p>
-      <p>ID Number: {User.IDNumber}</p>
-      <p>Job Specialisation: {User.JobSpecialisation}</p>
-      <p>Skills: {User.Skills}</p>
-      <p>Status: {User.Status}</p>
-      <p>Level: {User.Level}</p>
-      <p>Role: {User.Role}</p>
+      <p>Company: {User.CandidateCompany}</p>
+      <p>Location: {User.CandidateLocation}</p>
+      <p>Industry: {User.CandidateIndustry}</p>
+      <p>Number: {User.CandidateNumber}</p>
+      <p>Mail: {User.CandidateEmail}</p>
+      <p>Status: {User.Signal}</p>
       </div>
       <div>
 

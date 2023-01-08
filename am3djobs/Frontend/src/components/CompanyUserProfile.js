@@ -94,8 +94,10 @@ function CompanyUserProfile() {
                 CompanyName: updatedUser.name,     
                 Location: updatedUser.city,
                 RecruiterName: updatedUser.recruitername,
-                Industry: updatedUser.companyindustry,
+                CompanyIndustry: updatedUser.companyindustry,
                 CompanyUID: updatedUser.companyuid,
+                RecruiterEmail: updatedUser.recruitermail,
+                Signal: updatedUser.signal,
                 RecruiterNumber: updatedUser.recruiternumber,
                 file: url,
 
@@ -131,26 +133,27 @@ function CompanyUserProfile() {
               </div>
         </div>
       <form onSubmit={handleSubmit} className='p-4 grid grid-cols-4 gap-4 items-center'>
-        <label htmlFor="name">Name:</label>
+        <label htmlFor="companyuid">Recruiter UID:</label>
+        <input placeholder={User.CompanyUID} type="number" id="companyuid" name="companyuid" onChange={handleChange} value={updatedUser.CompanyUID} />
+        
+        <label htmlFor="recruitername">Recruiter Name:</label>
+        <input placeholder={User.RecruiterName} type="text" id="recruitername" name="recruitername" onChange={handleChange} value={updatedUser.RecruiterName} />
+        <label htmlFor="name">Company Name:</label>
         <input placeholder={User.CompanyName} className='' type="text" id="name" name="name" onChange={handleChange} value={updatedUser.Name} />
 
         <label htmlFor="city">City:</label>
         <input placeholder={User.Location} type="text" id="city" name="city" onChange={handleChange} value={updatedUser.Location} />
-
-        <label htmlFor="recruitername">Recruiter Name:</label>
-        <input placeholder={User.RecruiterName} type="text" id="recruitername" name="recruitername" onChange={handleChange} value={updatedUser.RecruiterName} />
-
         <label htmlFor="companyindustry">Company Industry:</label>
         <input placeholder={User.CompanyIndustry} type="text" id="companyindustry" name="companyindustry" onChange={handleChange} value={updatedUser.CompanyIndustry} />
 
-        <label htmlFor="companyuid">Company UID:</label>
-        <input placeholder={User.CompanyUID} type="number" id="companyuid" name="companyuid" onChange={handleChange} value={updatedUser.CompanyUID} />
-
         <label htmlFor="recruiternumber">Recruiter Number:</label>
         <input placeholder={User.RecruiterNumber} type="number" id="recruiternumber" name="recruiternumber" onChange={handleChange} value={updatedUser.RecruiterNumber} />
-
-        
+        <label htmlFor="recruitermail">Recruiter Mail:</label>
+        <input placeholder={User.RecruiterEmail} type="mail" id="recruitermail" name="recruitermail" onChange={handleChange} value={updatedUser.RecruiterEmail} />
+        <label htmlFor="signal">Signal:</label>
+        <input placeholder={User.Signal} type="text" id="signal" name="signal" onChange={handleChange} value={updatedUser.Signal} />
         <div>
+        
         <button className='px-4 py-2 ml-4 w-[100px] mt-6 bg-black text-white rounded-3xl font-semibold' type="submit" onClick={handleSubmit} >Save</button>
         <button className='px-4 py-2 ml-4 w-[100px] mt-6 bg-black text-white rounded-3xl font-semibold' onClick={back}>Back</button>
         </div>
@@ -163,17 +166,19 @@ function CompanyUserProfile() {
   return (
     <div>
       <div className='flex justify-center mt-5'>
-      <img className='w-[100px]' src={User.CompanyLogo} alt="" />
+      <img className='w-[100px]' src={User.RecruiterPicture || user?.picture} alt="" />
       </div>
       
 
     <div className='ml-5 grid grid-cols-4 gap-4 items-center font-semibold'>
+      <p className='mt-[1.5rem]'>Recruiter UID: {User.CompanyUID}</p>
+      <p>Recruiter Name: {User.RecruiterName}</p>
       <p>Company Name: {User.CompanyName}</p>
       <p>Location: {User.Location}</p>
-      <p>Recruiter Name: {User.RecruiterName}</p>
       <p>Company Industry: {User.CompanyIndustry}</p>
-      <p>Company UID: {User.CompanyUID}</p>
       <p>Recruiter Number: {User.RecruiterNumber}</p>
+      <p>Recruiter Email: {User.RecruiterEmail}</p>
+      <p>Signal: {User.Signal}</p>
 
       </div>
       <div>
