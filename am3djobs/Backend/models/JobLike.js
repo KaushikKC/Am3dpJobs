@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
-const JobFormSchema = new mongoose.Schema({
+const JobLikeSchema = new mongoose.Schema({
+    Job_id : String,
     User_id : String,
     CandidateName: String,
     CandidateLocation: String,
@@ -30,5 +31,5 @@ const JobFormSchema = new mongoose.Schema({
     CandidatePicture: String,
 });
 
-const JobForm = mongoose.model("JobFormData", JobFormSchema);
-module.exports = JobForm;
+const JobLike = mongoose.model("JobLikeData", JobLikeSchema);
+module.exports = JobLike;

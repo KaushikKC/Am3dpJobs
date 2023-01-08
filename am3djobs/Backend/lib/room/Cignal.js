@@ -232,7 +232,7 @@ class Cignal extends EventEmitter {
         break;
       default:
         // console.log('The message with id:', id, 'is not a special case, so Just relaying the message');
-        logger.warn("Unknown message with type:%s", message.type);
+        logger.warn("Unknown message with type:%s",);
         break;
     }
   }
