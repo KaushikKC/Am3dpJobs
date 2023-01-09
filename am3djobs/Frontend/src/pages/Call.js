@@ -21,10 +21,10 @@ const mediaConstraints = {
 };
 let cignal;
 
-const [other, setOther] = useState('true');
-const [clientLinkHelperText, setClientLinkHelperText] = useState('')
+// const [other, setOther] = useState('true');
+// const [clientLinkHelperText, setClientLinkHelperText] = useState('')
 
-// document.getElementById("otherElements").hidden = true;
+document.getElementById("otherElements").hidden = true;
 const usernameShow = document.querySelector("#showLocalUserName");
 const showAllUsers = document.querySelector("#allUsers");
 const remoteUsernameShow = document.querySelector("#showRemoteUserName");
@@ -57,9 +57,9 @@ window.addEventListener("load", async function () {
   cignal.on("localStream", (localStream) => {
     logger.debug("got local stream");
     localVideo.srcObject = localStream;
-    // document.getElementById("myName").hidden = true;
-    // document.getElementById("otherElements").hidden = false;
-    setOther(false)
+    document.getElementById("myName").hidden = true;
+    document.getElementById("otherElements").hidden = false;
+    // setOther(false)
 
     document.getElementById("clientLinkHelperText").hidden = true;
     if (!roomId) {
@@ -128,7 +128,7 @@ informPeerBtn.addEventListener("click", async () => {
 async function hangUp() {
   usernameShow.innerHTML = "";
   showAllUsers.innerHTML = "";
-  // document.getElementById("myName").hidden = false;
+  document.getElementById("myName").hidden = false;
   document.getElementById("otherElements").hidden = true;
   document.getElementById("callOngoing").style.display = "none";
   document.getElementById("allUsers").style.display = "none";
@@ -170,7 +170,7 @@ async function hangUp() {
     <div>
       <h3><span id="allUsers"></span></h3>
     </div>
-    <div className={`${!other && 'hiddend'}`}>
+    <div >   {/*className={`${!other && 'hiddend'}`} */}
       <b><span id="showLocalUserName"></span></b>
       <video
         id="localVideo"

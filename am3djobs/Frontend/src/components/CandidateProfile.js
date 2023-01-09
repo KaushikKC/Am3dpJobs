@@ -3,13 +3,15 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { Form, Button, Row, Col } from "react-bootstrap";
 import './CompanyProfile.css'
+import { useNavigate } from 'react-router-dom';
 
-function CandidateProfile() {
+function CandidateProfile({userprofile}) {
+  const navigate = useNavigate();
     const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [pic, setPic] = useState();
   const [password, setPassword] = useState("");
-  const [form, setForm] = useState({})
+  const [form, setForm] = useState()
   const [errors, setErrors] = useState({})
   const [image, setImage] = useState();
   const [selectedFile, setSelectedFile] = useState()
@@ -71,7 +73,7 @@ function CandidateProfile() {
     .then(data=>{
         console.log("data:",data)
         console.log(data.url)
-      setUrl(data.url1)
+      setUrl(data.url)
     })
     .catch(err=>{
         console.log(err)
@@ -88,53 +90,56 @@ function CandidateProfile() {
                   ...formErrors
               }))
               console.log( errors.Name)
+            
               console.log(validateForm())
           } else {
               // else {
               console.log('form submitted');
               console.log(form)
 
-              await axios.post("https://localhost:3002/CandidateProfile", {
-                CandidateName: form.Name,     
-                Location: form.City,
-                Number: form.Number,
-                IDNumber: form.IDNumber,
-                JobSpecialisation: form.Specialisation,
-                Skills: form.Skills,
-                Status: form.Status,
-                Level: form.Level,
-                Role: form.Role, 
+              await axios.post("https://backend.am3dpjobs.com/CandidateProfile", {
+                User_id: userprofile.sub,
+                CandidateUID: form.CandidateUID,
+                CandidateName: form.CandidateName,     
+                CandidateLocation: form.CandidateLocation,
+                CandidateNumber: form.CandidateNumber,
+                CandidateCompany: form.CandidateCompany,
+                CandidateIndustry: form.CandidateIndustry,
+                CandidateEmail: form.CandidateEmail,
+                Signal: form.Signal,
                 file: url,
 
-            })  
+            })
+            navigate('/')  
           } } catch (error) {
             console.error(error)
+      
         }
         }
 
     const validateForm = () => {
-      const {Name,City,Number,IDNumber,Specialisation,Skills,Status,Role,Level,Industry,CompanyUID,RecruiterNumber} = form
+      const {Name,City,Number,IDNumber,Specialisation,Skills,Signal,Role,Level,Industry,CompanyUID,RecruiterNumber} = form
       const newErrors = {}
       // console.log("name", Name)
   
-      if (!Name || Name === "") 
-          newErrors.Name = "Please enter the valid Name"
-      if (!City || City === " ") 
-          newErrors.City = "Please enter the valid Location"
-      if (!Number || Number === "") 
-          newErrors.Number = "Please enter the valid Mobile Number"
-      if (!IDNumber || IDNumber === "") 
-          newErrors.IDNumber = "Please enter the valid Mobile Number"
-      if (!Specialisation || Specialisation === "") 
-          newErrors.Specialisation = "Please enter the valid ID-Number"
-      if (!Skills || Skills === "") 
-          newErrors.Skills = "Please enter the valid Job Specialisation"
-      if (!Status || Status === "") 
-          newErrors.Status = "Please enter the valid Job Specialisation"
-      if (!Level || Level === "") 
-          newErrors.Level = "Please enter the valid Job Specialisation"
-      if (!Role || Role === "") 
-          newErrors.Role = "Please enter the valid Job Specialisation"
+      // if (!Name || Name === "") 
+      //     newErrors.Name = "Please enter the valid Name"
+      // if (!City || City === " ") 
+      //     newErrors.City = "Please enter the valid Location"
+      // if (!Number || Number === "") 
+      //     newErrors.Number = "Please enter the valid Mobile Number"
+      // if (!IDNumber || IDNumber === "") 
+      //     newErrors.IDNumber = "Please enter the valid Mobile Number"
+      // if (!Specialisation || Specialisation === "") 
+      //     newErrors.Specialisation = "Please enter the valid ID-Number"
+      // if (!Skills || Skills === "") 
+      //     newErrors.Skills = "Please enter the valid Job Specialisation"
+      // if (!Signal || Signal === "") 
+      //     newErrors.Signal = "Please enter the valid Job Specialisation"
+      // if (!Level || Level === "") 
+      //     newErrors.Level = "Please enter the valid Job Specialisation"
+      // if (!Role || Role === "") 
+      //     newErrors.Role = "Please enter the valid Job Specialisation"
 
 
       return newErrors
@@ -159,103 +164,128 @@ function CandidateProfile() {
               {error && <ErrorMessage variant="danger">{error}</ErrorMessage>} */}
               <div className='w-[25%] pt-24 h-full pl-14'>
               <Form.Group controlId="name" className='mb-3'>
+                <Form.Label>Candidate UID</Form.Label>
+                <Form.Control
+                  type="number"
+                  placeholder="Enter number"
+                  value={form?.CandidateUID}
+                  onChange={(e) => setField(`CandidateUID`,e.target.value)}
+                  isInvalid = {!!errors.CandidateUID}
+                ></Form.Control>
+              </Form.Group>
+              <Form.Group controlId="Company"  className='mb-3'>
+                <Form.Label>Candidate Company</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Enter city"
+                  value={form?.CandidateCompany}
+                  onChange={(e) => setField(`CandidateCompany`,e.target.value)}
+                  isInvalid = {!!errors.CandidateCompany}
+                ></Form.Control>
+              </Form.Group>
+              <Form.Group controlId="Industry"  className='mb-3'>
+                <Form.Label>Candidate Industry</Form.Label>
+                <Form.Select
+                  type="text"
+                  placeholder="Enter Industry"
+                  value={form?.CandidateIndustry}
+                  onChange={(e) => setField(`CandidateIndustry`,e.target.value)}
+                  isInvalid = {!!errors.CandidateIndustry}
+                >
+                  <option disabled selected>Select Industry</option>
+                  <option >Agriculture</option>
+                  <option >Arts</option>
+                  <option >Construction</option>
+                  <option >Consumer Goods</option>
+                  <option >Corporate Services</option>
+                  <option >Design</option>
+                  <option >Education</option>
+                  <option >Energy & Mining</option>
+                  <option >Entertainment</option>
+                  <option >Finance</option>
+                  <option >Hardware & Networking</option>
+                  <option >Health Care</option>
+                  <option >Legal</option>
+                  <option >Manufacturing</option>
+                  <option >Media & Communications</option>
+                  <option >Nonprofit</option>
+                  <option >Public Administration</option>
+                  <option >Public Safety</option>
+                  <option >Real Estate</option>
+                  <option >Recreation & Travel</option>
+                  <option >Retail</option>
+                  <option >Health Care</option>
+                  <option >Software & IT Services</option>
+                  <option >Transportation & Logistics</option>
+                  <option >Wellness & Fitness</option>
+
+                </Form.Select>
+              </Form.Group>
+              
+              <Form.Group controlId="name" className='mb-3'>
+                <Form.Label>Candidate Email</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Enter your mail"
+                  value={form?.CandidateEmail}
+                  onChange={(e) => setField(`CandidateEmail`,e.target.value)}
+                  isInvalid = {!!errors.CandidateEmail}
+                ></Form.Control>
+              </Form.Group>
+              
+              </div>
+              <div className='w-[25%] pt-24 h-full pl-14'>
+              <Form.Group controlId="name" className='mb-3'>
                 <Form.Label>Candidate Name</Form.Label>
                 <Form.Control
                   type="text"
                   placeholder="Enter Name"
-                  value={form.Name}
-                  onChange={(e) => setField(`Name`,e.target.value)}
-                  isInvalid = {!!errors.Name}
+                  value={form?.CandidateName}
+                  onChange={(e) => setField(`CandidateName`,e.target.value)}
+                  isInvalid = {!!errors.CandidateName}
                 ></Form.Control>
               </Form.Group>
+
               <Form.Group controlId="C"  className='mb-3'>
-                <Form.Label>City</Form.Label>
+                <Form.Label>Candidate Location</Form.Label>
                 <Form.Control
                   type="text"
                   placeholder="Enter city"
-                  value={form.City}
-                  onChange={(e) => setField(`City`,e.target.value)}
-                  isInvalid = {!!errors.City}
-                ></Form.Control>
-              </Form.Group>
-              <Form.Group controlId="password" className='mb-3'>
-                <Form.Label>Mobile Phone</Form.Label>
-                <Form.Control
-                  type="number"
-                  placeholder="Enter number"
-                  value={form.Number}
-                  onChange={(e) => setField(`Number`,e.target.value)}
-                  isInvalid = {!!errors.Number}
-                ></Form.Control>
-              </Form.Group>
-              </div>
-              <div className='w-[25%] pt-24 h-full pl-14'>
-              <Form.Group controlId="name" className='mb-3'>
-                <Form.Label>ID number</Form.Label>
-                <Form.Control
-                  type="number"
-                  placeholder="Enter number"
-                  value={form.IDNumber}
-                  onChange={(e) => setField(`IDNumber`,e.target.value)}
-                  isInvalid = {!!errors.IDNumber}
-                ></Form.Control>
-              </Form.Group>
-              <Form.Group controlId="name" className='mb-3'>
-                <Form.Label>Specialisation</Form.Label>
-                <Form.Control
-                  type="text"
-                  placeholder="Enter your Specialisation"
-                  value={form.Specialisation}
-                  onChange={(e) => setField(`Specialisation`,e.target.value)}
-                  isInvalid = {!!errors.Specialisation}
-                ></Form.Control>
-              </Form.Group>
-              <Form.Group controlId="name" className='mb-3'>
-                <Form.Label>Key Skills</Form.Label>
-                <Form.Control
-                  type="text"
-                  placeholder="Enter Skill"
-                  value={form.Skills}
-                  onChange={(e) => setField(`Skills`,e.target.value)}
-                  isInvalid = {!!errors.Skills}
+                  value={form?.CandidateLocation}
+                  onChange={(e) => setField(`CandidateLocation`,e.target.value)}
+                  isInvalid = {!!errors.CandidateLocation}
                 ></Form.Control>
               </Form.Group>
               
-              </div>
-              <div className='w-[25%] pt-24 h-full pl-14'>
-              <Form.Group controlId="name" className='mb-3'>
-                <Form.Label>Current Status</Form.Label>
+              
+              <Form.Group controlId="password" className='mb-3'>
+                <Form.Label>Candidate Number</Form.Label>
                 <Form.Control
+                  type="number"
+                  placeholder="Enter number"
+                  value={form?.CandidateNumber}
+                  onChange={(e) => setField(`CandidateNumber`,e.target.value)}
+                  isInvalid = {!!errors.CandidateNumber}
+                ></Form.Control>
+              </Form.Group>
+              
+              <Form.Group controlId="name" className='mb-3'>
+                <Form.Label>Signal</Form.Label>
+                <Form.Select
                   type="text"
                   placeholder="Enter Status"
-                  value={form.Status}
-                  onChange={(e) => setField(`Status`,e.target.value)}
-                  isInvalid = {!!errors.Status}
-                ></Form.Control>
+                  value={form?.Signal}
+                  onChange={(e) => setField(`Signal`,e.target.value)}
+                  isInvalid = {!!errors.Signal}
+                >
+                  <option disabled selected>Select Signal</option>
+                  <option >Available</option>
+                  <option >Not Available</option>
+                </Form.Select>
               </Form.Group>
-              <Form.Group controlId="name" className='mb-3'>
-                <Form.Label>Current Role</Form.Label>
-                <Form.Control
-                  type="text"
-                  placeholder="Enter Role"
-                  value={form.Role}
-                  onChange={(e) => setField(`Role`,e.target.value)}
-                  isInvalid = {!!errors.Role}
-                ></Form.Control>
-              </Form.Group>
-              <Form.Group controlId="name" className='mb-3'>
-                <Form.Label>Current Level</Form.Label>
-                <Form.Control
-                  type="text"
-                  placeholder="Enter Level"
-                  value={form.Level}
-                  onChange={(e) => setField(`Level`,e.target.value)}
-                  isInvalid = {!!errors.Level}
-                ></Form.Control>
-              </Form.Group>
-              
               
               </div>
+            
               {/* {picMessage && (
                 <ErrorMessage variant="danger">{picMessage}</ErrorMessage>
               )} */}

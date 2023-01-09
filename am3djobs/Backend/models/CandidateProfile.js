@@ -13,5 +13,5 @@ const CandidateSchema = new mongoose.Schema({
     CandidateImg: String,
 });
 
-const CandidateProfile = mongoose.model("CandidateProfile", CandidateSchema);
+const CandidateProfile = mongoose.model("CandidateProfileData", CandidateSchema);
 module.exports = CandidateProfile;

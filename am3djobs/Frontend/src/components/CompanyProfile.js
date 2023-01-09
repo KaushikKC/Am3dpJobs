@@ -1,9 +1,12 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { Form, Button, Row, Col } from "react-bootstrap";
+import { Navigate } from 'react-router-dom';
 import './CompanyProfile.css'
+import { useNavigate } from 'react-router-dom';
 
-function CompanyProfile() {
+function CompanyProfile({userprofile}) {
+  const navigate = useNavigate();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -70,7 +73,7 @@ function CompanyProfile() {
     .then(data=>{
         console.log("data:",data)
         console.log(data.url)
-      setUrl(data.url1)
+      setUrl(data.url)
     })
     .catch(err=>{
         console.log(err)
@@ -93,24 +96,27 @@ function CompanyProfile() {
               console.log('form submitted');
               console.log(form)
 
-              await axios.post("http://localhost:3002/CompanyProfile", {
-                CandidateName: form.Name,     
+              await axios.post("https://backend.am3dpjobs.com/CompanyProfile", {
+                User_id: userprofile.sub,  
+                CompanyName: form.Name,     
                 Location: form.City,
                 RecruiterName: form.RecruiterName,
                 Industry: form.Industry,
                 CompanyUID: form.CompanyUID,
                 RecruiterNumber: form.RecruiterNumber,
+                RecruiterEmail: form.RecruiterEmail,
+                Signal: form.Signal,
                 file: url,
 
             })
-
+            navigate('/')
           } } catch (error) {
             console.error(error)
         }
         }
 
     const validateForm = () => {
-      const {Name,City,RecruiterName,Industry,CompanyUID,RecruiterNumber} = form
+      const {Name,City,RecruiterName,Industry,CompanyUID,RecruiterNumber,RecruiterEmail,Signal} = form
       const newErrors = {}
       // console.log("name", Name)
   
@@ -126,6 +132,10 @@ function CompanyProfile() {
           newErrors.CompanyUID = "Please enter the valid ID-Number"
       if (!RecruiterNumber || RecruiterNumber === "") 
           newErrors.RecruiterNumber = "Please enter the valid Job Specialisation"
+          if (!RecruiterEmail || RecruiterEmail === "") 
+          newErrors.RecruiterEmail = "Please enter the valid Job Specialisation"
+          if (!Signal || Signal === "") 
+          newErrors.Signal = "Please enter the valid Job Specialisation"
       
       return newErrors
   }
@@ -148,6 +158,17 @@ function CompanyProfile() {
               {error && <ErrorMessage variant="danger">{error}</ErrorMessage>} */}
               <div className='w-[35%] pt-24 h-full pl-14'>
               <Form.Group controlId="name" className='mb-3'>
+                <Form.Label>Recruiter UID</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Enter UID"
+                  value={form.CompanyUID}
+                  onChange={(e) => setField(`CompanyUID`,e.target.value)}
+                  isInvalid = {!!errors.CompanyUID}
+                ></Form.Control>
+              </Form.Group>
+              
+              <Form.Group controlId="name" className='mb-3'>
                 <Form.Label>Company Name</Form.Label>
                 <Form.Control
                   type="text"
@@ -157,16 +178,60 @@ function CompanyProfile() {
                   isInvalid = {!!errors.Name}
                 ></Form.Control>
               </Form.Group>
+              
               <Form.Group controlId="email" className='mb-3'>
-                <Form.Label>HQ City</Form.Label>
-                <Form.Control
+                <Form.Label>Company Industry</Form.Label>
+                <Form.Select
                   type="text"
-                  placeholder="Enter your city"
-                  value={form.City}
-                  onChange={(e) => setField(`City`,e.target.value)}
-                  isInvalid = {!!errors.City}
+                  placeholder="Enter your Industry"
+                  value={form.Industry}
+                  onChange={(e) => setField(`Industry`,e.target.value)}
+                  isInvalid = {!!errors.Industry}
+                >
+                  <option disabled selected>Select Industry</option>
+                  <option >Agriculture</option>
+                  <option >Arts</option>
+                  <option >Construction</option>
+                  <option >Consumer Goods</option>
+                  <option >Corporate Services</option>
+                  <option >Design</option>
+                  <option >Education</option>
+                  <option >Energy & Mining</option>
+                  <option >Entertainment</option>
+                  <option >Finance</option>
+                  <option >Hardware & Networking</option>
+                  <option >Health Care</option>
+                  <option >Legal</option>
+                  <option >Manufacturing</option>
+                  <option >Media & Communications</option>
+                  <option >Nonprofit</option>
+                  <option >Public Administration</option>
+                  <option >Public Safety</option>
+                  <option >Real Estate</option>
+                  <option >Recreation & Travel</option>
+                  <option >Retail</option>
+                  <option >Health Care</option>
+                  <option >Software & IT Services</option>
+                  <option >Transportation & Logistics</option>
+                  <option >Wellness & Fitness</option>
+
+                </Form.Select>
+              </Form.Group>
+
+              <Form.Group controlId="name" className='mb-3'>
+                <Form.Label>Recruiter Mail:</Form.Label>
+                <Form.Control
+                  type="email"
+                  placeholder="Enter UID"
+                  value={form.RecruiterEmail}
+                  onChange={(e) => setField(`RecruiterEmail`,e.target.value)}
+                  isInvalid = {!!errors.RecruiterEmail}
                 ></Form.Control>
               </Form.Group>
+                  
+              </div>
+              <div className='w-[35%] pt-24 h-full mb-4 pl-14'>
+                
               <Form.Group controlId="password" className='mb-3'>
                 <Form.Label>Recruiter Name</Form.Label>
                 <Form.Control
@@ -177,29 +242,18 @@ function CompanyProfile() {
                   isInvalid = {!!errors.RecruiterName}
                   ></Form.Control>
                   </Form.Group>
-               
-              </div>
-              <div className='w-[35%] pt-24 h-full mb-4 pl-14'>
-              <Form.Group controlId="email" className='mb-3'>
-                <Form.Label>Compnay Industry</Form.Label>
+                  <Form.Group controlId="email" className='mb-3'>
+                <Form.Label>Recruiter City</Form.Label>
                 <Form.Control
                   type="text"
-                  placeholder="Enter your Industry"
-                  value={form.Industry}
-                  onChange={(e) => setField(`Industry`,e.target.value)}
-                  isInvalid = {!!errors.Industry}
+                  placeholder="Enter your city"
+                  value={form.City}
+                  onChange={(e) => setField(`City`,e.target.value)}
+                  isInvalid = {!!errors.City}
                 ></Form.Control>
               </Form.Group>
-              <Form.Group controlId="name" className='mb-3'>
-                <Form.Label>Company UID</Form.Label>
-                <Form.Control
-                  type="text"
-                  placeholder="Enter UID"
-                  value={form.CompanyUID}
-                  onChange={(e) => setField(`CompanyUID`,e.target.value)}
-                  isInvalid = {!!errors.CompanyUID}
-                ></Form.Control>
-              </Form.Group>
+              
+              
               
               <Form.Group controlId="confirmPassword" className='mb-3'>
                 <Form.Label>Recruiter Mobile Phone</Form.Label>
@@ -212,6 +266,17 @@ function CompanyProfile() {
                 ></Form.Control>
               </Form.Group>{" "}
               
+              
+
+              <Form.Group controlId="name" className='mb-3'>
+                <Form.Label>Signal:</Form.Label>
+                <Form.Select value={form.Signal} onChange={(e) => setField(`Signal`,e.target.value)} isInvalid = {!!errors.Signal} aria-label="Default select example">
+                  <option disabled selected>Select Signal</option>
+                  <option >Hiring</option>
+                  <option >Not Hiring</option>
+              
+                </Form.Select>
+              </Form.Group>
               </div>
               {/* {picMessage && (
                 <ErrorMessage variant="danger">{picMessage}</ErrorMessage>

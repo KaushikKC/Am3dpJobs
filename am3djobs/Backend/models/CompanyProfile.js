@@ -10,5 +10,5 @@ const CompanySchema = new mongoose.Schema({
     CompanyLogo: String,
 });
 
-const CompanyProfile = mongoose.model("CandidateProfile", CompanySchema);
+const CompanyProfile = mongoose.model("CompanyProfileData", CompanySchema);
 module.exports = CompanyProfile;
