@@ -21,6 +21,10 @@ function MainContentJobs() {
       const dataCompany = await axios.get(`https://backend.am3dpjobs.com/TallentReadonce/${user?.sub}`); 
       const dataCandidate = await axios.get(`https://backend.am3dpjobs.com/JobReadonce/${user?.sub}`);
       if(dataCandidate){
+       
+      //CHANGE LOCAL HOST TO BACKEND IN CASE OF ERRORS
+        
+        
       const SortedCampanyData = await axios.get("https://localhost:3002/filteredTallent", {
         params:{
           jobmode: dataCandidate.data.PrefferedJobMode,
