@@ -61,6 +61,9 @@ function MainContentTallent() {
     console.log(id)
     // setLike(like + (isLike?-1:1));
     // setIsLike(!isLike);
+    
+     //CHANGE LOCAL HOST TO BACKEND IN CASE OF ERRORS
+    
     const data = await axios.get(`https://localhost:3002/JobReadonce/${id}`)
     try {
     await axios.post("https://localhost:3002/likedJobs", {
