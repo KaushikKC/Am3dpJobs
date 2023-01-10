@@ -1,25 +1,35 @@
 const mongoose = require('mongoose');
 
-const JobFormSchema = new mongoose.Schema({
+const TallentFormSchema = new mongoose.Schema({
+    User_id: String,
     CompanyName: String,
+    Location: String,
     CompanyIndustry: String,
-    CompanyHQ: String,
     CompanyUID: String,
     RecruiterName: String,
     RecruiterNumber: Number,
+    RecruiterEmail: String,
+    Signal: String,
     JobDescription: String,
     JobTitle: String,
     JobMode: String,
+    JobLocation: String,
+    JobIndustry: String,
     JobFunction: String,
     Skills: String,
+    JobStartDate: String,
     MonthlySalary: String,
-    CandidateType: String,
-    TypeOfWork: String,
-    Background : String,
-    JoiningTime: String,
-    Interview: String,
-    CompanyLogo: String,
+    JobCompany: String,
+    JobCompanyName: String,
+    JobCompanyLogo: String,
+    JobLevel: String,
+    JobType: String,
+    JobWeeklyHr: String,
+    InterviewMode: String,
+    InterviewAvailability: String,
+    InterviewContact: String,
+    RecruiterPicture: String,
 });
 
-const TallentForm = mongoose.model("TallentFormData", JobFormSchema);
+const TallentForm = mongoose.model("TallentFormData", TallentFormSchema);
 module.exports = TallentForm;

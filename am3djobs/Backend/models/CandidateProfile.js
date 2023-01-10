@@ -1,15 +1,15 @@
 const mongoose = require('mongoose');
 
 const CandidateSchema = new mongoose.Schema({
+    User_id: String,
+    CandidateUID: Number,
     CandidateName: String,
-    Location: String,
-    Number: Number,
-    IDNumber: Number,
-    JobSpecialisation: String,
-    Skills: String,
-    Status: String,
-    Level: String,
-    Role: String,
+    CandidateLocation: String,
+    CandidateCompany: String,
+    CandidateIndustry: String,
+    CandidateNumber: Number,
+    CandidateEmail: String,
+    Signal: String,
     CandidateImg: String,
 });
 
